@@ -1,0 +1,2092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mosaic Venture Lab — East Asia Deep Tech Investment &amp; Accelerator Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0F0F0E;
+  --ink-soft: #1A1A18;
+  --paper: #F4F0E8;
+  --paper-warm: #EDE7DA;
+  --paper-deep: #E5DDC8;
+  --rule: #C9C0AB;
+  --rule-soft: #D8D1BD;
+  --accent: #C8472A;
+  --accent-deep: #9E2F18;
+  --muted: #6B6557;
+  --muted-soft: #918A7A;
+  --display: 'Fraunces', Georgia, serif;
+  --sans: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'Geist Mono', 'SF Mono', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--paper); color: var(--ink); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+img { max-width: 100%; display: block; }
+
+/* HEADER */
+.header { position: sticky; top: 0; z-index: 100; background: rgba(244,240,232,0.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--rule-soft); }
+.header-inner { max-width: 1440px; margin: 0 auto; padding: 18px 48px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.logo { font-family: var(--display); font-weight: 500; font-size: 20px; letter-spacing: -0.02em; display: flex; align-items: baseline; gap: 10px; }
+.logo-mark { display: inline-block; width: 16px; height: 16px; background: var(--accent); position: relative; transform: translateY(2px); flex-shrink: 0; }
+.logo-mark::after { content: ""; position: absolute; width: 7px; height: 7px; background: var(--paper); bottom: 0; right: 0; }
+.nav { display: flex; gap: 24px; align-items: center; }
+.nav a { font-size: 13px; font-weight: 500; letter-spacing: -0.005em; color: var(--ink); position: relative; padding: 4px 0; transition: color .18s; }
+.nav a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -2px; height: 1px; background: var(--accent); transition: right .25s; }
+.nav a:hover::after, .nav a.active::after { right: 0; }
+.nav a.active { color: var(--accent); }
+.nav-cta { background: var(--ink); color: var(--paper); padding: 9px 18px; font-size: 13px; font-weight: 500; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px; transition: background .2s; }
+.nav-cta:hover { background: var(--accent); }
+.nav-cta::after { content: "→"; font-family: var(--mono); }
+
+/* LAYOUT */
+.page { display: none; min-height: 60vh; }
+.page.active { display: block; }
+.section { padding: 80px 48px; max-width: 1440px; margin: 0 auto; }
+.section-tight { padding: 56px 48px; }
+.section-dark { background: var(--ink); color: var(--paper); max-width: none; }
+.section-dark .section-inner { max-width: 1440px; margin: 0 auto; padding: 80px 48px; }
+.section-warm { background: var(--paper-warm); max-width: none; }
+.section-warm .section-inner { max-width: 1440px; margin: 0 auto; padding: 80px 48px; }
+.section-deep { background: var(--paper-deep); max-width: none; }
+.section-deep .section-inner { max-width: 1440px; margin: 0 auto; padding: 80px 48px; }
+
+.eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; display: inline-flex; align-items: center; gap: 10px; }
+.eyebrow::before { content: ""; display: inline-block; width: 20px; height: 1px; background: var(--accent); }
+.section-dark .eyebrow { color: var(--paper-deep); }
+
+/* TYPOGRAPHY — reduced sizes */
+h1.display { font-family: var(--display); font-weight: 400; font-size: clamp(36px, 5vw, 68px); line-height: 1.02; letter-spacing: -0.028em; margin-bottom: 28px; font-variation-settings: 'opsz' 72; }
+h1.display em { font-style: italic; font-weight: 300; color: var(--accent); }
+h2.display { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 3.5vw, 52px); line-height: 1.05; letter-spacing: -0.022em; margin-bottom: 20px; font-variation-settings: 'opsz' 72; }
+h2.display em { font-style: italic; color: var(--accent); }
+h3 { font-family: var(--display); font-weight: 500; font-size: 22px; letter-spacing: -0.015em; margin-bottom: 10px; font-variation-settings: 'opsz' 36; }
+.lede { font-size: 18px; line-height: 1.55; color: var(--muted); max-width: 640px; }
+.section-dark .lede { color: var(--paper-deep); }
+
+/* HERO */
+.hero { padding: 72px 48px 64px; max-width: 1440px; margin: 0 auto; }
+.hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: end; }
+.hero-meta { border-left: 1px solid var(--rule); padding-left: 32px; display: grid; gap: 24px; }
+.hero-meta-num { font-family: var(--display); font-weight: 400; font-size: 48px; line-height: 1; letter-spacing: -0.03em; font-variation-settings: 'opsz' 72; }
+.hero-meta-num em { font-style: italic; color: var(--accent); }
+.hero-meta-label { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-top: 4px; }
+.hero-tags { margin-top: 40px; display: flex; gap: 8px; flex-wrap: wrap; }
+.tag { font-family: var(--mono); font-size: 11px; text-transform: lowercase; letter-spacing: 0.04em; padding: 5px 12px; border: 1px solid var(--rule); border-radius: 999px; transition: all .2s; }
+.tag:hover { border-color: var(--accent); color: var(--accent); }
+.tag.tag-light { color: var(--paper-deep); border-color: rgba(244,240,232,0.25); }
+.hero-ctas { margin-top: 40px; display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; font-size: 13px; font-weight: 500; transition: all .2s; border: 1px solid transparent; }
+.btn::after { content: "→"; font-family: var(--mono); transition: transform .2s; }
+.btn:hover::after { transform: translateX(3px); }
+.btn-primary { background: var(--ink); color: var(--paper); }
+.btn-primary:hover { background: var(--accent); }
+.btn-outline { border-color: var(--ink); color: var(--ink); }
+.btn-outline:hover { background: var(--ink); color: var(--paper); }
+.btn-ghost { color: var(--ink); padding: 12px 0; }
+.btn-ghost:hover { color: var(--accent); }
+.section-dark .btn-outline { border-color: rgba(244,240,232,0.5); color: var(--paper); }
+.section-dark .btn-outline:hover { background: var(--paper); color: var(--ink); }
+.section-dark .btn-ghost { color: var(--paper); }
+
+/* SECTOR STRIP */
+.sector-strip { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--paper-warm); }
+.sector-strip-inner { max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); }
+.sector-tile { padding: 36px 24px; border-right: 1px solid var(--rule); cursor: pointer; transition: background .2s; }
+.sector-tile:last-child { border-right: none; }
+.sector-tile:hover { background: var(--paper); }
+.sector-tile-num { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 28px; }
+.sector-tile-name { font-family: var(--display); font-size: 20px; font-weight: 500; line-height: 1.1; letter-spacing: -0.015em; margin-bottom: 10px; font-variation-settings: 'opsz' 36; }
+.sector-tile-desc { font-size: 13px; color: var(--muted); line-height: 1.45; margin-bottom: 28px; min-height: 60px; }
+.sector-tile-arrow { font-family: var(--mono); font-size: 11px; color: var(--ink); letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 6px; text-transform: uppercase; }
+.sector-tile-arrow::after { content: "→"; transition: transform .2s; }
+.sector-tile:hover .sector-tile-arrow::after { transform: translateX(4px); }
+.sector-tile.quiet .sector-tile-name { color: var(--muted); }
+
+/* TRACK RECORD */
+.track-record { background: var(--ink); color: var(--paper); }
+.track-inner { max-width: 1440px; margin: 0 auto; padding: 64px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.track-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px 48px; margin-top: 40px; }
+.track-stat-num { font-family: var(--display); font-weight: 400; font-size: 52px; line-height: 1; letter-spacing: -0.03em; margin-bottom: 6px; font-variation-settings: 'opsz' 72; }
+.track-stat-num em { font-style: italic; color: var(--accent); }
+.track-stat-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--paper-deep); }
+.advisory-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper-deep); margin-bottom: 8px; display: inline-flex; align-items: center; gap: 10px; }
+.advisory-label::before { content: ""; width: 20px; height: 1px; background: var(--accent); }
+.advisory-note { font-size: 13px; color: var(--muted-soft); margin-bottom: 28px; line-height: 1.5; }
+.exit-row { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid rgba(244,240,232,0.1); gap: 16px; }
+.exit-row:first-of-type { border-top: 1px solid rgba(244,240,232,0.1); }
+.exit-left { display: flex; align-items: center; gap: 16px; }
+.exit-logo { width: 32px; height: 32px; border-radius: 6px; background: rgba(244,240,232,0.08); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+.exit-logo img { width: 24px; height: 24px; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.85; }
+.exit-logo .logo-fallback { font-family: var(--mono); font-size: 10px; color: var(--paper-deep); letter-spacing: 0; }
+.exit-name { font-family: var(--display); font-size: 22px; font-weight: 400; letter-spacing: -0.018em; font-variation-settings: 'opsz' 36; }
+.exit-name em { font-style: italic; color: var(--accent); }
+.exit-right { text-align: right; }
+.exit-badge { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(200,71,42,0.4); border-radius: 999px; padding: 3px 8px; display: inline-block; margin-bottom: 4px; }
+.exit-meta { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--paper-deep); line-height: 1.4; }
+.acquirer-logos { display: flex; align-items: center; gap: 6px; margin-top: 6px; justify-content: flex-end; }
+.acquirer-logo-pill { display: flex; align-items: center; gap: 6px; background: rgba(244,240,232,0.06); border: 1px solid rgba(244,240,232,0.12); border-radius: 6px; padding: 4px 10px; }
+.acquirer-logo-pill img { height: 14px; width: auto; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.75; }
+.acquirer-logo-pill span { font-family: var(--mono); font-size: 10px; color: var(--paper-deep); letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* ACCELERATOR CARDS */
+.accel-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 48px; }
+@media (max-width: 1100px) { .accel-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* EDITORIAL PHOTO STRIP — life of MVL */
+.editorial-band { padding: 80px 56px; border-bottom: 1px solid var(--rule); }
+.editorial-band-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; margin-bottom: 48px; max-width: 1280px; margin-left: auto; margin-right: auto; }
+.editorial-band-head h2 { font-family: var(--display); font-size: 36px; line-height: 1.1; letter-spacing: -0.02em; max-width: 640px; }
+.editorial-band-head p { font-size: 15px; color: var(--muted); max-width: 320px; line-height: 1.55; }
+.editorial-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 16px; max-width: 1280px; margin: 0 auto; }
+.editorial-tile { position: relative; overflow: hidden; aspect-ratio: 4/5; background: var(--ink); }
+.editorial-tile:first-child { aspect-ratio: 4/5; }
+.editorial-tile img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(15%) contrast(1.05); transition: transform .6s ease, filter .4s; }
+.editorial-tile:hover img { transform: scale(1.04); filter: grayscale(0%) contrast(1.05); }
+.editorial-tile-caption { position: absolute; left: 16px; right: 16px; bottom: 16px; color: var(--paper); font-family: var(--display); font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; z-index: 2; }
+.editorial-tile-caption strong { display: block; font-size: 16px; text-transform: none; letter-spacing: -0.01em; margin-top: 4px; line-height: 1.3; }
+.editorial-tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,15,17,0.75) 0%, rgba(15,15,17,0) 50%); z-index: 1; }
+@media (max-width: 900px) { .editorial-grid { grid-template-columns: 1fr 1fr; } .editorial-band-head { flex-direction: column; align-items: flex-start; } }
+
+/* BIDIRECTIONAL POSITIONING BAND */
+.bidi-band { background: var(--paper-warm); padding: 100px 56px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.bidi-inner { max-width: 1280px; margin: 0 auto; }
+.bidi-head { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: end; margin-bottom: 56px; }
+.bidi-head h2 { font-family: var(--display); font-size: 44px; line-height: 1.05; letter-spacing: -0.025em; }
+.bidi-head h2 em { font-style: italic; color: var(--accent); }
+.bidi-head p { font-size: 17px; line-height: 1.55; color: var(--ink); max-width: 540px; }
+.bidi-flows { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.bidi-flow { background: var(--paper); padding: 40px 36px 44px; display: flex; flex-direction: column; gap: 18px; min-height: 320px; }
+.bidi-flow.alt { background: var(--ink); color: var(--paper); }
+.bidi-flow-direction { font-family: var(--display); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 12px; }
+.bidi-flow.alt .bidi-flow-direction { color: var(--accent); }
+.bidi-flow-direction svg { flex: none; }
+.bidi-flow-title { font-family: var(--display); font-size: 28px; line-height: 1.15; letter-spacing: -0.02em; max-width: 380px; }
+.bidi-flow-body { font-size: 15px; line-height: 1.6; color: var(--muted); max-width: 420px; }
+.bidi-flow.alt .bidi-flow-body { color: var(--paper-deep); }
+.bidi-flow-meta { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--rule); font-size: 13px; color: var(--muted-soft); display: flex; gap: 20px; flex-wrap: wrap; }
+.bidi-flow.alt .bidi-flow-meta { border-top-color: rgba(255,255,255,0.12); color: var(--paper-deep); }
+.bidi-flow-meta strong { color: var(--ink); font-weight: 500; }
+.bidi-flow.alt .bidi-flow-meta strong { color: var(--paper); }
+@media (max-width: 900px) { .bidi-head { grid-template-columns: 1fr; gap: 32px; } .bidi-flows { grid-template-columns: 1fr; } .bidi-head h2 { font-size: 32px; } }
+
+/* SECTOR ROW THUMBNAIL */
+.sector-row { grid-template-columns: 64px 1fr 1.4fr 200px !important; }
+.sector-row-thumb { aspect-ratio: 4/5; overflow: hidden; background: var(--ink); position: relative; }
+.sector-row-thumb img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%) contrast(1.04); transition: transform .5s, filter .3s; }
+.sector-row:hover .sector-row-thumb img { transform: scale(1.04); filter: grayscale(0%) contrast(1.04); }
+.sector-row.quiet .sector-row-thumb { background: var(--paper-warm); }
+.sector-row.quiet .sector-row-thumb::before { content: "CONFIDENTIAL"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: var(--display); font-size: 10px; letter-spacing: 0.2em; color: var(--muted); }
+@media (max-width: 1100px) { .sector-row { grid-template-columns: 48px 1fr 1.2fr !important; } .sector-row-thumb { display: none; } }
+.accel-card { background: var(--paper); padding: 32px 24px; display: flex; flex-direction: column; gap: 14px; cursor: pointer; min-height: 260px; transition: background .25s; }
+.accel-card:hover { background: var(--paper-deep); }
+.accel-card.past { background: var(--paper-warm); opacity: 0.7; }
+.accel-card.past:hover { opacity: 1; }
+.accel-name { font-family: var(--display); font-size: 26px; font-weight: 500; letter-spacing: -0.02em; line-height: 1; font-variation-settings: 'opsz' 36; }
+.accel-partner { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
+.accel-sector { font-size: 13px; color: var(--muted); line-height: 1.45; margin-top: auto; }
+.accel-past-note { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-soft); }
+.accel-arrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; }
+.accel-arrow::after { content: "→"; transition: transform .2s; }
+.accel-card:hover .accel-arrow::after { transform: translateX(4px); }
+
+/* FUND TEASE */
+.fund-tease { background: var(--paper-deep); }
+.fund-tease-inner { max-width: 1440px; margin: 0 auto; padding: 80px 48px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: center; }
+.fund-tease-tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+.fund-tease-title { font-family: var(--display); font-size: clamp(28px, 3.5vw, 46px); font-weight: 400; line-height: 1.08; letter-spacing: -0.022em; margin-bottom: 20px; font-variation-settings: 'opsz' 72; }
+.fund-tease-title em { font-style: italic; color: var(--accent); }
+.fund-tease-body { font-size: 16px; line-height: 1.6; color: var(--ink-soft); max-width: 480px; margin-bottom: 28px; }
+.fund-meta-list { list-style: none; display: grid; }
+.fund-meta-list li { display: grid; grid-template-columns: 130px 1fr; gap: 20px; padding: 12px 0; border-top: 1px solid var(--rule); font-size: 14px; }
+.fund-meta-list li:last-child { border-bottom: 1px solid var(--rule); }
+.fund-meta-key { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding-top: 2px; }
+
+/* PORTFOLIO STRIP */
+.portfolio-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 40px; }
+.port-tile { background: var(--paper); padding: 28px 20px; display: flex; flex-direction: column; gap: 10px; min-height: 180px; cursor: pointer; transition: background .2s; }
+.port-tile:hover { background: var(--paper-deep); }
+.port-tile-logo { width: 28px; height: 28px; border-radius: 4px; overflow: hidden; background: var(--paper-warm); display: flex; align-items: center; justify-content: center; }
+.port-tile-logo img { width: 22px; height: 22px; object-fit: contain; }
+.port-tile-logo .lm { font-family: var(--display); font-size: 13px; font-weight: 500; color: var(--ink); font-variation-settings: 'opsz' 18; }
+.port-tile-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.port-tile-name { font-family: var(--display); font-size: 19px; font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; margin-top: auto; font-variation-settings: 'opsz' 36; }
+.port-tile-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+/* PARTNER LOGOS */
+.logo-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.logo-cell { background: var(--paper); height: 110px; display: flex; align-items: center; justify-content: center; transition: background .2s; position: relative; padding: 16px; }
+.logo-cell:hover { background: var(--paper-warm); }
+.logo-cell img { height: 56px; width: auto; max-width: 160px; object-fit: contain; filter: brightness(0) saturate(100%); opacity: 0.78; transition: opacity .2s; }
+.logo-cell:hover img { opacity: 1; transform: scale(1.04); transition: opacity .2s, transform .2s; }
+.logo-cell .logo-text { font-family: var(--display); font-weight: 500; font-size: 15px; color: var(--muted); letter-spacing: -0.01em; font-variation-settings: 'opsz' 24; }
+.logo-cell .past-tag { position: absolute; bottom: 6px; right: 8px; font-family: var(--mono); font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-soft); }
+
+/* THREE PATH */
+.three-path { background: var(--ink); color: var(--paper); }
+.three-path-inner { max-width: 1440px; margin: 0 auto; padding: 80px 48px; }
+.three-path-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(244,240,232,0.15); border: 1px solid rgba(244,240,232,0.15); margin-top: 48px; }
+.path-card { background: var(--ink); padding: 40px 28px; display: flex; flex-direction: column; gap: 16px; min-height: 280px; cursor: pointer; transition: background .25s; }
+.path-card:hover { background: var(--ink-soft); }
+.path-num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; color: var(--accent); }
+.path-title { font-family: var(--display); font-size: 30px; font-weight: 400; letter-spacing: -0.022em; line-height: 1.05; font-variation-settings: 'opsz' 48; }
+.path-title em { font-style: italic; color: var(--accent); }
+.path-desc { font-size: 14px; color: var(--paper-deep); line-height: 1.5; margin-top: auto; }
+.path-cta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px; }
+.path-cta::after { content: "→"; transition: transform .2s; }
+.path-card:hover .path-cta::after { transform: translateX(4px); }
+
+/* FOOTER */
+.footer { background: var(--paper-deep); border-top: 1px solid var(--rule); padding: 56px 48px 28px; }
+.footer-inner { max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+.footer-block-title { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+.footer-list { list-style: none; display: grid; gap: 8px; font-size: 14px; }
+.footer-list a { transition: color .15s; }
+.footer-list a:hover { color: var(--accent); }
+.footer-bottom { border-top: 1px solid var(--rule); padding-top: 28px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--muted); text-transform: uppercase; max-width: 1440px; margin: 0 auto; }
+
+/* ABOUT PAGE */
+.page-hero { padding: 96px 48px 72px; max-width: 1440px; margin: 0 auto; }
+.three-act { display: grid; grid-template-columns: 220px 1fr; gap: 56px; padding: 56px 0; border-top: 1px solid var(--rule); align-items: start; }
+.three-act:last-child { border-bottom: 1px solid var(--rule); }
+.act-meta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); position: sticky; top: 100px; }
+.act-meta-num { font-family: var(--display); font-size: 64px; font-weight: 300; font-style: italic; line-height: 1; color: var(--accent); margin-bottom: 12px; font-variation-settings: 'opsz' 72; }
+.act-content h3 { font-family: var(--display); font-size: 30px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 16px; font-variation-settings: 'opsz' 48; }
+.act-content p { font-size: 16px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 14px; }
+
+/* TEAM GRID */
+.team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 40px; }
+.team-card { background: var(--paper); padding: 28px 22px; min-height: 180px; display: flex; flex-direction: column; gap: 6px; }
+.team-name { font-family: var(--display); font-size: 20px; font-weight: 500; letter-spacing: -0.015em; line-height: 1.1; font-variation-settings: 'opsz' 36; }
+.team-role { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.team-bio { font-size: 13px; color: var(--muted); line-height: 1.5; margin-top: auto; }
+
+/* MENTOR GRID */
+.mentor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 40px; }
+.mentor-card { background: var(--paper-warm); padding: 28px 22px; min-height: 160px; display: flex; flex-direction: column; gap: 6px; }
+
+/* MENTOR PORTRAIT (real photos) */
+.portrait-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 40px; }
+@media (max-width: 1100px) { .portrait-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) { .portrait-grid { grid-template-columns: repeat(2, 1fr); } }
+.portrait-card { background: var(--paper); display: flex; flex-direction: column; transition: background .2s; cursor: pointer; }
+.portrait-card:hover { background: var(--paper-warm); }
+.portrait-photo { aspect-ratio: 1; background: var(--paper-warm); overflow: hidden; position: relative; }
+.portrait-photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(85%) contrast(1.04); transition: filter .35s, transform .5s; }
+.portrait-card:hover .portrait-photo img { filter: grayscale(0%) contrast(1.04); transform: scale(1.04); }
+.portrait-info { padding: 16px 18px 20px; }
+.portrait-name { font-family: var(--display); font-size: 16px; font-weight: 500; letter-spacing: -0.012em; line-height: 1.2; font-variation-settings: 'opsz' 24; }
+.portrait-role { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-top: 4px; line-height: 1.3; }
+.portrait-affil { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+
+/* SECTORS */
+.sector-row { display: grid; grid-template-columns: 64px 1fr 1.4fr; gap: 40px; padding: 56px 0; border-top: 1px solid var(--rule); align-items: start; }
+.sector-row:last-child { border-bottom: 1px solid var(--rule); }
+.sector-row-num { font-family: var(--display); font-size: 52px; font-weight: 300; font-style: italic; line-height: 1; color: var(--accent); font-variation-settings: 'opsz' 72; }
+.sector-row-name { font-family: var(--display); font-size: 30px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 14px; font-variation-settings: 'opsz' 48; }
+.sector-row-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.sector-row-content p { font-size: 16px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 20px; max-width: 580px; }
+.sector-detail { display: grid; grid-template-columns: 130px 1fr; gap: 20px; padding: 14px 0; border-top: 1px dashed var(--rule); font-size: 14px; line-height: 1.5; }
+.sector-detail:first-of-type { border-top: 1px solid var(--rule); margin-top: 20px; }
+.sector-detail:last-of-type { border-bottom: 1px solid var(--rule); }
+.sector-detail-key { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding-top: 2px; }
+.sector-row.quiet .sector-row-name { color: var(--muted); }
+.sector-row.quiet .sector-row-num { color: var(--muted-soft); }
+
+/* ACCELERATORS DETAIL PAGE */
+.accel-page-grid { margin-top: 56px; border-top: 1px solid var(--rule); }
+.accel-page-row { display: grid; grid-template-columns: 180px 1fr 1fr; gap: 40px; padding: 48px 0; border-bottom: 1px solid var(--rule); align-items: start; transition: background .2s; }
+.accel-page-row:hover { background: var(--paper-warm); }
+.accel-page-num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.accel-page-name { font-family: var(--display); font-size: 44px; font-weight: 400; letter-spacing: -0.025em; line-height: 0.98; margin-bottom: 12px; font-variation-settings: 'opsz' 72; }
+.accel-page-name em { font-style: italic; color: var(--accent); }
+.accel-page-partner { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.accel-page-content p { font-size: 15px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 14px; }
+.accel-page-content dl { display: grid; grid-template-columns: 90px 1fr; gap: 6px 14px; font-size: 14px; margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--rule); }
+.accel-page-content dt { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding-top: 2px; }
+
+/* PORTFOLIO PAGE */
+.advisory-band { background: var(--ink); color: var(--paper); }
+.advisory-band-inner { max-width: 1440px; margin: 0 auto; padding: 72px 48px; }
+.advisory-intro { font-size: 15px; line-height: 1.65; color: var(--paper-deep); max-width: 580px; margin: 20px 0 40px; }
+.advisory-row { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; border-bottom: 1px solid rgba(244,240,232,0.1); gap: 24px; flex-wrap: wrap; }
+.advisory-row:first-of-type { border-top: 1px solid rgba(244,240,232,0.1); }
+.advisory-left { display: flex; align-items: center; gap: 20px; }
+.advisory-logo-box { width: 48px; height: 48px; background: rgba(244,240,232,0.06); border: 1px solid rgba(244,240,232,0.12); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.advisory-logo-box img { width: 32px; height: 32px; object-fit: contain; filter: none; opacity: 0.9; }
+.advisory-logo-box .lf { font-family: var(--display); font-size: 15px; font-weight: 500; color: var(--paper-deep); }
+.advisory-company-name { font-family: var(--display); font-size: 28px; font-weight: 400; letter-spacing: -0.018em; font-variation-settings: 'opsz' 48; }
+.advisory-company-name em { font-style: italic; color: var(--accent); }
+.advisory-sector { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted-soft); margin-top: 4px; }
+.advisory-right { text-align: right; }
+.advisory-badge { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(200,71,42,0.4); border-radius: 999px; padding: 3px 10px; display: inline-block; margin-bottom: 6px; }
+.advisory-detail { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--paper-deep); line-height: 1.6; }
+.acquirer-pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(244,240,232,0.06); border: 1px solid rgba(244,240,232,0.12); border-radius: 6px; padding: 5px 12px; margin-top: 6px; }
+.acquirer-pill img { height: 16px; width: auto; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.7; }
+.acquirer-pill span { font-family: var(--mono); font-size: 10px; color: var(--paper-deep); letter-spacing: 0.06em; text-transform: uppercase; }
+
+.portfolio-section { margin-top: 72px; }
+.portfolio-section-header { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 14px; border-bottom: 1px solid var(--ink); margin-bottom: 28px; }
+.portfolio-section-title { font-family: var(--display); font-size: 28px; font-weight: 500; letter-spacing: -0.02em; font-variation-settings: 'opsz' 48; }
+.portfolio-section-meta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.portfolio-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+
+/* FUND PAGE */
+.fund-thesis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 56px; padding-top: 56px; border-top: 1px solid var(--rule); }
+.fund-thesis-list { list-style: none; }
+.fund-thesis-list li { display: grid; grid-template-columns: 110px 1fr; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+.fund-thesis-list li:first-child { border-top: 1px solid var(--rule); }
+.fund-thesis-key { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding-top: 3px; }
+.fund-thesis-val { font-size: 15px; line-height: 1.5; }
+.fund-backers { background: var(--paper-deep); margin-top: 80px; }
+.fund-backers-inner { max-width: 1440px; margin: 0 auto; padding: 80px 48px; }
+
+/* CONTACT PAGE */
+.contact-doors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-bottom: 80px; }
+.contact-door { background: var(--paper); padding: 40px 28px; display: flex; flex-direction: column; gap: 20px; min-height: 440px; transition: background .25s; }
+.contact-door:hover { background: var(--paper-warm); }
+.door-num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; }
+.door-title { font-family: var(--display); font-size: 34px; font-weight: 400; letter-spacing: -0.022em; line-height: 1.02; font-variation-settings: 'opsz' 48; }
+.door-title em { font-style: italic; color: var(--accent); }
+.door-desc { font-size: 14px; color: var(--muted); line-height: 1.55; }
+.door-fields { list-style: none; padding-top: 14px; border-top: 1px dashed var(--rule); }
+.door-fields li { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; padding: 7px 0; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.door-fields li::before { content: "·"; color: var(--accent); font-size: 16px; }
+.door-cta { margin-top: auto; display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; }
+.door-cta::after { content: "→"; transition: transform .2s; }
+.contact-door:hover .door-cta::after { transform: translateX(4px); }
+.offices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; border-top: 1px solid var(--rule); padding-top: 40px; }
+.office h4 { font-family: var(--display); font-size: 20px; font-weight: 500; letter-spacing: -0.015em; margin-bottom: 6px; font-variation-settings: 'opsz' 36; }
+.office-meta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+.office p { font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+/* PERSPECTIVES */
+.persp-feed { margin-top: 40px; }
+.persp-feed-row { display: grid; grid-template-columns: 140px 1fr 160px; gap: 28px; padding: 24px 0; border-top: 1px solid var(--rule); align-items: baseline; cursor: pointer; transition: background .15s; }
+.persp-feed-row:last-child { border-bottom: 1px solid var(--rule); }
+.persp-feed-row:hover { background: var(--paper-warm); margin: 0 -16px; padding-left: 16px; padding-right: 16px; }
+.persp-feed-date { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.persp-feed-title { font-family: var(--display); font-size: 20px; font-weight: 500; letter-spacing: -0.015em; line-height: 1.2; font-variation-settings: 'opsz' 36; transition: color .2s; }
+.persp-feed-row:hover .persp-feed-title { color: var(--accent); }
+.persp-feed-tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); text-align: right; }
+
+/* UTILITY */
+.divider { border-top: 1px solid var(--rule); margin: 56px 0; }
+.text-muted { color: var(--muted); }
+.text-accent { color: var(--accent); }
+.note-box { background: var(--paper-warm); border-left: 2px solid var(--accent); padding: 16px 20px; font-size: 13px; color: var(--muted); line-height: 1.55; margin-top: 24px; }
+.note-box strong { font-family: var(--display); font-weight: 500; color: var(--ink); font-variation-settings: 'opsz' 18; }
+
+/* PHOTO PLACEHOLDERS */
+.photo-ph { background: var(--paper-warm); border: 1.5px dashed var(--rule); border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; position: relative; overflow: hidden; }
+.photo-ph-icon { width: 36px; height: 36px; color: var(--muted-soft); }
+.photo-ph-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.photo-ph-tip { font-size: 13px; color: var(--muted-soft); text-align: center; max-width: 360px; line-height: 1.55; padding: 0 24px; }
+.photo-ph-tip strong { font-weight: 500; color: var(--muted); }
+
+/* INLINE PARTNER LOGO */
+.partner-logo-inline { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+.partner-logo-inline img { height: 20px; width: auto; object-fit: contain; filter: none; opacity: 0.85; }
+.partner-logo-inline .plname { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-soft); }
+
+/* COMPETITIVE DIFFERENTIATOR */
+.vs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 40px; }
+.vs-card { background: var(--paper); padding: 28px 22px; }
+.vs-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.vs-title { font-family: var(--display); font-size: 20px; font-weight: 500; letter-spacing: -0.015em; margin-bottom: 10px; font-variation-settings: 'opsz' 36; }
+.vs-body { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+/* HERO V2 — visual stat cluster */
+.hero-v2-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 64px; align-items: start; }
+.hero-stat-cluster { display: flex; flex-direction: column; gap: 10px; }
+.hero-stat-featured { background: var(--ink); color: var(--paper); padding: 28px 32px; border-radius: 3px; position: relative; overflow: hidden; }
+.hero-stat-featured::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #F07010 0%, #D42070 26%, #6018A0 50%, #1560C0 72%, #20A080 100%); }
+.hero-stat-featured-num { font-family: var(--display); font-weight: 300; font-size: 84px; line-height: 0.95; letter-spacing: -0.05em; font-variation-settings: 'opsz' 72; }
+.hero-stat-featured-num em { font-style: italic; color: var(--accent); }
+.hero-stat-featured-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--paper-deep); margin-top: 10px; }
+.hero-stat-mini-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.hero-stat-mini { background: var(--paper-warm); padding: 14px 16px; }
+.hero-stat-mini-num { font-family: var(--display); font-weight: 400; font-size: 28px; line-height: 1; letter-spacing: -0.03em; font-variation-settings: 'opsz' 48; }
+.hero-stat-mini-num em { font-style: italic; color: var(--accent); }
+.hero-stat-mini-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 4px; line-height: 1.3; }
+.hero-geo-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.hero-geo-item { background: var(--paper); padding: 9px 12px; display: flex; flex-direction: column; gap: 3px; }
+.hero-geo-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+.hero-geo-city { font-family: var(--mono); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.hero-geo-role { font-family: var(--mono); font-size: 9px; color: var(--muted-soft); letter-spacing: 0.04em; }
+
+/* PROOF STRIP */
+.proof-strip { background: var(--ink-soft); color: var(--paper); }
+.proof-strip-inner { max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); }
+.proof-cell { padding: 20px 28px; border-right: 1px solid rgba(244,240,232,0.1); display: flex; align-items: center; gap: 14px; }
+.proof-cell:last-child { border-right: none; }
+.proof-cell-num { font-family: var(--display); font-weight: 300; font-size: 36px; line-height: 1; letter-spacing: -0.04em; white-space: nowrap; font-variation-settings: 'opsz' 48; flex-shrink: 0; }
+.proof-cell-num em { font-style: italic; color: var(--accent); }
+.proof-cell-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--paper-deep); line-height: 1.4; }
+
+/* EDITORIAL SECTOR LAYOUT */
+.sector-editorial { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 40px; }
+.sector-feature-main { background: var(--ink); color: var(--paper); padding: 52px 44px; display: flex; flex-direction: column; cursor: pointer; transition: background .25s; min-height: 460px; }
+.sector-feature-main:hover { background: var(--ink-soft); }
+.sector-feature-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(200,71,42,0.7); margin-bottom: 20px; }
+.sector-feature-name { font-family: var(--display); font-weight: 400; font-size: clamp(34px, 3.5vw, 52px); line-height: 1.02; letter-spacing: -0.028em; font-variation-settings: 'opsz' 72; }
+.sector-feature-name em { font-style: italic; color: var(--accent); }
+.sector-feature-desc { font-size: 15px; line-height: 1.65; color: var(--paper-deep); max-width: 340px; margin-top: 20px; }
+.sector-feature-detail { margin-top: auto; padding-top: 28px; border-top: 1px solid rgba(244,240,232,0.12); display: grid; grid-template-columns: 80px 1fr; gap: 8px 14px; font-size: 13px; }
+.sector-feature-dt { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244,240,232,0.4); padding-top: 2px; }
+.sector-feature-dd { color: var(--paper-deep); }
+.sector-side-stack { display: flex; flex-direction: column; }
+.sector-side-card { background: var(--paper); padding: 28px 32px; display: flex; flex-direction: column; gap: 8px; flex: 1; cursor: pointer; transition: background .2s; border-bottom: 1px solid var(--rule); }
+.sector-side-card:last-child { border-bottom: none; }
+.sector-side-card:hover { background: var(--paper-warm); }
+.sector-side-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.sector-side-name { font-family: var(--display); font-size: 26px; font-weight: 500; letter-spacing: -0.02em; font-variation-settings: 'opsz' 36; line-height: 1.05; }
+.sector-side-desc { font-size: 13px; color: var(--muted); line-height: 1.45; }
+.sector-side-card.dim .sector-side-name { color: var(--muted); }
+
+/* HORIZONTAL MILESTONE TIMELINE */
+.milestone-h { padding: 44px 0 0; }
+.milestone-h-track { position: relative; padding-top: 20px; }
+.milestone-h-line { position: absolute; top: 0; left: 0; right: 0; height: 1px; background: rgba(244,240,232,0.12); }
+.milestone-nodes { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; }
+.milestone-node { padding-top: 20px; padding-right: 20px; position: relative; }
+.milestone-node::before { content: ''; position: absolute; top: -5px; left: 0; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); border: 2px solid var(--ink); }
+.milestone-year { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.milestone-event { font-family: var(--display); font-size: 15px; font-weight: 500; line-height: 1.2; color: var(--paper); font-variation-settings: 'opsz' 24; margin-bottom: 4px; }
+.milestone-detail { font-size: 12px; color: var(--muted-soft); line-height: 1.4; }
+
+
+/* INLINE COMPANY LOGO BADGE */
+.co-badge { display:inline-flex; align-items:center; gap:5px; background:var(--paper-warm); border:1px solid var(--rule-soft); border-radius:4px; padding:2px 7px 2px 4px; margin:0 3px; vertical-align:middle; white-space:nowrap; font-size:11px; font-family:var(--mono); letter-spacing:0.04em; color:var(--ink); text-decoration:none; }
+.co-badge img { height:14px; width:auto; object-fit:contain; flex-shrink:0; }
+.co-badge.dark { background:rgba(244,240,232,0.08); border-color:rgba(244,240,232,0.15); color:var(--paper-deep); }
+.co-badge.dark img { filter:brightness(0) invert(1); opacity:0.8; }
+
+/* DIFFERENTIATION — subtle 3D + tactile depth, not skeuomorphic */
+
+/* Letterpress-style headlines: subtle inset on cream, embossed on ink */
+h1.display, h2.display { text-shadow: 0 1px 0 rgba(255,253,247,0.6); }
+.section-dark h1.display, .section-dark h2.display, .track-record h2.display, .three-path h2.display { text-shadow: 0 1px 0 rgba(0,0,0,0.4), 0 -0.5px 0 rgba(244,240,232,0.06); }
+
+/* Featured fund card: gains tactile depth — inner highlight + projected shadow */
+.hero-stat-featured { box-shadow: 0 24px 48px -28px rgba(15,15,14,0.55), 0 2px 0 rgba(15,15,14,0.06), inset 0 1px 0 rgba(244,240,232,0.08); border-radius: 4px; }
+
+/* Mini stats: subtle inset that reads as letterpress on paper */
+.hero-stat-mini { box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -1px 0 rgba(15,15,14,0.04); }
+
+/* Logo cells: imperceptible inset → wall reads as embedded plaques, not flat squares */
+.logo-cell { box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), inset 0 -1px 0 rgba(15,15,14,0.03); }
+
+/* Proof strip: each cell gains a soft inset glow */
+.proof-cell { position: relative; }
+.proof-cell::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: rgba(244,240,232,0.04); }
+
+/* Path cards & accel cards: directional lighting on hover — soft lift, not float */
+.path-card, .accel-card, .vs-card, .contact-door, .sector-side-card { transition: background .25s, transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s; }
+.path-card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -16px rgba(0,0,0,0.6); }
+.accel-card:hover, .vs-card:hover, .contact-door:hover, .sector-side-card:hover { transform: translateY(-2px); box-shadow: 0 14px 32px -18px rgba(15,15,14,0.22); }
+
+/* Tags: pressed-glass pill effect */
+.tag { box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -1px 0 rgba(15,15,14,0.04); transition: all .2s, transform .15s; }
+.tag:hover { transform: translateY(-1px); }
+
+/* Pill buttons: subtle volumetric depth */
+.btn-primary { box-shadow: 0 8px 20px -10px rgba(15,15,14,0.55), inset 0 1px 0 rgba(244,240,232,0.12); }
+.btn-primary:hover { box-shadow: 0 12px 24px -10px rgba(200,71,42,0.5), inset 0 1px 0 rgba(244,240,232,0.18); transform: translateY(-1px); }
+
+/* Section rules upgrade: hairline + thin highlight = engraved divider */
+.section-warm, .section-deep, .fund-tease { position: relative; }
+.section-warm::before, .section-deep::before, .fund-tease::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: rgba(255,255,255,0.55); }
+.section-warm::after, .section-deep::after, .fund-tease::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: rgba(15,15,14,0.06); }
+
+/* Logo mark: small 3D tile rotation on hover — subtle, premium */
+.logo svg { transition: transform .5s cubic-bezier(.2,.7,.2,1); transform-style: preserve-3d; perspective: 600px; }
+.logo:hover svg { transform: rotateY(-12deg) rotateX(4deg); }
+
+/* Display italic accent: subtle drop-shadow gives type a slight relief */
+h1.display em, h2.display em { text-shadow: 0 1px 0 rgba(158,47,24,0.18), 0 1px 0 rgba(255,253,247,0.4); }
+
+/* PARALLAX-LIKE DECORATIVE MOSAIC — subtle accent in hero, rotates slowly */
+@keyframes slow-rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.hero { position: relative; overflow: visible; }
+.hero::after { content: ''; position: absolute; right: -180px; top: -80px; width: 480px; height: 480px; pointer-events: none; opacity: 0.05; z-index: 0; background-image: repeating-linear-gradient(45deg, var(--ink) 0 1px, transparent 1px 24px), repeating-linear-gradient(-45deg, var(--ink) 0 1px, transparent 1px 24px); animation: slow-rotate 240s linear infinite; }
+.hero > * { position: relative; z-index: 1; }
+
+/* ANIMATIONS */
+
+/* MOBILE NAV — hamburger + full-screen overlay */
+.menu-btn { display: none; width: 44px; height: 44px; align-items: center; justify-content: center; background: transparent; border: 1px solid var(--rule); border-radius: 999px; cursor: pointer; padding: 0; -webkit-tap-highlight-color: transparent; }
+.menu-btn span { display: block; width: 18px; height: 1.5px; background: var(--ink); position: relative; transition: transform .3s, opacity .2s; }
+.menu-btn span::before, .menu-btn span::after { content: ''; position: absolute; left: 0; width: 18px; height: 1.5px; background: var(--ink); transition: transform .3s; }
+.menu-btn span::before { top: -6px; }
+.menu-btn span::after { top: 6px; }
+body.menu-open .menu-btn span { background: transparent; }
+body.menu-open .menu-btn span::before { transform: translateY(6px) rotate(45deg); }
+body.menu-open .menu-btn span::after { transform: translateY(-6px) rotate(-45deg); }
+.mobile-nav { position: fixed; inset: 0; background: var(--paper); z-index: 99; opacity: 0; pointer-events: none; transition: opacity .3s ease; padding: 96px 32px 48px; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; }
+body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
+.mobile-nav a { font-family: var(--display); font-weight: 400; font-size: 32px; letter-spacing: -0.022em; color: var(--ink); padding: 14px 0; border-bottom: 1px solid var(--rule-soft); text-decoration: none; min-height: 44px; display: flex; align-items: center; font-variation-settings: 'opsz' 48; }
+.mobile-nav a:active { color: var(--accent); }
+.mobile-nav .mobile-cta { margin-top: 28px; padding: 16px 24px; background: var(--ink); color: var(--paper); border-radius: 999px; font-family: var(--sans); font-size: 14px; font-weight: 500; justify-content: center; border-bottom: 0; }
+.mobile-nav .mobile-meta { margin-top: auto; padding-top: 32px; font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; border: 0; }
+
+/* TOUCH STATES — match hover effects on tap for iOS/Android */
+@media (hover: none) {
+  .path-card:active, .accel-card:active, .vs-card:active, .contact-door:active, .sector-side-card:active { transform: translateY(-2px); box-shadow: 0 14px 32px -18px rgba(15,15,14,0.22); }
+  .btn-primary:active { background: var(--accent); transform: translateY(-1px); }
+  .btn-outline:active { background: var(--ink); color: var(--paper); }
+  .tag:active { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+  .nav a:active { color: var(--accent); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .hero-grid, .track-inner, .fund-tease-inner, .fund-thesis-grid { grid-template-columns: 1fr; gap: 40px; }
+  .sector-strip-inner, .accel-grid, .portfolio-strip, .three-path-grid, .team-grid, .mentor-grid, .portfolio-grid, .contact-doors, .offices, .vs-grid { grid-template-columns: repeat(2, 1fr); }
+  .logo-grid { grid-template-columns: repeat(3, 1fr); }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .three-act, .sector-row, .accel-page-row, .persp-feed-row { grid-template-columns: 1fr; gap: 20px; }
+  .nav, .nav-cta { display: none; }
+  .menu-btn { display: inline-flex; }
+  /* Bump touch targets on mobile */
+  .btn { padding: 14px 24px; font-size: 14px; min-height: 44px; }
+  .tag { padding: 10px 16px; font-size: 12px; min-height: 36px; display: inline-flex; align-items: center; }
+  .footer-list a, .persp-feed-row { min-height: 44px; display: flex; align-items: center; }
+  .persp-feed-row { display: grid; }
+  .section, .hero, .page-hero, .header-inner { padding-left: 24px; padding-right: 24px; }
+  .section-dark .section-inner, .section-deep .section-inner, .section-warm .section-inner, .track-inner, .fund-tease-inner, .three-path-inner, .advisory-band-inner, .fund-backers-inner { padding-left: 24px; padding-right: 24px; }
+}
+@media (max-width: 640px) {
+  .sector-strip-inner, .accel-grid, .portfolio-strip, .three-path-grid, .team-grid, .mentor-grid, .portfolio-grid, .contact-doors { grid-template-columns: 1fr; }
+  .logo-grid { grid-template-columns: repeat(2, 1fr); }
+  .track-stats { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a class="logo" href="#" data-route="home" style="display:flex;align-items:center;gap:12px;text-decoration:none">
+      <!-- Refined Mosaic mark: 4-tile mosaic in single deep accent. Reductive monogram for premium investor brand. -->
+      <svg height="28" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink:0">
+        <rect x="0"  y="0"  width="14" height="14" fill="#0F0F0E"/>
+        <rect x="16" y="0"  width="6"  height="14" fill="#C8472A"/>
+        <rect x="24" y="0"  width="8"  height="6"  fill="#0F0F0E"/>
+        <rect x="24" y="8"  width="8"  height="6"  fill="#9E2F18"/>
+        <rect x="0"  y="16" width="6"  height="16" fill="#9E2F18"/>
+        <rect x="8"  y="16" width="14" height="16" fill="#0F0F0E"/>
+        <rect x="24" y="16" width="8"  height="16" fill="#C8472A"/>
+      </svg>
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <span style="font-family:var(--display);font-weight:500;font-size:18px;letter-spacing:-0.018em;line-height:1;font-variation-settings:'opsz' 36">Mosaic</span>
+        <span style="font-family:var(--mono);font-weight:400;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);line-height:1">Venture Lab · est. 2011</span>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="#" data-route="about">About</a>
+      <a href="#" data-route="sectors">Sectors</a>
+      <a href="#" data-route="accelerators">Accelerators</a>
+      <a href="#" data-route="portfolio">Portfolio</a>
+      <a href="#" data-route="fund">Fund</a>
+      <a href="#" data-route="team">Team</a>
+      <a href="#" data-route="perspectives">Perspectives</a>
+    </nav>
+    <a class="nav-cta" href="#" data-route="contact">Get in touch</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span></button>
+  </div>
+  <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <a href="#" data-route="home">Home</a>
+    <a href="#" data-route="about">About</a>
+    <a href="#" data-route="sectors">Sectors</a>
+    <a href="#" data-route="accelerators">Accelerators</a>
+    <a href="#" data-route="portfolio">Portfolio</a>
+    <a href="#" data-route="fund">Fund</a>
+    <a href="#" data-route="team">Team</a>
+    <a href="#" data-route="perspectives">Perspectives</a>
+    <a href="#" data-route="contact" class="mobile-cta">Get in touch</a>
+    <div class="mobile-meta">Taipei · San Francisco · Munich</div>
+  </nav>
+</header>
+
+<!-- ======== HOME ======== -->
+<main id="page-home" class="page active">
+
+  <section class="hero">
+    <div class="eyebrow">East Asia · Deep tech · Taipei · San Francisco · Munich</div>
+    <div class="hero-v2-grid" style="margin-top:28px">
+
+      <!-- LEFT: Headline + copy + CTAs -->
+      <div>
+        <h1 class="display" style="max-width:680px">Early-stage investor in <em>East Asia</em> deep tech.</h1>
+        <p class="lede" style="margin-top:20px;max-width:560px">Embedded operators, not coordinators. We run the accelerator programs inside Taiwan Tech Arena, OEM scouting teams, and hospital networks where our deal flow originates — then back the companies we find there with the FSP Mosaic I&amp;S fund.</p>
+        <div class="hero-tags" style="margin-top:28px">
+          <span class="tag">healthcare</span>
+          <span class="tag">semiconductor</span>
+          <span class="tag">automotive &amp; robotics</span>
+          <span class="tag">defense tech</span>
+        </div>
+        <div class="hero-ctas" style="margin-top:32px">
+          <a class="btn btn-primary" href="#" data-route="fund">For LPs</a>
+          <a class="btn btn-outline" href="#" data-route="accelerators">For founders</a>
+          <a class="btn btn-outline" href="#" data-route="contact">For corporates</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: Visual stat cluster -->
+      <div class="hero-stat-cluster">
+        <!-- Featured stat: fund identity, not vanity -->
+        <div class="hero-stat-featured">
+          <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(244,240,232,0.6);margin-bottom:14px">The fund</div>
+          <div class="hero-stat-featured-num" style="font-size:34px;letter-spacing:-0.022em;font-weight:400;line-height:1.05">FSP Mosaic <em>Innovation</em><br>L.P.</div>
+          <div class="hero-stat-featured-label" style="margin-top:14px">Anchored by FSP Group · TWSE 3015 · Seed &amp; Series A</div>
+        </div>
+
+        <!-- Mini stats row -->
+        <div class="hero-stat-mini-row">
+          <div class="hero-stat-mini">
+            <div class="hero-stat-mini-num">2011</div>
+            <div class="hero-stat-mini-label">Founded in Taipei</div>
+          </div>
+          <div class="hero-stat-mini">
+            <div class="hero-stat-mini-num">3</div>
+            <div class="hero-stat-mini-label">Exits · Qualcomm, Apple, KOSDAQ</div>
+          </div>
+          <div class="hero-stat-mini">
+            <div class="hero-stat-mini-num">$250K<em>–</em>2M</div>
+            <div class="hero-stat-mini-label">Initial ticket size</div>
+          </div>
+        </div>
+
+        <!-- Geography presence -->
+        <div class="hero-geo-row">
+          <div class="hero-geo-item">
+            <div class="hero-geo-dot" style="background:#F07010"></div>
+            <div class="hero-geo-city">Taipei</div>
+            <div class="hero-geo-role">HQ · TTA</div>
+          </div>
+          <div class="hero-geo-item">
+            <div class="hero-geo-dot" style="background:#1560C0"></div>
+            <div class="hero-geo-city">San Francisco</div>
+            <div class="hero-geo-role">US office</div>
+          </div>
+          <div class="hero-geo-item">
+            <div class="hero-geo-dot" style="background:#6018A0"></div>
+            <div class="hero-geo-city">Germany</div>
+            <div class="hero-geo-role">OEM network</div>
+          </div>
+          <div class="hero-geo-item">
+            <div class="hero-geo-dot" style="background:#007880"></div>
+            <div class="hero-geo-city">Seoul</div>
+            <div class="hero-geo-role">Portfolio</div>
+          </div>
+          <div class="hero-geo-item">
+            <div class="hero-geo-dot" style="background:#20A080"></div>
+            <div class="hero-geo-city">Tokyo</div>
+            <div class="hero-geo-role">Scouting</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- THESIS BAND — replaces hero photo with a single-line proposition that reinforces the operator claim -->
+  <section style="border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--paper-warm)">
+    <div style="max-width:1440px;margin:0 auto;padding:36px 48px;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap">
+      <div style="font-family:var(--display);font-size:24px;font-weight:400;letter-spacing:-0.015em;line-height:1.3;max-width:780px;font-variation-settings:'opsz' 48">Most accelerators connect startups to networks. <span style="color:var(--accent);font-style:italic">We run the institutions</span> &mdash; the TTA program, the hospital pipeline, the OEM scouting desk &mdash; and back the companies we meet there.</div>
+      <a class="btn btn-ghost" href="#" data-route="about" style="flex-shrink:0">How we operate</a>
+    </div>
+  </section>
+
+  <!-- PROOF STRIP -->
+  <section class="proof-strip">
+    <div class="proof-strip-inner">
+      <div class="proof-cell">
+        <div class="proof-cell-num">2011</div>
+        <div class="proof-cell-label">Founded in<br>Taipei</div>
+      </div>
+      <div class="proof-cell">
+        <div class="proof-cell-num">3</div>
+        <div class="proof-cell-label">Exits · Qualcomm,<br>Apple, KOSDAQ</div>
+      </div>
+      <div class="proof-cell">
+        <div class="proof-cell-num">7</div>
+        <div class="proof-cell-label">Active<br>portfolio</div>
+      </div>
+      <div class="proof-cell">
+        <div class="proof-cell-num">17<em>+</em></div>
+        <div class="proof-cell-label">Corporate<br>network partners</div>
+      </div>
+      <div class="proof-cell">
+        <div class="proof-cell-num">4</div>
+        <div class="proof-cell-label">Deep tech<br>sectors</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTORS — editorial layout -->
+  <section class="section" style="padding-top:64px">
+    <div class="eyebrow">Four sectors</div>
+    <h2 class="display">Where we invest and build.</h2>
+    <div class="sector-editorial">
+      <!-- Featured: Healthcare -->
+      <div class="sector-feature-main" data-route="sectors">
+        <div class="sector-feature-eyebrow">01 / 04 · Featured</div>
+        <div class="sector-feature-name">Healthcare</div>
+        <div class="sector-feature-desc">Cell &amp; gene therapy, AI drug discovery, medical devices — validated inside Taiwan's hospital infrastructure, not just in labs. We are the only Taiwan-based investor with hospital-embedded program history.</div>
+        <div class="sector-feature-detail">
+          <div class="sector-feature-dt">Portfolio</div>
+          <div class="sector-feature-dd">Infocus · Pulxion · TBMC · TU BioMedicine</div>
+          <div class="sector-feature-dt">Programs</div>
+          <div class="sector-feature-dd">CellTech studio · Landseed (built by MVL)</div>
+        </div>
+      </div>
+      <!-- Side stack: 3 smaller sectors -->
+      <div class="sector-side-stack">
+        <div class="sector-side-card" data-route="sectors">
+          <div class="sector-side-eyebrow">02 / 04</div>
+          <div class="sector-side-name">Semiconductor</div>
+          <div class="sector-side-desc">Power delivery, security IP, AI-acceleration silicon. <span class="co-badge" style="background:rgba(255,255,255,0.6)">TSMC</span> proximity is a structural edge no program outside Taiwan can replicate.</div>
+        </div>
+        <div class="sector-side-card" data-route="sectors">
+          <div class="sector-side-eyebrow">03 / 04</div>
+          <div class="sector-side-name">Automotive &amp; Robotics</div>
+          <div class="sector-side-desc">ADAS, electrification, cabin intelligence — backed by a decade of direct OEM partnerships with <span class="co-badge"><img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Audi-Logo_2016.svg" alt="Audi" onerror="this.style.display='none'">Audi</span> <span class="co-badge"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Volkswagen_logo_2019.svg" alt="VW Group" onerror="this.style.display='none'">VW Group</span> <span class="co-badge"><img src="https://training.mvl.biz/continental.png" alt="Continental" onerror="this.style.display='none'">Continental</span> <span class="co-badge"><img src="https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg" alt="BMW" onerror="this.style.display='none'">BMW</span> and <span class="co-badge"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fb77dfd4703cd0f73fb5_Yulon.webp" alt="Yulon" onerror="this.style.display='none'">Yulon</span>.</div>
+        </div>
+        <div class="sector-side-card dim" data-route="sectors">
+          <div class="sector-side-eyebrow">04 / 04 · New vertical</div>
+          <div class="sector-side-name">Defense Tech</div>
+          <div class="sector-side-desc">Selective dual-use deep tech. Taiwan, Korea, Japan. Inquiries handled confidentially via <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="761e131a1a19361b001a58141f0c">[email&#160;protected]</a>.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDITORIAL PHOTO STRIP — life of MVL -->
+  <section class="editorial-band">
+    <div class="editorial-band-head">
+      <h2>Operators on the ground.<br>Not investors at a distance.</h2>
+      <p>15 years running deal flow, OEM days, demo sprints, and clinical partnerships — across Taipei, Tokyo, Seoul, Vegas, and Paris.</p>
+    </div>
+    <div class="editorial-grid">
+      <div class="editorial-tile">
+        <img src="https://training.mvl.biz/CES%202025%20Bootcamp%201.jpg" alt="CES 2025 Bootcamp at TTA" loading="lazy" onerror="this.parentNode.style.background='#1a2030';this.style.display='none'">
+        <div class="editorial-tile-caption">Taipei · January 2025<strong>CES 2025 Bootcamp at TTA</strong></div>
+      </div>
+      <div class="editorial-tile">
+        <img src="https://training.mvl.biz/VivaTech%202025%20Workshop%201.jpg" alt="VivaTech 2025 Workshop" loading="lazy" onerror="this.parentNode.style.background='#1a2030';this.style.display='none'">
+        <div class="editorial-tile-caption">Paris · June 2025<strong>VivaTech Workshop — 30 startups</strong></div>
+      </div>
+      <div class="editorial-tile">
+        <img src="https://training.mvl.biz/CES%202026%20War%20Games%201.jpg" alt="CES 2026 War Games" loading="lazy" onerror="this.parentNode.style.background='#1a2030';this.style.display='none'">
+        <div class="editorial-tile-caption">Taipei · 2025<strong>CES 2026 War Games simulation</strong></div>
+      </div>
+      <div class="editorial-tile">
+        <img src="https://training.mvl.biz/TTA%201.jpg" alt="Taiwan Tech Arena" loading="lazy" onerror="this.parentNode.style.background='#1a2030';this.style.display='none'">
+        <div class="editorial-tile-caption">Taipei · home base<strong>Taiwan Tech Arena · NSTC</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADVISORY EXITS (TRACK RECORD) -->
+  <section class="track-record">
+    <div class="track-inner">
+      <div>
+        <div class="eyebrow" style="color:var(--paper-deep)">Track record</div>
+        <h2 class="display" style="color:var(--paper)">15 years on the ground in East Asia.</h2>
+        <div class="track-stats">
+          <div>
+            <div class="track-stat-num">2011</div>
+            <div class="track-stat-label">Founded as Yushan Ventures</div>
+          </div>
+          <div>
+            <div class="track-stat-num">17<span style="font-size:0.5em;letter-spacing:0;font-weight:300">+</span></div>
+            <div class="track-stat-label">Corporate partners</div>
+          </div>
+          <div>
+            <div class="track-stat-num">4</div>
+            <div class="track-stat-label">Sectors</div>
+          </div>
+          <div>
+            <div class="track-stat-num">3</div>
+            <div class="track-stat-label">Advisory exits</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <!-- Milestone timeline -->
+        <div class="milestone-h">
+          <div class="milestone-h-track">
+            <div class="milestone-h-line"></div>
+            <div class="milestone-nodes">
+              <div class="milestone-node">
+                <div class="milestone-year">2011</div>
+                <div class="milestone-event">Founded</div>
+                <div class="milestone-detail">Yushan Ventures, Taipei</div>
+              </div>
+              <div class="milestone-node">
+                <div class="milestone-year">2016</div>
+                <div class="milestone-event">OEM Programs</div>
+                <div class="milestone-detail"><span class="co-badge"><img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Audi-Logo_2016.svg" alt="Audi" onerror="this.style.display='none'">Audi</span> <span class="co-badge"><img src="https://training.mvl.biz/continental.png" alt="Continental" onerror="this.style.display='none'">Continental</span> <span class="co-badge"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fa6cded8a9b6bdd1185b_co-pace.webp" alt="co-pace" onerror="this.style.display='none'">co-pace</span> partnerships launch</div>
+              </div>
+              <div class="milestone-node">
+                <div class="milestone-year">2019</div>
+                <div class="milestone-event">Mosaic+ at TTA</div>
+                <div class="milestone-detail">Flagship program inside Taiwan Tech Arena</div>
+              </div>
+              <div class="milestone-node">
+                <div class="milestone-year">2022</div>
+                <div class="milestone-event">CellTech Studio</div>
+                <div class="milestone-detail">Cell &amp; gene therapy venture studio launched</div>
+              </div>
+              <div class="milestone-node">
+                <div class="milestone-year">2025</div>
+                <div class="milestone-event">FSP Fund</div>
+                <div class="milestone-detail">FSP Mosaic I&amp;S L.P. closes with FSP Group anchor</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="height:1px;background:rgba(244,240,232,0.1);margin:40px 0 32px"></div>
+
+        <div class="advisory-label">Track record · Network exits</div>
+        <div class="advisory-note">Supported through advisory and fundraising relationships — not equity positions. Outcomes reflect the depth of our network and sector judgment.</div>
+
+        <div class="exit-row">
+          <div class="exit-left">
+            <div class="exit-logo">
+              <img src="https://training.mvl.biz/MVL.png" alt="Wikitude" style="width:24px;height:24px;object-fit:contain;filter:brightness(0) invert(1);opacity:0.85" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <span class="logo-fallback" style="display:none">W</span>
+            </div>
+            <div>
+              <div class="exit-name">Wikitude <em>→</em> Qualcomm</div>
+            </div>
+          </div>
+          <div class="exit-right">
+            <div class="exit-badge">Advisory</div>
+            <div class="exit-meta">AR SDK · 2021</div>
+            <div class="acquirer-logos">
+              <div class="acquirer-logo-pill">
+                
+                <span>Qualcomm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exit-row">
+          <div class="exit-left">
+            <div class="exit-logo">
+              <img src="https://training.mvl.biz/infocus.png" alt="InFocus Therapeutics" style="width:24px;height:24px;object-fit:contain;filter:brightness(0) invert(1);opacity:0.85" onerror="this.style.display='none'">
+              <span class="logo-fallback" style="display:none">A</span>
+            </div>
+            <div>
+              <div class="exit-name">Akonia <em>→</em> Apple</div>
+            </div>
+          </div>
+          <div class="exit-right">
+            <div class="exit-badge">Advisory</div>
+            <div class="exit-meta">Holographic Optics · 2018</div>
+            <div class="acquirer-logos">
+              <div class="acquirer-logo-pill">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" onerror="this.style.display='none'">
+                <span>Apple</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exit-row">
+          <div class="exit-left">
+            <div class="exit-logo">
+              <img src="https://training.mvl.biz/MVL.png" alt="StradVision" style="width:24px;height:24px;object-fit:contain;filter:brightness(0) invert(1);opacity:0.85" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <span class="logo-fallback" style="display:none">S</span>
+            </div>
+            <div>
+              <div class="exit-name">StradVision <em>→</em> KOSDAQ</div>
+            </div>
+          </div>
+          <div class="exit-right">
+            <div class="exit-badge">Fundraising support</div>
+            <div class="exit-meta">ADAS · IPO filing Apr 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCELERATOR -->
+  <section class="section">
+    <div class="eyebrow">Current programs</div>
+    <h2 class="display">We run accelerators.<br>Not just coordinate them.</h2>
+    <p class="lede">Mosaic+ operates inside Taiwan Tech Arena — the government-backed deep tech hub under Taiwan NSTC. <span class="co-badge"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fa6c989048a207fa0b91_LITEON.webp" alt="LITEON" onerror="this.style.display='none'">LITEON</span> and <span class="co-badge"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/664ebaccae234bc678c03a27_LandSeed.webp" alt="Landseed" onerror="this.style.display='none'">Landseed</span> programs were designed by MVL. We built and scaled LITEON+ and Landseed before that; today our focus is Mosaic+ and CellTech.</p>
+    <div class="accel-grid">
+      <div class="accel-card" data-route="accelerators">
+        <div>
+          <div class="accel-partner" style="display:flex;align-items:center;gap:8px">
+            <img src="https://training.mvl.biz/TTA.jpg" alt="TTA" style="height:18px;width:auto;object-fit:contain;opacity:0.9;filter:none" onerror="this.style.display='none'">
+            Taiwan Tech Arena · NSTC
+          </div>
+          <div class="accel-name">Mosaic<em style="font-style:italic;color:var(--accent)">+</em> at TTA</div>
+        </div>
+        <div class="accel-sector">The flagship program. Global scouting, OEM matching, CES and MWC delegations. Deep tech from seed to pilot.</div>
+        <span class="accel-arrow">Detail</span>
+      </div>
+      <div class="accel-card" data-route="accelerators">
+        <div>
+          <div class="accel-partner">Mosaic Studio · internal</div>
+          <div class="accel-name">Cell<em style="font-style:italic;color:var(--accent)">Tech</em></div>
+        </div>
+        <div class="accel-sector">Cell &amp; gene therapy venture studio. Clinical commercialization built on Taiwan's biotech foundry infrastructure.</div>
+        <span class="accel-arrow">Detail</span>
+      </div>
+      <div class="accel-card past">
+        <div>
+          <div class="accel-partner">Outbound · Built by MVL</div>
+          <div class="accel-name">Sell <em style="font-style:italic;color:var(--accent)">Global</em></div>
+        </div>
+        <div class="accel-sector">Outbound trade-mission program. Pre-trains Taiwanese, Japanese, and Korean founders for cross-border B2B selling — then ships them to CES, VivaTech, Munich.</div>
+        <span class="accel-arrow">Detail</span>
+      </div>
+      <div class="accel-card past">
+        <div>
+          <div class="accel-partner">Built by MVL — now independent</div>
+          <div class="accel-name" style="font-size:20px;color:var(--muted)">LITEON+ &amp; Landseed</div>
+        </div>
+        <div class="accel-sector">MVL designed and launched both programs. LITEON+ (semiconductor &amp; sustainability) and Landseed (hospital-embedded medtech) continue independently.</div>
+        <span class="accel-past-note">Programs we built · handed off</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUND TEASE -->
+  <section class="fund-tease">
+    <div class="fund-tease-inner">
+      <div>
+        <div class="fund-tease-tag">The fund</div>
+        <h2 class="fund-tease-title">FSP Mosaic <em>Innovation</em> &amp; Sustainability L.P.</h2>
+        <p class="fund-tease-body">Our investment vehicle, anchored by FSP Group (TWSE: 3015). Focused on seed and Series A deep tech across Taiwan, Japan, and Korea — where we run the deal flow ourselves.</p>
+        <a class="btn btn-primary" href="#" data-route="fund">Fund detail</a>
+      </div>
+      <ul class="fund-meta-list">
+        <li>
+          <div class="fund-meta-key">Anchor LP</div>
+          <div style="display:flex;align-items:center;gap:10px">
+            
+            FSP Group — TWSE: 3015
+          </div>
+        </li>
+        <li>
+          <div class="fund-meta-key">Stage</div>
+          <div>Seed and Series A</div>
+        </li>
+        <li>
+          <div class="fund-meta-key">Geography</div>
+          <div>Taiwan · Japan · Korea, with selective US and Germany</div>
+        </li>
+        <li>
+          <div class="fund-meta-key">Sectors</div>
+          <div>Healthcare · Semiconductor · Automotive · Robotics</div>
+        </li>
+        <li>
+          <div class="fund-meta-key">Edge</div>
+          <div>Proprietary deal flow from Mosaic+ at TTA and 15+ years of OEM and hospital relationships</div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- BIDIRECTIONAL POSITIONING -->
+  <section class="bidi-band">
+    <div class="bidi-inner">
+      <div class="bidi-head">
+        <div class="eyebrow">Two portfolios. One bridge.</div>
+        <h2>We move startups <em>into</em> Taiwan —<br>and Taiwan deep tech <em>out</em> to the world.</h2>
+      </div>
+      <p style="font-size:16px;line-height:1.6;color:var(--muted);max-width:720px;margin-bottom:48px">Most accelerators run one direction. We run both, with the same network. <strong>Inbound:</strong> 12 foreign deep-tech startups brought into Taiwan since 2018 — Foxconn, MediaTek, UMC, server makers, telcos, research hospitals. <strong>Outbound:</strong> 180+ Taiwanese founders trained for CES and VivaTech.</p>
+      <div class="bidi-flows">
+        <div class="bidi-flow">
+          <div class="bidi-flow-direction">
+            <svg width="36" height="10" viewBox="0 0 36 10" fill="none"><path d="M0 5 H30 M25 1 L30 5 L25 9" stroke="currentColor" stroke-width="1.2"/></svg>
+            Inbound · Global → Taiwan
+          </div>
+          <div class="bidi-flow-title">12 foreign startups, brought into Taiwan since 2018.</div>
+          <div class="bidi-flow-body">Korean AI chip unicorn (Rebellions, $2.3B pre-IPO). MIT-spun EV OEM Foxconn invested in with a board seat (Indigo). Israeli factory-floor wireless backed by Qualcomm Ventures (CoreTigo). 4 strategic exits including Wikitude→Qualcomm and drvr→Sentiance.</div>
+          <div class="bidi-flow-meta">
+            <span><strong>12</strong> portfolio</span>
+            <span><strong>4</strong> exits</span>
+            <span><strong>$2.3B</strong> peak valuation</span>
+          </div>
+        </div>
+        <div class="bidi-flow alt">
+          <div class="bidi-flow-direction">
+            <svg width="36" height="10" viewBox="0 0 36 10" fill="none"><path d="M36 5 H6 M11 1 L6 5 L11 9" stroke="currentColor" stroke-width="1.2"/></svg>
+            Outbound · Taiwan → Global
+          </div>
+          <div class="bidi-flow-title">180+ Taiwanese founders, trained for CES and VivaTech.</div>
+          <div class="bidi-flow-body">Three cohorts since 2024. Curriculum built from 14 years of watching what works — cross-cultural buyer simulation, war games, materials clinics. Mentors from Google, Audi, VW, AWS, IBM, Continental, Daimler. Now structured as the 8-week SELL GLOBAL program.</div>
+          <div class="bidi-flow-meta">
+            <span><strong>180+</strong> trained</span>
+            <span><strong>3</strong> cohorts</span>
+            <span><strong>15+</strong> mentors</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO STRIP — inbound deep-tech startups brought into Taiwan -->
+  <section class="section">
+    <div class="eyebrow">Inbound portfolio · Global → Taiwan</div>
+    <h2 class="display">Twelve foreign deep-tech startups, brought into Taiwan's ecosystem.</h2>
+    <p style="font-size:15px;color:var(--muted);line-height:1.55;max-width:680px;margin-top:14px;margin-bottom:36px">Opening doors to Foxconn, MediaTek, UMC, server makers, telcos, and research hospitals. Four strategic exits. One pre-IPO unicorn. One Foxconn-invested EV OEM with a board seat.</p>
+    <div class="portfolio-strip" style="grid-template-columns:repeat(4,1fr)">
+      <div class="port-tile" data-route="portfolio">
+        <div class="port-tile-logo" style="width:auto;height:32px;background:transparent;justify-content:flex-start"><img src="https://training.mvl.biz/rebellions.png" alt="Rebellions" style="height:28px;width:auto;object-fit:contain" onerror="this.style.display='none'"></div>
+        <span class="port-tile-tag">Pre-IPO · $2.3B</span>
+        <div class="port-tile-name">Rebellions</div>
+        <div class="port-tile-desc">Korean AI inference chips. Merged with SK Telecom's Sapeon. $400M pre-IPO 2026.</div>
+      </div>
+      <div class="port-tile" data-route="portfolio">
+        <div class="port-tile-logo" style="width:auto;height:32px;background:transparent;justify-content:flex-start"><img src="https://training.mvl.biz/indigo.png" alt="Indigo Technologies" style="height:28px;width:auto;object-fit:contain" onerror="this.style.display='none'"></div>
+        <span class="port-tile-tag">$20M · Foxconn</span>
+        <div class="port-tile-name">Indigo Technologies</div>
+        <div class="port-tile-desc">MIT-spun EV OEM with SmartWheels™. Foxconn invested with board seat.</div>
+      </div>
+      <div class="port-tile" data-route="portfolio">
+        <div class="port-tile-logo" style="width:auto;height:32px;background:transparent;justify-content:flex-start"><img src="https://training.mvl.biz/MVL.png" alt="Wikitude" style="height:28px;width:auto;object-fit:contain" onerror="this.style.display='none'"></div>
+        <span class="port-tile-tag">Acquired · Qualcomm</span>
+        <div class="port-tile-name">Wikitude</div>
+        <div class="port-tile-desc">First commercial mobile AR SDK. Acquired by Qualcomm, folded into Snapdragon Spaces.</div>
+      </div>
+      <div class="port-tile" data-route="portfolio">
+        <div class="port-tile-logo" style="width:auto;height:32px;background:transparent;justify-content:flex-start"><img src="https://training.mvl.biz/drvr.png" alt="drvr" style="height:28px;width:auto;object-fit:contain" onerror="this.style.display='none'"></div>
+        <span class="port-tile-tag">Acquired · Sentiance</span>
+        <div class="port-tile-name">drvr</div>
+        <div class="port-tile-desc">Smartphone telematics for ASEAN fleets. Acquired by Sentiance Nov 2024.</div>
+      </div>
+      <div class="port-tile" data-route="portfolio">
+        <div class="port-tile-logo" style="width:auto;height:32px;background:transparent;justify-content:flex-start"><img src="https://training.mvl.biz/jios.png" alt="JIOS Aerogel" style="height:28px;width:auto;object-fit:contain" onerror="this.style.display='none'"></div>
+        <span class="port-tile-tag">Hyundai contract</span>
+        <div class="port-tile-name">JIOS Aerogel</div>
+        <div class="port-tile-desc">Silica aerogel battery insulation. Owens Corning-backed. Hyundai contract Jan 2026.</div>
+      </div>
+      <div class="port-tile" data-route="portfolio">
+        <div class="port-tile-logo" style="width:auto;height:32px;background:transparent;justify-content:flex-start"><img src="https://training.mvl.biz/coretigo.png" alt="CoreTigo" style="height:28px;width:auto;object-fit:contain" onerror="this.style.display='none'"></div>
+        <span class="port-tile-tag">Qualcomm · Verizon</span>
+        <div class="port-tile-name">CoreTigo</div>
+        <div class="port-tile-desc">IO-Link Wireless for factory floors. Backed by Qualcomm Ventures, Verizon Ventures.</div>
+      </div>
+      <div class="port-tile" data-route="portfolio">
+        <div class="port-tile-logo" style="width:auto;height:32px;background:transparent;justify-content:flex-start"><img src="https://training.mvl.biz/veracity.png" alt="Veracity Protocol" style="height:28px;width:auto;object-fit:contain" onerror="this.style.display='none'"></div>
+        <span class="port-tile-tag">Scaling · EU DPP</span>
+        <div class="port-tile-name">Veracity Protocol</div>
+        <div class="port-tile-desc">Vision AI fingerprints any physical object. EU Digital Product Passport tech.</div>
+      </div>
+      <div class="port-tile" data-route="portfolio">
+        <div class="port-tile-logo" style="width:auto;height:32px;background:transparent;justify-content:flex-start"><img src="https://training.mvl.biz/woojer.png" alt="Woojer" style="height:28px;width:auto;object-fit:contain" onerror="this.style.display='none'"></div>
+        <span class="port-tile-tag">Retail · Costco, BestBuy</span>
+        <div class="port-tile-name">Woojer</div>
+        <div class="port-tile-desc">High-fidelity haptic wearables. Distributed Costco, Best Buy, Dell, Walmart.</div>
+      </div>
+      <div class="port-tile" data-route="portfolio">
+        <div class="port-tile-logo" style="width:auto;height:32px;background:transparent;justify-content:flex-start"><img src="https://training.mvl.biz/astrus.png" alt="Astrus AI" style="height:28px;width:auto;object-fit:contain" onerror="this.style.display='none'"></div>
+        <span class="port-tile-tag">Seed · Khosla Ventures</span>
+        <div class="port-tile-name">Astrus AI</div>
+        <div class="port-tile-desc">AI foundation model for analog chip layout. $8M seed led by Khosla.</div>
+      </div>
+      <div class="port-tile" data-route="portfolio">
+        <div class="port-tile-logo" style="width:auto;height:32px;background:transparent;justify-content:flex-start"><img src="https://training.mvl.biz/infocus.png" alt="InFocus Therapeutics" style="height:28px;width:auto;object-fit:contain" onerror="this.style.display='none'"></div>
+        <span class="port-tile-tag">Invested · MVL portfolio</span>
+        <div class="port-tile-name">InFocus Therapeutics</div>
+        <div class="port-tile-desc">AI RNA-targeted drug discovery. 40% candidate success vs 1% industry baseline.</div>
+      </div>
+      <div class="port-tile" data-route="portfolio">
+        <div class="port-tile-logo" style="width:auto;height:32px;background:transparent;justify-content:flex-start"><img src="https://training.mvl.biz/MVL.png" alt="Crafton Biotechnology" style="height:28px;width:auto;object-fit:contain" onerror="this.style.display='none'"></div>
+        <span class="port-tile-tag">NEDO Deep Tech</span>
+        <div class="port-tile-name">Crafton Biotechnology</div>
+        <div class="port-tile-desc">Japanese mRNA developer. PureCap® Cap2 enables higher dosing. Nagoya spinoff.</div>
+      </div>
+      <div class="port-tile" data-route="portfolio">
+        <div class="port-tile-logo" style="width:auto;height:32px;background:transparent;justify-content:flex-start"><img src="https://training.mvl.biz/MVL.png" alt="ResVita Bio" style="height:28px;width:auto;object-fit:contain" onerror="this.style.display='none'"></div>
+        <span class="port-tile-tag">FDA INTERACT cleared</span>
+        <div class="port-tile-name">ResVita Bio</div>
+        <div class="port-tile-desc">Engineered skin probiotics. Lead indication: Netherton Syndrome. Trials 2026.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUSTED BY -->
+  <section class="section-warm">
+    <div class="section-inner">
+      <div class="eyebrow">Corporate network</div>
+      <h2 class="display" style="max-width:640px">Trusted by the OEMs, Tier-1s, and global enterprises that shape deep tech.</h2>
+      <p style="font-size:15px;color:var(--muted);line-height:1.6;max-width:560px;margin-top:16px;margin-bottom:40px">From automotive OEMs to global technology companies — MVL has operated accelerators, scouting programs, and innovation partnerships with organizations across three continents.</p>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)">
+        <div class="logo-cell"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fa6c5e9b776f904f4705_Audi.webp" alt="Audi" onerror="this.parentNode.innerHTML='<span class=logo-text>Audi</span>'"></div>
+        <div class="logo-cell"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fa6c174cb95304a65b82_VW.webp" alt="Volkswagen" onerror="this.parentNode.innerHTML='<span class=logo-text>VW Group</span>'"></div>
+        <div class="logo-cell"><img src="https://training.mvl.biz/continental.png" alt="Continental" onerror="this.parentNode.innerHTML='<span class=logo-text>Continental</span>'"></div>
+        <div class="logo-cell"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fa6cded8a9b6bdd1185b_co-pace.webp" alt="co-pace" onerror="this.parentNode.innerHTML='<span class=logo-text>co-pace</span>'"></div>
+        <div class="logo-cell"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fb76b312c2ad88c1645f_BMW%20Group.webp" alt="BMW Group" onerror="this.parentNode.innerHTML='<span class=logo-text>BMW</span>'"></div>
+        <div class="logo-cell"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fb77dfd4703cd0f73fb5_Yulon.webp" alt="Yulon" onerror="this.parentNode.innerHTML='<span class=logo-text>Yulon</span>'"></div>
+        <div class="logo-cell"><img src="https://training.mvl.biz/Liteon.png" alt="LITEON" onerror="this.parentNode.innerHTML='<span class=logo-text>LITEON</span>'"></div>
+        <div class="logo-cell"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/664ebaccae234bc678c03a27_LandSeed.webp" alt="LandSeed Hospital" onerror="this.parentNode.innerHTML='<span class=logo-text>LandSeed</span>'"></div>
+        <div class="logo-cell"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fa6ca223a757c8c322bc_infineon.webp" alt="Infineon" onerror="this.parentNode.innerHTML='<span class=logo-text>Infineon</span>'"></div>
+        <div class="logo-cell"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fb768244fd859a5c274e_Molex.webp" alt="Molex" onerror="this.parentNode.innerHTML='<span class=logo-text>Molex</span>'"></div>
+        <div class="logo-cell"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fa6ca1393e85fbd5b046_Uno%20Minda.webp" alt="Uno Minda" onerror="this.parentNode.innerHTML='<span class=logo-text>Uno Minda</span>'"></div>
+        <div class="logo-cell"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fb772cd06fbffc3b6522_SCG.webp" alt="SCG" onerror="this.parentNode.innerHTML='<span class=logo-text>SCG</span>'"></div>
+        <div class="logo-cell"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fa6c6abe50135f20fd26_Deloitte.webp" alt="Deloitte" onerror="this.parentNode.innerHTML='<span class=logo-text>Deloitte</span>'"></div>
+        <div class="logo-cell"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fb767fdf4a522c66f8fd_Google.webp" alt="Google" onerror="this.parentNode.innerHTML='<span class=logo-text>Google</span>'"></div>
+        <div class="logo-cell"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fb7621ac5c390803adfd_Microsoft.webp" alt="Microsoft" onerror="this.parentNode.innerHTML='<span class=logo-text>Microsoft</span>'"></div>
+        <div class="logo-cell"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fb7696b8f355fa784c55_Siemens.webp" alt="Siemens" onerror="this.parentNode.innerHTML='<span class=logo-text>Siemens</span>'"></div>
+        <div class="logo-cell"><img src="https://training.mvl.biz/IBM.png" alt="IBM" onerror="this.parentNode.innerHTML='<span class=logo-text>IBM</span>'"></div>
+        <div class="logo-cell"><img src="https://training.mvl.biz/AWS.png" alt="AWS" onerror="this.parentNode.innerHTML='<span class=logo-text>AWS</span>'"></div>
+        <div class="logo-cell"><img src="https://training.mvl.biz/daimler.png" alt="Daimler" onerror="this.parentNode.innerHTML='<span class=logo-text>Daimler</span>'"></div>
+        <div class="logo-cell"><img src="https://training.mvl.biz/ITRI.png" alt="ITRI" onerror="this.parentNode.innerHTML='<span class=logo-text>ITRI</span>'"></div>
+        <div class="logo-cell"><img src="https://training.mvl.biz/TTA.jpg" alt="Taiwan Tech Arena" onerror="this.parentNode.innerHTML='<span class=logo-text>TTA</span>'"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THREE PATH CTA -->
+  <section class="three-path">
+    <div class="three-path-inner">
+      <div class="eyebrow" style="color:var(--paper-deep)">Get in touch</div>
+      <h2 class="display" style="color:var(--paper)">Three audiences. Three teams.</h2>
+      <div class="three-path-grid">
+        <div class="path-card" data-route="contact">
+          <div class="path-num">01 · For founders</div>
+          <div class="path-title">Building in our sectors?</div>
+          <div class="path-desc">Apply to Mosaic+ at TTA or pitch the fund directly. Seed and Series A.</div>
+          <span class="path-cta">Apply</span>
+        </div>
+        <div class="path-card" data-route="contact">
+          <div class="path-num">02 · For corporates</div>
+          <div class="path-title">Need East Asia access?</div>
+          <div class="path-desc">Scouting programs, JVs, and procurement-grade introductions across Taiwan, Japan, and Korea.</div>
+          <span class="path-cta">Partner with us</span>
+        </div>
+        <div class="path-card" data-route="contact">
+          <div class="path-num">03 · For LPs</div>
+          <div class="path-title">Allocating to East Asia deep tech?</div>
+          <div class="path-desc">FSP Mosaic Innovation &amp; Sustainability L.P. — qualified institutional inquiries only.</div>
+          <span class="path-cta">Talk to us</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ======== ABOUT ======== -->
+<main id="page-about" class="page">
+  <section class="page-hero">
+    <div class="eyebrow">About Mosaic Venture Lab</div>
+    <h1 class="display">15 years building East Asia's deep-tech network — <em>from the inside</em>.</h1>
+    <p class="lede" style="margin-top:24px;max-width:780px">Mosaic Venture Lab is a Taipei-based investment and accelerator platform. We operate inside OEM programs, hospital networks, and government hubs — then invest in the companies we find there. Seven active portfolio companies. Three advisory exits. One fund, anchored by FSP Group.</p>
+  </section>
+
+  <section class="section">
+    <div class="three-act">
+      <div class="act-meta">
+        <div class="act-meta-num">01</div>
+        2011 — 2018
+      </div>
+      <div class="act-content">
+        <h3>Yushan Ventures</h3>
+        <p>Founded in Taipei to bridge global automotive innovation with Asia's engineering capacity. The thesis: mobility, electronics, and biotech will be co-built between Western OEMs and East Asian manufacturers.</p>
+        <p>During this period we advised and supported fundraising for companies that went on to significant exits — <strong>Wikitude</strong> (AR SDK, acquired by <span class="co-badge">Qualcomm</span> 2021), <strong>Akonia Holographics</strong> (holographic optics, acquired by <span class="co-badge"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" onerror="this.style.display='none'">Apple</span> 2018), and <strong>StradVision</strong> (ADAS perception, KOSDAQ IPO filing 2026). These were advisory relationships, not equity positions.</p>
+      </div>
+    </div>
+    <div class="three-act">
+      <div class="act-meta">
+        <div class="act-meta-num">02</div>
+        2019 — 2023
+      </div>
+      <div class="act-content">
+        <h3>Mosaic Venture Lab</h3>
+        <p>Became Yushan's deep-tech accelerator and investment arm. Built anchor programs with <span class="co-badge"><img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Audi-Logo_2016.svg" alt="Audi" onerror="this.style.display='none'">Audi</span> <span class="co-badge"><img src="https://training.mvl.biz/continental.png" alt="Continental" onerror="this.style.display='none'">Continental</span> and <span class="co-badge"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fa6c989048a207fa0b91_LITEON.webp" alt="LITEON" onerror="this.style.display='none'">LITEON</span> — corporate programs that proved the operator model. Launched CellTech as the cell &amp; gene therapy venture studio. Scaled to 20+ people across Taipei, San Francisco, and Germany.</p>
+        <p>MVL designed and launched the <strong>LITEON+</strong> <span class="co-badge"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fa6c989048a207fa0b91_LITEON.webp" alt="LITEON" onerror="this.style.display='none'">LITEON</span> (semiconductor and sustainability) and <strong>Landseed</strong> <span class="co-badge"><img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/664ebaccae234bc678c03a27_LandSeed.webp" alt="Landseed" onerror="this.style.display='none'">Landseed</span> (hospital-embedded medtech) programs — both continue independently. This track record of building and handing off programs is a capability, not a gap.</p>
+      </div>
+    </div>
+    <div class="three-act">
+      <div class="act-meta">
+        <div class="act-meta-num">03</div>
+        2024 — today
+      </div>
+      <div class="act-content">
+        <h3>The platform now</h3>
+        <p>Mosaic+ runs inside Taiwan Tech Arena — the government-backed hub under Taiwan NSTC. That is our primary accelerator. CellTech continues as our biotech venture studio.</p>
+        <p>The investment fund — <strong>FSP Mosaic Innovation &amp; Sustainability L.P.</strong>, anchored by FSP Group (TWSE: 3015) — launched in 2025 and backs seed-to-Series A deep tech companies across Taiwan, Japan, and Korea. Four sectors. Seven active portfolio companies. Defense tech engagements handled confidentially.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTORY IMAGE STRIP — editorial photographic anchor for the three acts -->
+  <section style="padding:0 48px 56px">
+    <div style="max-width:1440px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;height:280px">
+      <figure style="position:relative;margin:0;overflow:hidden;border-radius:3px;background:#1a1a18">
+        <img src="https://images.unsplash.com/photo-1470004914212-05527e49370b?w=1200&q=80&auto=format&fit=crop" alt="Taipei skyline, 2011" style="width:100%;height:100%;object-fit:cover;display:block;filter:saturate(0.85) contrast(1.05)" loading="lazy" onerror="this.parentNode.style.background='var(--ink)';this.style.display='none'">
+        <figcaption style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.78));color:var(--paper);font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase">2011 · Founded as Yushan Ventures, Taipei</figcaption>
+      </figure>
+      <figure style="position:relative;margin:0;overflow:hidden;border-radius:3px;background:#1a1a18">
+        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1200&q=80&auto=format&fit=crop" alt="Semiconductor lab" style="width:100%;height:100%;object-fit:cover;display:block;filter:saturate(0.85) contrast(1.05)" loading="lazy" onerror="this.parentNode.style.background='var(--ink)';this.style.display='none'">
+        <figcaption style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.78));color:var(--paper);font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase">2016–2022 · OEM, semiconductor &amp; biotech programs</figcaption>
+      </figure>
+      <figure style="position:relative;margin:0;overflow:hidden;border-radius:3px;background:#1a1a18">
+        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&q=80&auto=format&fit=crop" alt="Boardroom meeting" style="width:100%;height:100%;object-fit:cover;display:block;filter:saturate(0.85) contrast(1.05)" loading="lazy" onerror="this.parentNode.style.background='var(--ink)';this.style.display='none'">
+        <figcaption style="position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,0.78));color:var(--paper);font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase">2025 · FSP Mosaic I&amp;S L.P. — fund launch</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section-deep">
+    <div class="section-inner">
+      <div class="eyebrow">What sets us apart</div>
+      <h2 class="display">Embedded operators,<br>not <em>coordinators</em>.</h2>
+      <p class="lede" style="margin-top:16px">Most programs connect startups to networks. MVL embeds inside institutions — TTA, hospitals, OEM programs — and runs the actual operations. The difference shows up in pilot rates, procurement speed, and clinical validation timelines.</p>
+      <div class="vs-grid" style="margin-top:40px">
+        <div class="vs-card">
+          <div class="vs-label">Our edge · 01</div>
+          <div class="vs-title">Embedded operators</div>
+          <div class="vs-body">We run programs inside OEMs and government hubs — not alongside them. Startups get real procurement conversations, not warm intros.</div>
+        </div>
+        <div class="vs-card">
+          <div class="vs-label">Our edge · 02</div>
+          <div class="vs-title">Hospital-validated medtech</div>
+          <div class="vs-body">Through the Landseed program we built, MVL has clinical validation infrastructure embedded inside a working hospital. Our biotech pipeline is built on that foundation.</div>
+        </div>
+        <div class="vs-card">
+          <div class="vs-label">Our edge · 03</div>
+          <div class="vs-title">FSP Group as strategic LP</div>
+          <div class="vs-body">A listed industrial anchor LP means portfolio companies get manufacturing access and supply-chain relationships on day one, not after they exit.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="eyebrow">Leadership</div>
+    <h2 class="display">The <em>operators</em>.</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-name">Volker Heistermann</div>
+        <div class="team-role">Co-Founder · Managing Director</div>
+        <div class="team-bio">Founded Yushan in 2011. Previously Google (APAC) and Rutberg &amp; Co. APEC advisor. 25+ years in tech across US, Europe, and Asia.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-name">Johnny Yu</div>
+        <div class="team-role">Managing Director</div>
+        <div class="team-bio">Semiconductor and biotech VC with M&amp;A track record across Taiwan. Leads investment committee and portfolio oversight.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-name">Dr. Volker Kaese</div>
+        <div class="team-role">Partner</div>
+        <div class="team-bio">VW Group and Audi background. Anchors European corporate partnerships across automotive and mobility.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-name">Ken Huang</div>
+        <div class="team-role">Program Director</div>
+        <div class="team-bio">Technology scouting for OEMs and electronics conglomerates. Leads CES, MWC, and VivaTech delegations.</div>
+      </div>
+    </div>
+    <div style="margin-top:28px">
+      <a class="btn btn-outline" href="#" data-route="team">Full team &amp; mentors</a>
+    </div>
+  </section>
+</main>
+
+<!-- ======== SECTORS ======== -->
+<main id="page-sectors" class="page">
+  <section class="page-hero">
+    <div class="eyebrow">Four sectors</div>
+    <h1 class="display">Where we invest. Where we build.</h1>
+    <p class="lede" style="margin-top:24px">Each sector is a thesis, a portfolio, and an accelerator program. We don't spread thin.</p>
+  </section>
+
+  <section class="section">
+    <div class="sector-row">
+      <div class="sector-row-num">01</div>
+      <div>
+        <div class="sector-row-name">Healthcare</div>
+        <div class="sector-row-tags"><span class="tag">cell therapy</span><span class="tag">drug discovery</span><span class="tag">medtech</span></div>
+      </div>
+      <div class="sector-row-content">
+        <p>AI-native drug discovery, cell &amp; gene therapy, medical devices, and clinical AI — built on Taiwan's biotech foundry capability and hospital infrastructure. We validate in clinical settings, not just labs.</p>
+        <div class="sector-detail">
+          <div class="sector-detail-key">Portfolio</div>
+          <div><strong>Infocus Therapeutics · TBMC · Taiwan Universe BioMedicine · Pulxion Medical Technology</strong></div>
+        </div>
+        <div class="sector-detail">
+          <div class="sector-detail-key">Program</div>
+          <div>CellTech (venture studio) · Landseed (built by MVL, now independent)</div>
+        </div>
+      </div>
+      <div class="sector-row-thumb"><img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80" alt="Clinical / biotech" loading="lazy" onerror="this.style.display='none'"></div>
+    </div>
+
+    <div class="sector-row">
+      <div class="sector-row-num">02</div>
+      <div>
+        <div class="sector-row-name">Semiconductor</div>
+        <div class="sector-row-tags"><span class="tag">power delivery</span><span class="tag">security IP</span><span class="tag">AI silicon</span></div>
+      </div>
+      <div class="sector-row-content">
+        <p>Power delivery, security IP, and AI-acceleration silicon — built on Taiwan's foundry advantage. TSMC proximity is a structural edge no accelerator program in the US or Europe can replicate.</p>
+        <div class="sector-detail">
+          <div class="sector-detail-key">Portfolio</div>
+          <div><strong>Jmem-Tek</strong> — IoT security IP and biometric device identity.</div>
+        </div>
+        <div class="sector-detail">
+          <div class="sector-detail-key">Program</div>
+          <div>LITEON+ (built by MVL, now independent) · Mosaic+ at TTA</div>
+        </div>
+      </div>
+      <div class="sector-row-thumb"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&q=80" alt="Semiconductor wafer" loading="lazy" onerror="this.style.display='none'"></div>
+    </div>
+
+    <div class="sector-row">
+      <div class="sector-row-num">03</div>
+      <div>
+        <div class="sector-row-name">Automotive &amp; Robotics</div>
+        <div class="sector-row-tags"><span class="tag">ADAS</span><span class="tag">electrification</span><span class="tag">industrial automation</span></div>
+      </div>
+      <div class="sector-row-content">
+        <p>A decade of direct OEM partnership — Audi, Continental, VW, BMW, Yulon — built the proprietary relationships that define this sector for us. We know which OEM procurement teams are actually buying.</p>
+        <div class="sector-detail">
+          <div class="sector-detail-key">Advisory exits</div>
+          <div><strong>Wikitude → Qualcomm</strong> (2021) · <strong>StradVision → KOSDAQ IPO</strong> (filing 2026)</div>
+        </div>
+        <div class="sector-detail">
+          <div class="sector-detail-key">Program</div>
+          <div>Mosaic+ at TTA</div>
+        </div>
+        <div class="sector-detail">
+          <div class="sector-detail-key">OEM network</div>
+          <div>
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Audi-Logo_2016.svg" alt="Audi" style="height:16px;width:auto;object-fit:contain;filter:none;opacity:0.9" onerror="this.style.display='none'">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Volkswagen_logo_2019.svg" alt="VW Group" style="height:16px;width:auto;object-fit:contain;filter:none;opacity:0.9" onerror="this.style.display='none'">
+              <img src="https://training.mvl.biz/continental.png" alt="Continental" style="height:16px;width:auto;object-fit:contain;filter:none;opacity:0.9" onerror="this.style.display='none'">
+              <img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fa6cded8a9b6bdd1185b_co-pace.webp" alt="co-pace" style="height:16px;width:auto;object-fit:contain;filter:none;opacity:0.9" onerror="this.style.display='none'">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg" alt="BMW" style="height:16px;width:auto;object-fit:contain;filter:none;opacity:0.9" onerror="this.style.display='none'">
+              <img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fb77dfd4703cd0f73fb5_Yulon.webp" alt="Yulon" style="height:16px;width:auto;object-fit:contain;filter:none;opacity:0.9" onerror="this.style.display='none'">
+            </div>
+            Audi · VW Group · Continental · co-pace · BMW · Yulon (historical program partners)
+          </div>
+        </div>
+      </div>
+      <div class="sector-row-thumb"><img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&q=80" alt="Automotive / robotics" loading="lazy" onerror="this.style.display='none'"></div>
+    </div>
+
+    <div class="sector-row quiet">
+      <div class="sector-row-num">04</div>
+      <div>
+        <div class="sector-row-name">Defense Tech</div>
+        <div class="sector-row-tags"><span class="tag">dual-use</span><span class="tag">deep tech</span></div>
+      </div>
+      <div class="sector-row-content">
+        <p>A new vertical — a signal of intent, not a broad commitment. We engage selectively with dual-use deep tech across Taiwan, Korea, and Japan. Technologies with proven commercial applications that also have defense relevance.</p>
+        <div class="sector-detail">
+          <div class="sector-detail-key">Approach</div>
+          <div>Selective. Dual-use only. Confidential by default.</div>
+        </div>
+        <div class="sector-detail">
+          <div class="sector-detail-key">Contact</div>
+          <div><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c1a9a4adadae81acb7adefa3a8bb">[email&#160;protected]</a> — handled directly by the partnership.</div>
+        </div>
+      </div>
+      <div class="sector-row-thumb"></div>
+    </div>
+  </section>
+</main>
+
+<!-- ======== ACCELERATORS ======== -->
+<main id="page-accelerators" class="page">
+  <section class="page-hero">
+    <div class="eyebrow">Accelerator programs</div>
+    <h1 class="display">Programs we operate end-to-end.</h1>
+    <p class="lede" style="margin-top:24px;max-width:800px">Every program below is a multi-year operating commitment. We source, vet, match, and support cohorts ourselves — not through a third-party coordinator. MVL built LITEON+ and Landseed from scratch before handing them off. Today's focus is Mosaic+ at TTA and CellTech.</p>
+  </section>
+
+  <section class="section">
+    <div class="accel-page-grid">
+
+      <div class="accel-page-row">
+        <div><div class="accel-page-num">Current · 01</div></div>
+        <div>
+          <div class="accel-page-name">Mosaic<em>+</em> at TTA</div>
+          <div class="accel-page-partner" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <img src="https://training.mvl.biz/TTA.jpg" alt="TTA" style="height:16px;width:auto;object-fit:contain;opacity:0.55;filter:grayscale(1)" onerror="this.style.display='none'">
+            Taiwan Tech Arena · NSTC · Government-backed
+          </div>
+        </div>
+        <div class="accel-page-content">
+          <p>The flagship. Mosaic+ runs inside Taiwan Tech Arena — the government-backed deep tech hub operated by Taiwan's NSTC. Not a separate program layered on top of TTA; we are the operator of the Mosaic program within TTA's ecosystem.</p>
+          <p>Global scouting, OEM matching, CES and MWC delegations, corporate soft-landing programs. Hundreds of startups evaluated. Direct access to Taiwan's industrial and government network.</p>
+          <dl>
+            <dt>Sector</dt><dd>Deep tech broadly — Automotive, Semiconductor, Medtech, AI</dd>
+            <dt>Geography</dt><dd>Global scouting, Taiwan-based operations</dd>
+            <dt>Stage</dt><dd>Pre-seed to Series A</dd>
+            <dt>Apply</dt><dd><a href="#" data-route="contact" style="color:var(--accent)">mvl.biz/form-mosaic</a></dd>
+          </dl>
+        </div>
+      </div>
+
+  <!-- ACCELERATOR PHOTO PLACEHOLDER — removed; structural fidelity matters more than dashed-box placeholders -->
+
+      <div class="accel-page-row">
+        <div><div class="accel-page-num">Current · 02</div></div>
+        <div>
+          <div class="accel-page-name">Cell<em>Tech</em></div>
+          <div class="accel-page-partner">Mosaic Studio · Internal venture studio</div>
+        </div>
+        <div class="accel-page-content">
+          <p>Not a batch cohort — a venture studio. CellTech identifies specific clinical-stage commercialization opportunities in cell &amp; gene therapy and builds around them, leveraging Taiwan's biotech foundry infrastructure and hospital networks.</p>
+          <dl>
+            <dt>Sector</dt><dd>Cell &amp; Gene Therapy · Clinical biotech</dd>
+            <dt>Model</dt><dd>Venture studio — not open application</dd>
+            <dt>Geography</dt><dd>Taiwan (primary)</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="accel-page-row" style="opacity:0.65">
+        <div><div class="accel-page-num">Built by MVL · Now independent</div></div>
+        <div>
+          <div class="accel-page-name" style="font-size:32px;color:var(--muted)">LITEON+</div>
+          <div class="accel-page-partner" style="display:flex;align-items:center;gap:8px">
+            <img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fa6c989048a207fa0b91_LITEON.webp" alt="LITEON" style="height:18px;width:auto;object-fit:contain;opacity:0.9;filter:none" onerror="this.style.display='none'">
+            LITEON Technology — X Site program
+          </div>
+        </div>
+        <div class="accel-page-content">
+          <p>MVL designed and launched LITEON+ — LITEON Technology's corporate innovation program targeting semiconductor, sustainability, and clean energy startups. The program continues under LITEON's management.</p>
+          <div class="note-box"><strong>Note:</strong> MVL no longer operates this program. It's listed here as part of our track record of building and scaling corporate accelerators.</div>
+        </div>
+      </div>
+
+      <div class="accel-page-row" style="opacity:0.65">
+        <div><div class="accel-page-num">Built by MVL · Now independent</div></div>
+        <div>
+          <div class="accel-page-name" style="font-size:32px;color:var(--muted)">Landseed</div>
+          <div class="accel-page-partner" style="display:flex;align-items:center;gap:8px">
+            <img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/664ebaccae234bc678c03a27_LandSeed.webp" alt="LandSeed Hospital" style="height:18px;width:auto;object-fit:contain;opacity:0.9;filter:none" onerror="this.style.display='none'">
+            LandSeed Hospital, Taiwan
+          </div>
+        </div>
+        <div class="accel-page-content">
+          <p>MVL built the only hospital-embedded medtech accelerator in the Taiwan ecosystem — placing startups directly inside LandSeed Hospital for clinical validation, IRB support, and physician co-development. The program continues independently.</p>
+          <div class="note-box"><strong>Note:</strong> MVL no longer operates this program. Our biotech pipeline still reflects the relationships and clinical validation infrastructure built through it.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!-- ======== PORTFOLIO ======== -->
+<main id="page-portfolio" class="page">
+  <section class="page-hero">
+    <div class="eyebrow">Portfolio</div>
+    <h1 class="display">Portfolio and advisory exits.</h1>
+    <p class="lede" style="margin-top:24px;max-width:780px">Seven active investments. Three notable advisory relationships where we supported fundraising — not equity positions. All in deep tech, all in East Asia.</p>
+  </section>
+
+  <!-- ADVISORY BAND -->
+  <section class="advisory-band">
+    <div class="advisory-band-inner">
+      <div class="eyebrow" style="color:var(--paper-deep)">Track record</div>
+      <h2 class="display" style="color:var(--paper)">Three exits from the network.</h2>
+      <p class="advisory-intro">Notable outcomes from companies we supported through advisory and fundraising relationships. These are network exits — not equity positions — and reflect the depth of our sector reach and OEM connections.</p>
+
+      <div class="advisory-row">
+        <div class="advisory-left">
+          <div class="advisory-logo-box">
+            
+            <span class="lf" style="display:none">W</span>
+          </div>
+          <div>
+            <div class="advisory-company-name">Wikitude <em>→</em> Qualcomm</div>
+            <div class="advisory-sector">AR SDK · Computer Vision</div>
+          </div>
+        </div>
+        <div class="advisory-right">
+          <div class="advisory-badge">Advisory</div>
+          <div class="advisory-detail">Acquired by Qualcomm · 2021</div>
+          <div class="acquirer-pill">
+            
+            <span>Qualcomm</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="advisory-row">
+        <div class="advisory-left">
+          <div class="advisory-logo-box"><span class="lf">A</span></div>
+          <div>
+            <div class="advisory-company-name">Akonia <em>→</em> Apple</div>
+            <div class="advisory-sector">Holographic Optics · AR Hardware</div>
+          </div>
+        </div>
+        <div class="advisory-right">
+          <div class="advisory-badge">Advisory</div>
+          <div class="advisory-detail">Acquired by Apple · 2018</div>
+          <div class="acquirer-pill">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" onerror="this.style.display='none'">
+            <span>Apple</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="advisory-row">
+        <div class="advisory-left">
+          <div class="advisory-logo-box">
+            
+            <span class="lf" style="display:none">S</span>
+          </div>
+          <div>
+            <div class="advisory-company-name">StradVision <em>→</em> KOSDAQ</div>
+            <div class="advisory-sector">ADAS · Perception Software</div>
+          </div>
+        </div>
+        <div class="advisory-right">
+          <div class="advisory-badge">Fundraising support</div>
+          <div class="advisory-detail">KOSDAQ IPO filing · Apr 2026<br>7M shares · KRW 12,400–14,800</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INVESTMENTS -->
+  <section class="section">
+    <div class="portfolio-section">
+      <div class="portfolio-section-header">
+        <div class="portfolio-section-title">Active investments</div>
+        <div class="portfolio-section-meta">7 companies · FSP Mosaic I&amp;S L.P.</div>
+      </div>
+      <div class="portfolio-grid">
+        <div class="port-tile">
+          <div class="port-tile-logo"><span class="lm">IT</span></div>
+          <span class="port-tile-tag">Biotech · Ophthalmology</span>
+          <div class="port-tile-name">Infocus Therapeutics</div>
+          <div class="port-tile-desc">AI-assisted ophthalmic drug discovery targeting unmet retinal disease needs.</div>
+        </div>
+        <div class="port-tile">
+          <div class="port-tile-logo"><span class="lm">PM</span></div>
+          <span class="port-tile-tag">Medtech · Clinical AI</span>
+          <div class="port-tile-name">Pulxion Medical Technology</div>
+          <div class="port-tile-desc">Non-invasive carotid stenosis detection at 91% accuracy.</div>
+        </div>
+        <div class="port-tile">
+          <div class="port-tile-logo"><span class="lm">JT</span></div>
+          <span class="port-tile-tag">Semiconductor · Security IP</span>
+          <div class="port-tile-name">Jmem-Tek</div>
+          <div class="port-tile-desc">IoT security IP and biometric device identity on Taiwan's foundry infrastructure.</div>
+        </div>
+        <div class="port-tile">
+          <div class="port-tile-logo"><span class="lm">TB</span></div>
+          <span class="port-tile-tag">Biotech · CDMO</span>
+          <div class="port-tile-name">TBMC</div>
+          <div class="port-tile-desc">Biotech foundry and contract manufacturing for Taiwan's cell therapy pipeline.</div>
+        </div>
+        <div class="port-tile">
+          <div class="port-tile-logo"><span class="lm">TU</span></div>
+          <span class="port-tile-tag">Healthcare · Drug Discovery</span>
+          <div class="port-tile-name">Taiwan Universe BioMedicine</div>
+          <div class="port-tile-desc">Computational drug discovery for precision medicine in Asia.</div>
+        </div>
+        <div class="port-tile">
+          <div class="port-tile-logo"><span class="lm">OP</span></div>
+          <span class="port-tile-tag">Software · AI Platform</span>
+          <div class="port-tile-name">Orban Platform Inc.</div>
+          <div class="port-tile-desc">AI-powered enterprise platform for complex operational workflows.</div>
+        </div>
+        <div class="port-tile">
+          <div class="port-tile-logo"><span class="lm">mb</span></div>
+          <span class="port-tile-tag">Software · Automation</span>
+          <div class="port-tile-name">metabiz</div>
+          <div class="port-tile-desc">Business automation SaaS for SMEs across Taiwan and Southeast Asia.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ======== FUND ======== -->
+<main id="page-fund" class="page">
+  <section class="page-hero">
+    <div class="eyebrow">The fund</div>
+    <h1 class="display">FSP Mosaic <em>Innovation</em> &amp; Sustainability L.P.</h1>
+    <p class="lede" style="margin-top:24px;max-width:800px">A focused early-stage vehicle for East Asia deep tech. Anchored by FSP Group (TWSE: 3015). We only invest in sectors where we run a program — so we know the founders before they pitch.</p>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="fund-thesis-grid">
+      <div>
+        <div class="eyebrow">Thesis</div>
+        <h2 class="display">Deep tech.<br><em>East Asia.</em><br>Early stage.</h2>
+        <p style="font-size:16px;line-height:1.65;color:var(--muted);margin-top:20px;max-width:420px">We see deals first because we run the programs. That's the edge. Mosaic+ at TTA generates deal flow that cohort-model accelerators can't match.</p>
+      </div>
+      <ul class="fund-thesis-list">
+        <li>
+          <div class="fund-thesis-key">Anchor LP</div>
+          <div class="fund-thesis-val">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+              
+              <strong>FSP Group</strong>
+            </div>
+            TWSE: 3015 — power solutions and electronics, Taiwan
+          </div>
+        </li>
+        <li>
+          <div class="fund-thesis-key">Stage</div>
+          <div class="fund-thesis-val">Seed and Series A, with selective pre-seed through Mosaic+ at TTA</div>
+        </li>
+        <li>
+          <div class="fund-thesis-key">Ticket size</div>
+          <div class="fund-thesis-val">USD 250K–2M initial, follow-on reserved</div>
+        </li>
+        <li>
+          <div class="fund-thesis-key">Geography</div>
+          <div class="fund-thesis-val">Taiwan (primary) · Japan · Korea, with selective US and Germany</div>
+        </li>
+        <li>
+          <div class="fund-thesis-key">Sectors</div>
+          <div class="fund-thesis-val">Healthcare · Semiconductor · Automotive &amp; Robotics</div>
+        </li>
+        <li>
+          <div class="fund-thesis-key">Edge</div>
+          <div class="fund-thesis-val">Proprietary deal flow from Mosaic+ at TTA and 15+ years of OEM and hospital relationships</div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FUND PHOTO PLACEHOLDER — removed -->
+
+  <section class="section">
+    <div class="eyebrow">Investment Committee</div>
+    <h2 class="display">Who decides.</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-name">Volker Heistermann</div>
+        <div class="team-role">IC member · Co-Founder</div>
+        <div class="team-bio">25+ years in tech. Yushan Ventures founder. APEC advisor.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-name">Johnny Yu</div>
+        <div class="team-role">IC member · Managing Director</div>
+        <div class="team-bio">Semiconductor and biotech VC track record across Taiwan.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-name">Dr. Volker Kaese</div>
+        <div class="team-role">IC member · Partner</div>
+        <div class="team-bio">VW Group and Audi background. European LP relationships.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-name">+ FSP Group reps</div>
+        <div class="team-role">IC seats · Anchor LP</div>
+        <div class="team-bio">Industrial expertise and manufacturing network from FSP Group.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fund-backers">
+    <div class="fund-backers-inner">
+      <div class="eyebrow">Anchor LP</div>
+      <h2 class="display">Built with the partner<br>who <em>deploys</em> the technology.</h2>
+      <p style="font-size:16px;line-height:1.65;color:var(--muted);max-width:580px;margin-top:20px;margin-bottom:40px">FSP Group — listed on TWSE (3015) — is not passive capital. As an industrial electronics and power solutions company, FSP provides portfolio companies with manufacturing access and supply-chain relationships from day one.</p>
+      <div class="logo-grid" style="grid-template-columns:repeat(3,1fr);max-width:480px">
+        <div class="logo-cell">
+          
+          <span class="logo-text" style="display:none">FSP Group</span>
+        </div>
+        <div class="logo-cell">
+          <img src="https://training.mvl.biz/TTA.jpg" alt="Taiwan Tech Arena" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="logo-text" style="display:none">TTA</span>
+        </div>
+        <div class="logo-cell">
+          <span class="logo-text">TWSE: 3015</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="three-path">
+    <div class="three-path-inner">
+      <div class="eyebrow" style="color:var(--paper-deep)">For LPs</div>
+      <h2 class="display" style="color:var(--paper)">Allocating to East Asia <em>deep tech</em>?</h2>
+      <p style="font-size:17px;color:var(--paper-deep);margin-top:20px;max-width:580px;line-height:1.6">Qualified institutional inquiries handled directly by the partnership. We respond within two business days.</p>
+      <div style="margin-top:36px;display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn-outline" href="#" data-route="contact">Request a meeting</a>
+        <a class="btn btn-ghost" href="#" data-route="contact">Get fund overview</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ======== TEAM ======== -->
+<main id="page-team" class="page">
+  <section class="page-hero">
+    <div class="eyebrow">Team</div>
+    <h1 class="display">The people <em>behind</em><br>the platform.</h1>
+    <p class="lede" style="margin-top:24px;max-width:780px">A lean, senior team backed by a global network of sector experts, former founders, and corporate executives who engage directly with portfolio and cohort companies.</p>
+  </section>
+
+  <!-- TEAM PHOTO PLACEHOLDER — removed -->
+
+  <section class="section">
+    <div class="eyebrow">Core team</div>
+    <h2 class="display">Leadership.</h2>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-name">Volker Heistermann</div>
+        <div class="team-role">Co-Founder · Managing Director</div>
+        <div class="team-bio">Founded Yushan in 2011. Previously Google APAC and Rutberg &amp; Co. APEC Business Advisory Council advisor. Based in Taipei.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-name">Johnny Yu</div>
+        <div class="team-role">Managing Director</div>
+        <div class="team-bio">Semiconductor and biotech VC with M&amp;A track record across Taiwan. Leads IC and portfolio management. Based in Taipei.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-name">Dr. Volker Kaese</div>
+        <div class="team-role">Partner</div>
+        <div class="team-bio">VW Group and Audi background spanning product strategy and open innovation. Anchors European corporate partnerships. Based in Germany.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-name">Ken Huang</div>
+        <div class="team-role">Program Director</div>
+        <div class="team-bio">Technology scouting for OEMs and electronics conglomerates. Runs CES, MWC, and VivaTech delegations.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-name">Emily Wong</div>
+        <div class="team-role">Head of Operations</div>
+        <div class="team-bio">Cross-program operations, investor relations, and LP reporting across MVL's programs and portfolio.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-name">Jade Cheng</div>
+        <div class="team-role">Startup Relations</div>
+        <div class="team-bio">Manages the startup pipeline and application process for Mosaic+ at TTA. First point of contact for founders.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-name">Kyle Hu</div>
+        <div class="team-role">Research &amp; Scouting</div>
+        <div class="team-bio">Sector research across biotech, semiconductor, and automotive. Deal flow from Japan, Korea, and Southeast Asia.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-deep">
+    <div class="section-inner">
+      <div class="eyebrow">Mentor network</div>
+      <h2 class="display">Not advisors. <em>Buyers.</em></h2>
+      <p class="lede" style="margin-top:16px;max-width:680px">Mentors sit on the other side of the table. They know exactly what kills a deal because they have walked away from hundreds of them. Drawn from Google, Audi, VW, Continental, AWS, IBM, Bain, and the corporate venture arms of our 15-year network.</p>
+      <div class="portrait-grid">
+        <div class="portrait-card">
+          <div class="portrait-photo"><img src="https://training.mvl.biz/Christian.png" alt="Christian Walter" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="portrait-info">
+            <div class="portrait-name">Christian Walter</div>
+            <div class="portrait-role">CEO · RegionRise</div>
+            <div class="portrait-affil">Ex-Google Europe</div>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <div class="portrait-photo"><img src="https://training.mvl.biz/Wilson.png" alt="Wilson Khoo" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="portrait-info">
+            <div class="portrait-name">Wilson Khoo</div>
+            <div class="portrait-role">Director · co-pace APAC</div>
+            <div class="portrait-affil">Continental AG</div>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <div class="portrait-photo"><img src="https://training.mvl.biz/Pascal.png" alt="Pascal Viaud" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="portrait-info">
+            <div class="portrait-name">Pascal Viaud</div>
+            <div class="portrait-role">CEO · UBIK ltd.</div>
+            <div class="portrait-affil">La French Tech Taiwan</div>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <div class="portrait-photo"><img src="https://training.mvl.biz/Chander%20Kant.png" alt="Chander Kant" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="portrait-info">
+            <div class="portrait-name">Chander Kant</div>
+            <div class="portrait-role">CEO · K Ventures</div>
+            <div class="portrait-affil">Former CEO, Zmanda</div>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <div class="portrait-photo"><img src="https://training.mvl.biz/Mark%20Birch.png" alt="Mark Birch" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="portrait-info">
+            <div class="portrait-name">Mark Birch</div>
+            <div class="portrait-role">Founder · TribeROI</div>
+            <div class="portrait-affil">Ex-AWS Global Advocate</div>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <div class="portrait-photo"><img src="https://training.mvl.biz/Ashley.png" alt="Ashley Hsueh" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="portrait-info">
+            <div class="portrait-name">Ashley Hsueh</div>
+            <div class="portrait-role">Management Consultant</div>
+            <div class="portrait-affil">Bain &amp; Company</div>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <div class="portrait-photo"><img src="https://training.mvl.biz/Volker%20Kaese_0.jpg" alt="Dr. Volker Kaese" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="portrait-info">
+            <div class="portrait-name">Dr. Volker Kaese</div>
+            <div class="portrait-role">CEO · Ingenev Mobility</div>
+            <div class="portrait-affil">Ex-Audi / VW Innovation</div>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <div class="portrait-photo"><img src="https://training.mvl.biz/deborah.jpg" alt="Deborah Magid" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="portrait-info">
+            <div class="portrait-name">Deborah Magid</div>
+            <div class="portrait-role">MD · NextStar Ventures</div>
+            <div class="portrait-affil">Ex-IBM Ventures</div>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <div class="portrait-photo"><img src="https://training.mvl.biz/Shafeen.png" alt="Shafeen Charania" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="portrait-info">
+            <div class="portrait-name">Shafeen Charania</div>
+            <div class="portrait-role">COO · fluency</div>
+            <div class="portrait-affil">Ex-DXC Enterprise IT</div>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <div class="portrait-photo"><img src="https://training.mvl.biz/Todd%20Lin_0.png" alt="Todd Lin" loading="lazy" onerror="this.style.display='none'"></div>
+          <div class="portrait-info">
+            <div class="portrait-name">Todd Lin</div>
+            <div class="portrait-role">Semiconductor &amp; M&amp;A</div>
+            <div class="portrait-affil">Ex-GE, Acer, Egis Tech</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ======== PERSPECTIVES ======== -->
+<main id="page-perspectives" class="page">
+  <section class="page-hero">
+    <div class="eyebrow">Perspectives</div>
+    <h1 class="display">Press, events, recaps, <em>podcasts</em>.</h1>
+    <p class="lede" style="margin-top:24px">Most recent first.</p>
+  </section>
+  <section class="section">
+    <div class="persp-feed">
+      <div class="persp-feed-row">
+        <div class="persp-feed-date">Apr 2026</div>
+        <div><div class="persp-feed-title">StradVision files for KOSDAQ IPO — ADAS company MVL supported through fundraising</div></div>
+        <div class="persp-feed-tag">Advisory exit</div>
+      </div>
+      <div class="persp-feed-row">
+        <div class="persp-feed-date">Oct 14 · 2025</div>
+        <div><div class="persp-feed-title">ECCT Special Lunch: How European mobility leaders are partnering with Taiwanese startups</div></div>
+        <div class="persp-feed-tag">Event</div>
+      </div>
+      <div class="persp-feed-row">
+        <div class="persp-feed-date">Oct 2025</div>
+        <div><div class="persp-feed-title">AI-driven drug discovery — ATH Ventures × GlintMed symposium</div></div>
+        <div class="persp-feed-tag">Event recap</div>
+      </div>
+      <div class="persp-feed-row">
+        <div class="persp-feed-date">Jul 25 · 2025</div>
+        <div><div class="persp-feed-title">LA Landing Taiwan: a US market entry playbook for Taiwanese startups</div></div>
+        <div class="persp-feed-tag">Press</div>
+      </div>
+      <div class="persp-feed-row">
+        <div class="persp-feed-date">Jun 5 · 2025</div>
+        <div><div class="persp-feed-title">FSP Group and Mosaic Venture Lab launch FSP Mosaic Innovation &amp; Sustainability L.P.</div></div>
+        <div class="persp-feed-tag">Announcement</div>
+      </div>
+      <div class="persp-feed-row">
+        <div class="persp-feed-date">Jun 2025</div>
+        <div><div class="persp-feed-title">M-novator Demo Day · Medical Taiwan — hospital-embedded pilots from the Landseed program</div></div>
+        <div class="persp-feed-tag">Event recap</div>
+      </div>
+      <div class="persp-feed-row">
+        <div class="persp-feed-date">May 10 · 2024</div>
+        <div><div class="persp-feed-title">Startup Island Taiwan podcast · with Volker Heistermann</div></div>
+        <div class="persp-feed-tag">Podcast</div>
+      </div>
+      <div class="persp-feed-row">
+        <div class="persp-feed-date">2024</div>
+        <div><div class="persp-feed-title">Meet Global / Business Next: "My heart beats in Taiwan" — profile of Volker Heistermann</div></div>
+        <div class="persp-feed-tag">Press</div>
+      </div>
+      <div class="persp-feed-row">
+        <div class="persp-feed-date">Sept 2021</div>
+        <div><div class="persp-feed-title">Qualcomm acquires Wikitude — company MVL advised on AR strategy and fundraising</div></div>
+        <div class="persp-feed-tag">Advisory exit</div>
+      </div>
+      <div class="persp-feed-row">
+        <div class="persp-feed-date">2018</div>
+        <div><div class="persp-feed-title">Apple acquires Akonia Holographics — company MVL advised on holographic optics commercialization</div></div>
+        <div class="persp-feed-tag">Advisory exit</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ======== CONTACT ======== -->
+<main id="page-contact" class="page">
+  <section class="page-hero">
+    <div class="eyebrow">Contact</div>
+    <h1 class="display"><span style="display:block">Three audiences.</span>One contact form each.</h1>
+    <p class="lede" style="margin-top:24px;max-width:600px">Each goes to the right team. We respond within two business days.</p>
+  </section>
+  <section class="section" style="padding-top:0">
+    <div class="contact-doors">
+      <div class="contact-door">
+        <div class="door-num">01 / Founders</div>
+        <div class="door-title"><em>Apply</em></div>
+        <div class="door-desc">Building in biotech, semiconductor, automotive, or robotics? Apply to Mosaic+ at TTA or pitch the fund directly.</div>
+        <ul class="door-fields">
+          <li>Founder name</li>
+          <li>Company &amp; website</li>
+          <li>Sector (4 options)</li>
+          <li>Stage</li>
+          <li>One-line description</li>
+          <li>Deck (optional)</li>
+        </ul>
+        <span class="door-cta">Submit application</span>
+      </div>
+      <div class="contact-door">
+        <div class="door-num">02 / Corporates</div>
+        <div class="door-title"><em>Partner</em></div>
+        <div class="door-desc">OEMs, Tier-1s, and strategic corporates. Scouting, program partnerships, JVs across East Asia.</div>
+        <ul class="door-fields">
+          <li>Name &amp; role</li>
+          <li>Company</li>
+          <li>What you're solving</li>
+          <li>Geography of interest</li>
+          <li>Timeline</li>
+        </ul>
+        <span class="door-cta">Start a conversation</span>
+      </div>
+      <div class="contact-door">
+        <div class="door-num">03 / LPs</div>
+        <div class="door-title"><em>Invest</em></div>
+        <div class="door-desc">FSP Mosaic Innovation &amp; Sustainability L.P. accepts qualified institutional inquiries.</div>
+        <ul class="door-fields">
+          <li>Name &amp; institution</li>
+          <li>Investor type</li>
+          <li>Approximate ticket</li>
+          <li>Best way to reach you</li>
+        </ul>
+        <span class="door-cta">Request a meeting</span>
+      </div>
+    </div>
+    <div class="offices">
+      <div class="office">
+        <div class="office-meta">Headquarters</div>
+        <h4>Taipei</h4>
+        <p>Taiwan Tech Arena, Songshan District<br>Taipei 105 · Taiwan</p>
+      </div>
+      <div class="office">
+        <div class="office-meta">Americas</div>
+        <h4>San Francisco</h4>
+        <p>San Francisco Bay Area<br>California · USA</p>
+      </div>
+      <div class="office">
+        <div class="office-meta">Europe (network)</div>
+        <h4>Berlin</h4>
+        <p>Partner network<br>Germany</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="logo" style="margin-bottom:20px"><span class="logo-mark"></span><span>Mosaic Venture Lab</span></div>
+      <p class="text-muted" style="font-size:14px;line-height:1.6;max-width:280px">East Asia deep-tech investor and accelerator operator. Since 2011.</p>
+      <p class="text-muted" style="font-size:13px;margin-top:14px"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a3cbc6cfcfcce3ced5cf8dc1cad9">[email&#160;protected]</a> · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="631311061010230e150f4d010a19">[email&#160;protected]</a></p>
+    </div>
+    <div>
+      <div class="footer-block-title">Company</div>
+      <ul class="footer-list">
+        <li><a href="#" data-route="about">About</a></li>
+        <li><a href="#" data-route="sectors">Sectors</a></li>
+        <li><a href="#" data-route="portfolio">Portfolio</a></li>
+        <li><a href="#" data-route="fund">Fund</a></li>
+        <li><a href="#" data-route="team">Team</a></li>
+        <li><a href="#" data-route="perspectives">Perspectives</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-block-title">Programs</div>
+      <ul class="footer-list">
+        <li><a href="#" data-route="accelerators">Mosaic+ at TTA</a></li>
+        <li><a href="#" data-route="accelerators">CellTech</a></li>
+        <li style="color:var(--muted-soft);font-size:13px">LITEON+ (built by MVL)</li>
+        <li style="color:var(--muted-soft);font-size:13px">Landseed (built by MVL)</li>
+        <li style="margin-top:10px"><a href="#">training.mvl.biz</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-block-title">Connect</div>
+      <ul class="footer-list">
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">Medium</a></li>
+        <li><a href="#">Spotify</a></li>
+        <li style="margin-top:10px"><a href="/cdn-cgi/l/email-protection#e69694839595a68b908ac8848f9c"><span class="__cf_email__" data-cfemail="572725322424173a213b79353e2d">[email&#160;protected]</span></a></li>
+        <li><a href="/cdn-cgi/l/email-protection#ef878a838380af829983c18d8695"><span class="__cf_email__" data-cfemail="82eae7eeeeedc2eff4eeace0ebf8">[email&#160;protected]</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Mosaic Venture Lab · Taipei · San Francisco</div>
+    <div>mvl.biz</div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function go(route) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + route);
+  if (target) {
+    target.classList.add('active');
+    document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+    document.querySelectorAll(`.nav a[data-route="${route}"]`).forEach(a => a.classList.add('active'));
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    history.replaceState(null, '', '#' + route);
+  }
+}
+window.go = go;
+document.addEventListener('click', e => {
+  const link = e.target.closest('[data-route]');
+  if (link) { e.preventDefault(); go(link.getAttribute('data-route')); document.body.classList.remove('menu-open'); }
+});
+const menuBtn = document.getElementById('menuBtn');
+if (menuBtn) {
+  menuBtn.addEventListener('click', () => {
+    const open = document.body.classList.toggle('menu-open');
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.getElementById('mobileNav').setAttribute('aria-hidden', !open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { document.body.classList.remove('menu-open'); document.body.style.overflow = ''; } });
+const initHash = location.hash.replace('#', '');
+if (initHash && document.getElementById('page-' + initHash)) go(initHash);
+</script>
+</body>
+</html>
