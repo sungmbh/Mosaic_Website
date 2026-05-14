@@ -253,7 +253,13 @@ h3 { font-family: var(--display); font-weight: 500; font-size: 22px; letter-spac
 .footer-bottom { border-top: 1px solid var(--rule); padding-top: 28px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--muted); text-transform: uppercase; max-width: 1440px; margin: 0 auto; }
 
 /* ABOUT PAGE */
-.page-hero { padding: 96px 48px 72px; max-width: 1440px; margin: 0 auto; }
+.page-hero { padding: 96px 48px 72px; max-width: 1440px; margin: 0 auto; position: relative; }
+.page-hero { display: grid; grid-template-columns: 1fr auto; gap: 56px; align-items: end; }
+.page-hero-content { max-width: 880px; }
+.page-hero-stamp { font-family: var(--display); font-weight: 300; font-style: italic; font-size: clamp(96px, 14vw, 200px); line-height: 0.85; letter-spacing: -0.05em; color: var(--accent); opacity: 0.18; font-variation-settings: 'opsz' 144; white-space: nowrap; pointer-events: none; user-select: none; align-self: end; transform: translateY(20px); }
+.page-hero-stamp-mono { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 12px; margin-top: 24px; }
+.page-hero-stamp-mono::before { content: ''; width: 36px; height: 1px; background: var(--accent); }
+@media (max-width: 900px) { .page-hero { grid-template-columns: 1fr; gap: 0; } .page-hero-stamp { display: none; } }
 .three-act { display: grid; grid-template-columns: 220px 1fr; gap: 56px; padding: 56px 0; border-top: 1px solid var(--rule); align-items: start; }
 .three-act:last-child { border-bottom: 1px solid var(--rule); }
 .act-meta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); position: sticky; top: 100px; }
@@ -271,6 +277,16 @@ h3 { font-family: var(--display); font-weight: 500; font-size: 22px; letter-spac
 /* MENTOR GRID */
 .mentor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 40px; }
 .mentor-card { background: var(--paper-warm); padding: 28px 22px; min-height: 160px; display: flex; flex-direction: column; gap: 6px; }
+
+/* TEAM PORTRAIT MONOGRAM — editorial placeholder when no photo exists */
+.team-card { padding: 0 !important; display: flex !important; flex-direction: column; min-height: 320px; overflow: hidden; }
+.team-portrait { aspect-ratio: 4/5; background: var(--paper-warm); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; border-bottom: 1px solid var(--rule); }
+.team-portrait img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(80%) contrast(1.05); transition: filter .4s, transform .5s; }
+.team-card:hover .team-portrait img { filter: grayscale(0%) contrast(1.05); transform: scale(1.03); }
+.team-portrait-monogram { font-family: var(--display); font-weight: 300; font-size: 84px; letter-spacing: -0.04em; color: var(--accent); font-variation-settings: 'opsz' 72; line-height: 1; opacity: 0.9; }
+.team-portrait::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, transparent 0 1px, rgba(15,15,14,0.03) 1px 14px); pointer-events: none; }
+.team-portrait .role-stamp { position: absolute; top: 14px; left: 14px; font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+.team-info { padding: 18px 22px 24px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
 
 /* MENTOR PORTRAIT (real photos) */
 .portrait-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 40px; }
@@ -766,7 +782,7 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
         <div class="sector-side-card dim" data-route="sectors">
           <div class="sector-side-eyebrow">04 / 04 · New vertical</div>
           <div class="sector-side-name">Defense Tech</div>
-          <div class="sector-side-desc">Selective dual-use deep tech. Taiwan, Korea, Japan. Inquiries handled confidentially via <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="761e131a1a19361b001a58141f0c">[email&#160;protected]</a>.</div>
+          <div class="sector-side-desc">Selective dual-use deep tech. Taiwan, Korea, Japan. Inquiries handled confidentially via <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c9a1aca5a5a689a4bfa5e7aba0b3">[email&#160;protected]</a>.</div>
         </div>
       </div>
     </div>
@@ -1191,9 +1207,13 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
 <!-- ======== ABOUT ======== -->
 <main id="page-about" class="page">
   <section class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-hero-stamp-mono">01 · ESTABLISHED 2011</div>
     <div class="eyebrow">About Mosaic Venture Lab</div>
     <h1 class="display">15 years building East Asia's deep-tech network — <em>from the inside</em>.</h1>
     <p class="lede" style="margin-top:24px;max-width:780px">Mosaic Venture Lab is a Taipei-based investment and accelerator platform. We operate inside OEM programs, hospital networks, and government hubs — then invest in the companies we find there. Seven active portfolio companies. Three advisory exits. One fund, anchored by FSP Group.</p>
+      </div>
+    <div class="page-hero-stamp" aria-hidden="true">15</div>
   </section>
 
   <section class="section">
@@ -1280,24 +1300,36 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
     <h2 class="display">The <em>operators</em>.</h2>
     <div class="team-grid">
       <div class="team-card">
-        <div class="team-name">Volker Heistermann</div>
-        <div class="team-role">Co-Founder · Managing Director</div>
-        <div class="team-bio">Founded Yushan in 2011. Previously Google (APAC) and Rutberg &amp; Co. APEC advisor. 25+ years in tech across US, Europe, and Asia.</div>
+        <div class="team-portrait"><span class="role-stamp">Managing Director</span><span class="team-portrait-monogram">JY</span></div>
+        <div class="team-info">
+          <div class="team-name">Johnny Yu</div>
+          <div class="team-role">Managing Director · IC Chair</div>
+          <div class="team-bio">Semiconductor and biotech VC with M&amp;A track record across Taiwan. Leads investment committee and portfolio oversight.</div>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-name">Johnny Yu</div>
-        <div class="team-role">Managing Director</div>
-        <div class="team-bio">Semiconductor and biotech VC with M&amp;A track record across Taiwan. Leads investment committee and portfolio oversight.</div>
+        <div class="team-portrait"><span class="role-stamp">Co-Founder</span><span class="team-portrait-monogram">VH</span></div>
+        <div class="team-info">
+          <div class="team-name">Volker Heistermann</div>
+          <div class="team-role">Co-Founder · Managing Director</div>
+          <div class="team-bio">Founded Yushan in 2011. Previously Google (APAC) and Rutberg &amp; Co. APEC advisor. 25+ years in tech.</div>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-name">Dr. Volker Kaese</div>
-        <div class="team-role">Partner</div>
-        <div class="team-bio">VW Group and Audi background. Anchors European corporate partnerships across automotive and mobility.</div>
+        <div class="team-portrait"><span class="role-stamp">Partner</span><img src="https://training.mvl.biz/Volker%20Kaese_0.jpg" alt="Dr. Volker Kaese" loading="lazy" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=team-portrait-monogram>VK</span>')"></div>
+        <div class="team-info">
+          <div class="team-name">Dr. Volker Kaese</div>
+          <div class="team-role">Partner</div>
+          <div class="team-bio">VW Group and Audi background. Anchors European corporate partnerships across automotive and mobility.</div>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-name">Ken Huang</div>
-        <div class="team-role">Program Director</div>
-        <div class="team-bio">Technology scouting for OEMs and electronics conglomerates. Leads CES, MWC, and VivaTech delegations.</div>
+        <div class="team-portrait"><span class="role-stamp">Program Director</span><span class="team-portrait-monogram">KH</span></div>
+        <div class="team-info">
+          <div class="team-name">Ken Huang</div>
+          <div class="team-role">Program Director</div>
+          <div class="team-bio">Technology scouting for OEMs and electronics conglomerates. Leads CES, MWC, and VivaTech delegations.</div>
+        </div>
       </div>
     </div>
     <div style="margin-top:28px">
@@ -1309,9 +1341,13 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
 <!-- ======== SECTORS ======== -->
 <main id="page-sectors" class="page">
   <section class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-hero-stamp-mono">02 · FOUR SECTORS</div>
     <div class="eyebrow">Four sectors</div>
     <h1 class="display">Where we invest. Where we build.</h1>
     <p class="lede" style="margin-top:24px">Each sector is a thesis, a portfolio, and an accelerator program. We don't spread thin.</p>
+      </div>
+    <div class="page-hero-stamp" aria-hidden="true">04</div>
   </section>
 
   <section class="section">
@@ -1403,7 +1439,7 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
         </div>
         <div class="sector-detail">
           <div class="sector-detail-key">Contact</div>
-          <div><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c1a9a4adadae81acb7adefa3a8bb">[email&#160;protected]</a> — handled directly by the partnership.</div>
+          <div><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cea6aba2a2a18ea3b8a2e0aca7b4">[email&#160;protected]</a> — handled directly by the partnership.</div>
         </div>
       </div>
       <div class="sector-row-thumb"></div>
@@ -1414,9 +1450,13 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
 <!-- ======== ACCELERATORS ======== -->
 <main id="page-accelerators" class="page">
   <section class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-hero-stamp-mono">03 · PROGRAMS</div>
     <div class="eyebrow">Accelerator programs</div>
     <h1 class="display">Programs we operate end-to-end.</h1>
     <p class="lede" style="margin-top:24px;max-width:800px">Every program below is a multi-year operating commitment. We source, vet, match, and support cohorts ourselves — not through a third-party coordinator. MVL built LITEON+ and Landseed from scratch before handing them off. Today's focus is Mosaic+ at TTA and CellTech.</p>
+      </div>
+    <div class="page-hero-stamp" aria-hidden="true">TTA</div>
   </section>
 
   <section class="section">
@@ -1498,9 +1538,13 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
 <!-- ======== PORTFOLIO ======== -->
 <main id="page-portfolio" class="page">
   <section class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-hero-stamp-mono">04 · PORTFOLIO</div>
     <div class="eyebrow">Portfolio</div>
     <h1 class="display">Portfolio and advisory exits.</h1>
     <p class="lede" style="margin-top:24px;max-width:780px">Seven active investments. Three notable advisory relationships where we supported fundraising — not equity positions. All in deep tech, all in East Asia.</p>
+      </div>
+    <div class="page-hero-stamp" aria-hidden="true">12</div>
   </section>
 
   <!-- ADVISORY BAND -->
@@ -1626,9 +1670,13 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
 <!-- ======== FUND ======== -->
 <main id="page-fund" class="page">
   <section class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-hero-stamp-mono">05 · THE FUND</div>
     <div class="eyebrow">The fund</div>
     <h1 class="display">FSP Mosaic <em>Innovation</em> &amp; Sustainability L.P.</h1>
     <p class="lede" style="margin-top:24px;max-width:800px">A focused early-stage vehicle for East Asia deep tech. Anchored by FSP Group (TWSE: 3015). We only invest in sectors where we run a program — so we know the founders before they pitch.</p>
+      </div>
+    <div class="page-hero-stamp" aria-hidden="true">L.P.</div>
   </section>
 
   <section class="section" style="padding-top:0">
@@ -1680,24 +1728,48 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
     <h2 class="display">Who decides.</h2>
     <div class="team-grid">
       <div class="team-card">
-        <div class="team-name">Volker Heistermann</div>
-        <div class="team-role">IC member · Co-Founder</div>
-        <div class="team-bio">25+ years in tech. Yushan Ventures founder. APEC advisor.</div>
+        <div class="team-portrait">
+          <span class="role-stamp">01 · IC Chair</span>
+          <span class="team-portrait-monogram">JY</span>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Johnny Yu</div>
+          <div class="team-role">IC Chair · Managing Director</div>
+          <div class="team-bio">Semiconductor and biotech VC track record across Taiwan. Leads investment committee and portfolio oversight.</div>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-name">Johnny Yu</div>
-        <div class="team-role">IC member · Managing Director</div>
-        <div class="team-bio">Semiconductor and biotech VC track record across Taiwan.</div>
+        <div class="team-portrait">
+          <span class="role-stamp">02 · IC Member</span>
+          <span class="team-portrait-monogram">VH</span>
+        </div>
+        <div class="team-info">
+          <div class="team-name">Volker Heistermann</div>
+          <div class="team-role">IC Member · Co-Founder</div>
+          <div class="team-bio">25+ years in tech across US, Europe, and Asia. Founded Yushan Ventures 2011. APEC Business Advisory Council.</div>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-name">Dr. Volker Kaese</div>
-        <div class="team-role">IC member · Partner</div>
-        <div class="team-bio">VW Group and Audi background. European LP relationships.</div>
+        <div class="team-portrait">
+          <span class="role-stamp">03 · IC Member</span>
+          <img src="https://training.mvl.biz/Volker%20Kaese_0.jpg" alt="Dr. Volker Kaese" loading="lazy" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=team-portrait-monogram>VK</span>')">
+        </div>
+        <div class="team-info">
+          <div class="team-name">Dr. Volker Kaese</div>
+          <div class="team-role">IC Member · Partner</div>
+          <div class="team-bio">CEO Ingenev Mobility. Ex-Audi / VW Group Innovation. European LP and OEM relationships.</div>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-name">+ FSP Group reps</div>
-        <div class="team-role">IC seats · Anchor LP</div>
-        <div class="team-bio">Industrial expertise and manufacturing network from FSP Group.</div>
+        <div class="team-portrait">
+          <span class="role-stamp">04 · Anchor LP</span>
+          <span class="team-portrait-monogram">FSP</span>
+        </div>
+        <div class="team-info">
+          <div class="team-name">FSP Group representatives</div>
+          <div class="team-role">IC Seats · Anchor LP</div>
+          <div class="team-bio">Industrial expertise and manufacturing network from FSP Group (TWSE: 3015).</div>
+        </div>
       </div>
     </div>
   </section>
@@ -1739,9 +1811,13 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
 <!-- ======== TEAM ======== -->
 <main id="page-team" class="page">
   <section class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-hero-stamp-mono">06 · TEAM</div>
     <div class="eyebrow">Team</div>
     <h1 class="display">The people <em>behind</em><br>the platform.</h1>
     <p class="lede" style="margin-top:24px;max-width:780px">A lean, senior team backed by a global network of sector experts, former founders, and corporate executives who engage directly with portfolio and cohort companies.</p>
+      </div>
+    <div class="page-hero-stamp" aria-hidden="true">15+</div>
   </section>
 
   <!-- TEAM PHOTO PLACEHOLDER — removed -->
@@ -1751,39 +1827,60 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
     <h2 class="display">Leadership.</h2>
     <div class="team-grid">
       <div class="team-card">
-        <div class="team-name">Volker Heistermann</div>
-        <div class="team-role">Co-Founder · Managing Director</div>
-        <div class="team-bio">Founded Yushan in 2011. Previously Google APAC and Rutberg &amp; Co. APEC Business Advisory Council advisor. Based in Taipei.</div>
+        <div class="team-portrait"><span class="role-stamp">Taipei</span><span class="team-portrait-monogram">JY</span></div>
+        <div class="team-info">
+          <div class="team-name">Johnny Yu</div>
+          <div class="team-role">Managing Director · IC Chair</div>
+          <div class="team-bio">Semiconductor and biotech VC with M&amp;A track record across Taiwan. Leads IC and portfolio management. Based in Taipei.</div>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-name">Johnny Yu</div>
-        <div class="team-role">Managing Director</div>
-        <div class="team-bio">Semiconductor and biotech VC with M&amp;A track record across Taiwan. Leads IC and portfolio management. Based in Taipei.</div>
+        <div class="team-portrait"><span class="role-stamp">Taipei</span><span class="team-portrait-monogram">VH</span></div>
+        <div class="team-info">
+          <div class="team-name">Volker Heistermann</div>
+          <div class="team-role">Co-Founder · Managing Director</div>
+          <div class="team-bio">Founded Yushan in 2011. Previously Google APAC and Rutberg &amp; Co. APEC Business Advisory Council advisor. Based in Taipei.</div>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-name">Dr. Volker Kaese</div>
-        <div class="team-role">Partner</div>
-        <div class="team-bio">VW Group and Audi background spanning product strategy and open innovation. Anchors European corporate partnerships. Based in Germany.</div>
+        <div class="team-portrait"><span class="role-stamp">Germany</span><img src="https://training.mvl.biz/Volker%20Kaese_0.jpg" alt="Dr. Volker Kaese" loading="lazy" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=team-portrait-monogram>VK</span>')"></div>
+        <div class="team-info">
+          <div class="team-name">Dr. Volker Kaese</div>
+          <div class="team-role">Partner</div>
+          <div class="team-bio">VW Group and Audi background spanning product strategy and open innovation. Anchors European corporate partnerships. Based in Germany.</div>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-name">Ken Huang</div>
-        <div class="team-role">Program Director</div>
-        <div class="team-bio">Technology scouting for OEMs and electronics conglomerates. Runs CES, MWC, and VivaTech delegations.</div>
+        <div class="team-portrait"><span class="role-stamp">Taipei</span><span class="team-portrait-monogram">KH</span></div>
+        <div class="team-info">
+          <div class="team-name">Ken Huang</div>
+          <div class="team-role">Program Director</div>
+          <div class="team-bio">Technology scouting for OEMs and electronics conglomerates. Runs CES, MWC, and VivaTech delegations.</div>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-name">Emily Wong</div>
-        <div class="team-role">Head of Operations</div>
-        <div class="team-bio">Cross-program operations, investor relations, and LP reporting across MVL's programs and portfolio.</div>
+        <div class="team-portrait"><span class="role-stamp">Taipei</span><span class="team-portrait-monogram">EW</span></div>
+        <div class="team-info">
+          <div class="team-name">Emily Wong</div>
+          <div class="team-role">Head of Operations</div>
+          <div class="team-bio">Cross-program operations, investor relations, and LP reporting across MVL's programs and portfolio.</div>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-name">Jade Cheng</div>
-        <div class="team-role">Startup Relations</div>
-        <div class="team-bio">Manages the startup pipeline and application process for Mosaic+ at TTA. First point of contact for founders.</div>
+        <div class="team-portrait"><span class="role-stamp">Taipei</span><span class="team-portrait-monogram">JC</span></div>
+        <div class="team-info">
+          <div class="team-name">Jade Cheng</div>
+          <div class="team-role">Startup Relations</div>
+          <div class="team-bio">Manages the startup pipeline and application process for Mosaic+ at TTA. First point of contact for founders.</div>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-name">Kyle Hu</div>
-        <div class="team-role">Research &amp; Scouting</div>
-        <div class="team-bio">Sector research across biotech, semiconductor, and automotive. Deal flow from Japan, Korea, and Southeast Asia.</div>
+        <div class="team-portrait"><span class="role-stamp">Taipei</span><span class="team-portrait-monogram">KH</span></div>
+        <div class="team-info">
+          <div class="team-name">Kyle Hu</div>
+          <div class="team-role">Research &amp; Scouting</div>
+          <div class="team-bio">Sector research across biotech, semiconductor, and automotive. Deal flow from Japan, Korea, and Southeast Asia.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -1882,9 +1979,13 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
 <!-- ======== PERSPECTIVES ======== -->
 <main id="page-perspectives" class="page">
   <section class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-hero-stamp-mono">07 · PERSPECTIVES</div>
     <div class="eyebrow">Perspectives</div>
     <h1 class="display">Press, events, recaps, <em>podcasts</em>.</h1>
     <p class="lede" style="margin-top:24px">Most recent first.</p>
+      </div>
+    <div class="page-hero-stamp" aria-hidden="true">∾</div>
   </section>
   <section class="section">
     <div class="persp-feed">
@@ -1945,9 +2046,13 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
 <!-- ======== CONTACT ======== -->
 <main id="page-contact" class="page">
   <section class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-hero-stamp-mono">08 · CONTACT</div>
     <div class="eyebrow">Contact</div>
     <h1 class="display"><span style="display:block">Three audiences.</span>One contact form each.</h1>
     <p class="lede" style="margin-top:24px;max-width:600px">Each goes to the right team. We respond within two business days.</p>
+      </div>
+    <div class="page-hero-stamp" aria-hidden="true">03</div>
   </section>
   <section class="section" style="padding-top:0">
     <div class="contact-doors">
@@ -2017,7 +2122,7 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
     <div>
       <div class="logo" style="margin-bottom:20px"><span class="logo-mark"></span><span>Mosaic Venture Lab</span></div>
       <p class="text-muted" style="font-size:14px;line-height:1.6;max-width:280px">East Asia deep-tech investor and accelerator operator. Since 2011.</p>
-      <p class="text-muted" style="font-size:13px;margin-top:14px"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a3cbc6cfcfcce3ced5cf8dc1cad9">[email&#160;protected]</a> · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="631311061010230e150f4d010a19">[email&#160;protected]</a></p>
+      <p class="text-muted" style="font-size:13px;margin-top:14px"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0f676a6363604f627963216d6675">[email&#160;protected]</a> · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e49496819797a4899288ca868d9e">[email&#160;protected]</a></p>
     </div>
     <div>
       <div class="footer-block-title">Company</div>
@@ -2046,8 +2151,8 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
         <li><a href="#">LinkedIn</a></li>
         <li><a href="#">Medium</a></li>
         <li><a href="#">Spotify</a></li>
-        <li style="margin-top:10px"><a href="/cdn-cgi/l/email-protection#e69694839595a68b908ac8848f9c"><span class="__cf_email__" data-cfemail="572725322424173a213b79353e2d">[email&#160;protected]</span></a></li>
-        <li><a href="/cdn-cgi/l/email-protection#ef878a838380af829983c18d8695"><span class="__cf_email__" data-cfemail="82eae7eeeeedc2eff4eeace0ebf8">[email&#160;protected]</span></a></li>
+        <li style="margin-top:10px"><a href="/cdn-cgi/l/email-protection#275755425454674a514b09454e5d"><span class="__cf_email__" data-cfemail="c9b9bbacbaba89a4bfa5e7aba0b3">[email&#160;protected]</span></a></li>
+        <li><a href="/cdn-cgi/l/email-protection#68000d04040728051e04460a0112"><span class="__cf_email__" data-cfemail="bed6dbd2d2d1fed3c8d290dcd7c4">[email&#160;protected]</span></a></li>
       </ul>
     </div>
   </div>
