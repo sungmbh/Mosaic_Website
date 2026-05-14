@@ -584,6 +584,55 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
   .logo-grid { grid-template-columns: repeat(2, 1fr); }
   .track-stats { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+  /* MOBILE HARDENING — recent additions */
+  .editorial-band, .bidi-band { padding-left: 20px !important; padding-right: 20px !important; padding-top: 56px !important; padding-bottom: 56px !important; }
+  .editorial-band-head h2, .bidi-head h2 { font-size: 28px !important; line-height: 1.1; }
+  .editorial-grid { grid-template-columns: 1fr 1fr !important; gap: 8px; }
+  .editorial-tile { aspect-ratio: 1 !important; }
+  .editorial-tile-caption { font-size: 11px; }
+  .editorial-tile-caption strong { font-size: 13px; }
+  .bidi-flow { padding: 28px 24px 32px !important; min-height: unset !important; }
+  .bidi-flow-title { font-size: 22px !important; }
+  /* Page hero stacks cleanly */
+  .page-hero { display: block !important; padding: 64px 20px 48px !important; }
+  .page-hero-stamp { display: none; }
+  /* Hide oversized fluid type stamps from intruding */
+  /* Portfolio mini-logos legible on phone */
+  .port-tile { padding: 22px 18px; }
+  .port-tile-name { font-size: 17px; }
+  /* Trusted-by logo wall: 3 cols on phone (was 2) for legibility */
+  section.section-warm .section-inner > div[style*="repeat(6"] { grid-template-columns: repeat(3, 1fr) !important; }
+  /* Team portrait grid: 1 col on phone is fine — already set */
+  /* Mentor portrait grid */
+  .portrait-grid { grid-template-columns: repeat(2, 1fr); }
+  /* Hero on phone */
+  .hero { padding: 40px 20px 32px !important; }
+  .hero-v2-grid { grid-template-columns: 1fr !important; gap: 32px; }
+  .hero-stat-featured-num { font-size: 28px !important; }
+  .hero-stat-mini-row { grid-template-columns: 1fr !important; }
+  .hero-geo-row { grid-template-columns: repeat(2, 1fr) !important; }
+  /* Section padding */
+  .section { padding: 56px 20px !important; }
+  /* Proof strip */
+  .proof-strip-inner { grid-template-columns: repeat(2, 1fr); }
+  .proof-cell { border-bottom: 1px solid rgba(244,240,232,0.1); }
+  /* Editorial sector layout collapses cleanly */
+  .sector-editorial { grid-template-columns: 1fr !important; }
+  /* Track record */
+  .track-inner { padding: 48px 20px !important; }
+  .milestone-nodes { grid-template-columns: 1fr 1fr !important; gap: 24px 16px; }
+  /* Fund tease */
+  .fund-tease-inner, .three-path-inner { padding: 56px 20px !important; }
+  /* Bidi flow direction text wrap */
+  .bidi-flow-direction { font-size: 10px; }
+  .bidi-flow-meta { font-size: 12px; gap: 12px; }
+  /* Team card portraits proportional */
+  .team-portrait { aspect-ratio: 16/10; }
+  .team-portrait-monogram { font-size: 60px; }
+}
+@media (max-width: 420px) {
+  .editorial-grid { grid-template-columns: 1fr !important; }
+  .hero-geo-row { grid-template-columns: 1fr !important; }
 }
 </style>
 </head>
@@ -782,7 +831,7 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
         <div class="sector-side-card dim" data-route="sectors">
           <div class="sector-side-eyebrow">04 / 04 · New vertical</div>
           <div class="sector-side-name">Defense Tech</div>
-          <div class="sector-side-desc">Selective dual-use deep tech. Taiwan, Korea, Japan. Inquiries handled confidentially via <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c9a1aca5a5a689a4bfa5e7aba0b3">[email&#160;protected]</a>.</div>
+          <div class="sector-side-desc">Selective dual-use deep tech. Taiwan, Korea, Japan. Inquiries handled confidentially via <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="59313c35353619342f35773b3023">[email&#160;protected]</a>.</div>
         </div>
       </div>
     </div>
@@ -1316,14 +1365,6 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
         </div>
       </div>
       <div class="team-card">
-        <div class="team-portrait"><span class="role-stamp">Partner</span><img src="https://training.mvl.biz/Volker%20Kaese_0.jpg" alt="Dr. Volker Kaese" loading="lazy" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=team-portrait-monogram>VK</span>')"></div>
-        <div class="team-info">
-          <div class="team-name">Dr. Volker Kaese</div>
-          <div class="team-role">Partner</div>
-          <div class="team-bio">VW Group and Audi background. Anchors European corporate partnerships across automotive and mobility.</div>
-        </div>
-      </div>
-      <div class="team-card">
         <div class="team-portrait"><span class="role-stamp">Program Director</span><span class="team-portrait-monogram">KH</span></div>
         <div class="team-info">
           <div class="team-name">Ken Huang</div>
@@ -1439,7 +1480,7 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
         </div>
         <div class="sector-detail">
           <div class="sector-detail-key">Contact</div>
-          <div><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cea6aba2a2a18ea3b8a2e0aca7b4">[email&#160;protected]</a> — handled directly by the partnership.</div>
+          <div><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="78101d14141738150e14561a1102">[email&#160;protected]</a> — handled directly by the partnership.</div>
         </div>
       </div>
       <div class="sector-row-thumb"></div>
@@ -1752,12 +1793,12 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
       <div class="team-card">
         <div class="team-portrait">
           <span class="role-stamp">03 · IC Member</span>
-          <img src="https://training.mvl.biz/Volker%20Kaese_0.jpg" alt="Dr. Volker Kaese" loading="lazy" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=team-portrait-monogram>VK</span>')">
+          <span class="team-portrait-monogram">KH</span>
         </div>
         <div class="team-info">
-          <div class="team-name">Dr. Volker Kaese</div>
-          <div class="team-role">IC Member · Partner</div>
-          <div class="team-bio">CEO Ingenev Mobility. Ex-Audi / VW Group Innovation. European LP and OEM relationships.</div>
+          <div class="team-name">Ken Huang</div>
+          <div class="team-role">IC Member · Program Director</div>
+          <div class="team-bio">Technology scouting across OEMs and electronics conglomerates. Brings cohort-level deal flow visibility to the committee.</div>
         </div>
       </div>
       <div class="team-card">
@@ -1843,27 +1884,11 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
         </div>
       </div>
       <div class="team-card">
-        <div class="team-portrait"><span class="role-stamp">Germany</span><img src="https://training.mvl.biz/Volker%20Kaese_0.jpg" alt="Dr. Volker Kaese" loading="lazy" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=team-portrait-monogram>VK</span>')"></div>
-        <div class="team-info">
-          <div class="team-name">Dr. Volker Kaese</div>
-          <div class="team-role">Partner</div>
-          <div class="team-bio">VW Group and Audi background spanning product strategy and open innovation. Anchors European corporate partnerships. Based in Germany.</div>
-        </div>
-      </div>
-      <div class="team-card">
         <div class="team-portrait"><span class="role-stamp">Taipei</span><span class="team-portrait-monogram">KH</span></div>
         <div class="team-info">
           <div class="team-name">Ken Huang</div>
           <div class="team-role">Program Director</div>
           <div class="team-bio">Technology scouting for OEMs and electronics conglomerates. Runs CES, MWC, and VivaTech delegations.</div>
-        </div>
-      </div>
-      <div class="team-card">
-        <div class="team-portrait"><span class="role-stamp">Taipei</span><span class="team-portrait-monogram">EW</span></div>
-        <div class="team-info">
-          <div class="team-name">Emily Wong</div>
-          <div class="team-role">Head of Operations</div>
-          <div class="team-bio">Cross-program operations, investor relations, and LP reporting across MVL's programs and portfolio.</div>
         </div>
       </div>
       <div class="team-card">
@@ -2122,7 +2147,7 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
     <div>
       <div class="logo" style="margin-bottom:20px"><span class="logo-mark"></span><span>Mosaic Venture Lab</span></div>
       <p class="text-muted" style="font-size:14px;line-height:1.6;max-width:280px">East Asia deep-tech investor and accelerator operator. Since 2011.</p>
-      <p class="text-muted" style="font-size:13px;margin-top:14px"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0f676a6363604f627963216d6675">[email&#160;protected]</a> · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e49496819797a4899288ca868d9e">[email&#160;protected]</a></p>
+      <p class="text-muted" style="font-size:13px;margin-top:14px"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1078757c7c7f507d667c3e72796a">[email&#160;protected]</a> · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="68181a0d1b1b28051e04460a0112">[email&#160;protected]</a></p>
     </div>
     <div>
       <div class="footer-block-title">Company</div>
@@ -2151,8 +2176,8 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
         <li><a href="#">LinkedIn</a></li>
         <li><a href="#">Medium</a></li>
         <li><a href="#">Spotify</a></li>
-        <li style="margin-top:10px"><a href="/cdn-cgi/l/email-protection#275755425454674a514b09454e5d"><span class="__cf_email__" data-cfemail="c9b9bbacbaba89a4bfa5e7aba0b3">[email&#160;protected]</span></a></li>
-        <li><a href="/cdn-cgi/l/email-protection#68000d04040728051e04460a0112"><span class="__cf_email__" data-cfemail="bed6dbd2d2d1fed3c8d290dcd7c4">[email&#160;protected]</span></a></li>
+        <li style="margin-top:10px"><a href="/cdn-cgi/l/email-protection#ef9f9d8a9c9caf829983c18d8695"><span class="__cf_email__" data-cfemail="4f3f3d2a3c3c0f223923612d2635">[email&#160;protected]</span></a></li>
+        <li><a href="/cdn-cgi/l/email-protection#345c5158585b745942581a565d4e"><span class="__cf_email__" data-cfemail="422a272e2e2d022f342e6c202b38">[email&#160;protected]</span></a></li>
       </ul>
     </div>
   </div>
