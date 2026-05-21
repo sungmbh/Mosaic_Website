@@ -25,15 +25,17 @@
   --mono: 'Geist Mono', 'SF Mono', monospace;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { font-family: var(--sans); background: var(--paper); color: var(--ink); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body { font-family: var(--sans); background: var(--paper); color: var(--ink); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; max-width: 100vw; }
+img, svg { max-width: 100%; }
+* { min-width: 0; }
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
 img { max-width: 100%; display: block; }
 
 /* HEADER */
 .header { position: sticky; top: 0; z-index: 100; background: rgba(244,240,232,0.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--rule-soft); }
-.header-inner { max-width: 1440px; margin: 0 auto; padding: 18px 48px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.header-inner { max-width: 1440px; margin: 0 auto; padding: 18px 48px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: nowrap; }
 .logo { font-family: var(--display); font-weight: 500; font-size: 20px; letter-spacing: -0.02em; display: flex; align-items: baseline; gap: 10px; }
 .logo-mark { display: inline-block; width: 16px; height: 16px; background: var(--accent); position: relative; transform: translateY(2px); flex-shrink: 0; }
 .logo-mark::after { content: ""; position: absolute; width: 7px; height: 7px; background: var(--paper); bottom: 0; right: 0; }
@@ -634,6 +636,185 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
   .editorial-grid { grid-template-columns: 1fr !important; }
   .hero-geo-row { grid-template-columns: 1fr !important; }
 }
+
+/* ===== ECOSYSTEM (Mosaic + subsidiaries) ===== */
+.ecosystem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 40px; }
+.eco-card { background: var(--paper); padding: 28px 24px 32px; display: flex; flex-direction: column; gap: 14px; min-height: 360px; transition: background .2s, transform .35s cubic-bezier(.2,.7,.2,1); cursor: pointer; position: relative; }
+.eco-card.parent { background: var(--ink); color: var(--paper); }
+.eco-card:not(.parent):hover { background: var(--paper-warm); transform: translateY(-2px); }
+.eco-card.parent:hover { background: var(--ink-soft); transform: translateY(-2px); }
+.eco-card-role { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.eco-card-logo-wrap { height: 56px; display: flex; align-items: center; justify-content: flex-start; }
+.eco-card-logo { height: 42px; width: auto; object-fit: contain; max-width: 100%; }
+.eco-card.parent .eco-card-logo { filter: brightness(0) invert(1); }
+.eco-card-name { font-family: var(--display); font-size: 22px; font-weight: 500; letter-spacing: -0.018em; line-height: 1.1; font-variation-settings: 'opsz' 36; }
+.eco-card.parent .eco-card-name { color: var(--paper); }
+.eco-card-desc { font-size: 13px; line-height: 1.55; color: var(--muted); flex: 1; }
+.eco-card.parent .eco-card-desc { color: var(--paper-deep); }
+.eco-card-stage { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding-top: 14px; border-top: 1px solid var(--rule); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.eco-card.parent .eco-card-stage { border-top-color: rgba(244,240,232,0.12); color: var(--paper-deep); }
+.eco-card-stage .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+.eco-card-arrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; }
+.eco-card-arrow::after { content: "→"; transition: transform .2s; }
+.eco-card:hover .eco-card-arrow::after { transform: translateX(4px); }
+@media (max-width: 1024px) {
+  .ecosystem-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Journey strip — places each subsidiary along the startup growth axis */
+.eco-journey { margin-top: 48px; padding: 28px 28px 22px; background: var(--paper-warm); border: 1px solid var(--rule); border-radius: 3px; position: relative; }
+.eco-journey-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+.eco-journey-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; }
+.eco-journey-stage { padding: 14px 6px 10px; border-top: 2px solid var(--rule); text-align: center; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); position: relative; }
+.eco-journey-stage::before { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 8px; height: 8px; border-radius: 50%; background: var(--paper-warm); border: 2px solid var(--rule); }
+.eco-journey-stage.peak { border-top-color: var(--accent); color: var(--accent); }
+.eco-journey-stage.peak::before { background: var(--accent); border-color: var(--accent); }
+@media (max-width: 700px) {
+  .eco-journey-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+}
+
+/* ===== VCADEMY testimonials ===== */
+.v-test-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; margin-top: 40px; align-items: start; }
+.v-test-feature { background: var(--paper-warm); border: 1px solid var(--rule); border-radius: 3px; padding: 0; overflow: hidden; box-shadow: 0 14px 32px -22px rgba(15,15,14,0.25); }
+.v-test-feature-img { width: 100%; height: auto; display: block; }
+.v-test-feature-meta { padding: 18px 22px 22px; }
+.v-test-feature-name { font-family: var(--display); font-size: 17px; font-weight: 500; letter-spacing: -0.015em; line-height: 1.25; font-variation-settings: 'opsz' 24; }
+.v-test-feature-role { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-top: 6px; }
+.v-test-feature-affil { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+.v-test-quotes { display: grid; gap: 18px; }
+.v-quote { background: var(--paper); border: 1px solid var(--rule); border-radius: 3px; padding: 22px 26px 22px 34px; position: relative; transition: background .2s, transform .35s cubic-bezier(.2,.7,.2,1); }
+.v-quote::before { content: '“'; font-family: var(--display); font-style: italic; font-size: 56px; line-height: 1; color: var(--accent); opacity: 0.22; position: absolute; top: 14px; left: 10px; font-variation-settings: 'opsz' 72; }
+.v-quote:hover { background: var(--paper-warm); transform: translateY(-1px); }
+.v-quote-text { font-family: var(--display); font-size: 17px; font-style: italic; line-height: 1.45; color: var(--ink); letter-spacing: -0.01em; font-variation-settings: 'opsz' 36; font-weight: 400; }
+.v-quote-attr { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
+.v-quote-attr strong { color: var(--accent); font-weight: 500; }
+@media (max-width: 900px) {
+  .v-test-grid { grid-template-columns: 1fr; gap: 28px; }
+  .v-quote { padding: 18px 20px 18px 28px; }
+  .v-quote-text { font-size: 15px; }
+}
+
+/* ===== VCADEMY page ===== */
+.v-hero { padding: 88px 48px 48px; max-width: 1440px; margin: 0 auto; }
+.v-hero-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 56px; align-items: end; }
+.v-hero-logo-wrap { background: var(--ink); padding: 36px 40px; border-radius: 3px; box-shadow: 0 24px 48px -28px rgba(15,15,14,0.55), inset 0 1px 0 rgba(244,240,232,0.08); display: flex; flex-direction: column; gap: 22px; }
+.v-hero-logo-wrap img { max-width: 280px; height: auto; filter: brightness(0) invert(1); }
+.v-hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(244,240,232,0.1); border: 1px solid rgba(244,240,232,0.1); }
+.v-hero-stat { background: var(--ink); padding: 14px 18px; }
+.v-hero-stat-num { font-family: var(--display); font-weight: 400; font-size: 32px; line-height: 1; letter-spacing: -0.03em; color: var(--paper); font-variation-settings: 'opsz' 48; }
+.v-hero-stat-num em { font-style: italic; color: var(--accent); }
+.v-hero-stat-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--paper-deep); margin-top: 4px; line-height: 1.3; }
+
+.v-pattern-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 40px; }
+.v-pattern-card { background: var(--paper); padding: 32px 28px; }
+.v-pattern-card.alt { background: var(--paper-warm); }
+.v-pattern-num { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+.v-pattern-title { font-family: var(--display); font-size: 22px; font-weight: 500; letter-spacing: -0.018em; line-height: 1.15; margin-bottom: 12px; font-variation-settings: 'opsz' 36; }
+.v-pattern-body { font-size: 14px; line-height: 1.6; color: var(--muted); }
+
+.v-week-list { margin-top: 40px; border-top: 1px solid var(--rule); }
+.v-week-item { display: grid; grid-template-columns: 80px 1fr; gap: 32px; padding: 28px 0; border-bottom: 1px solid var(--rule); }
+.v-week-num { font-family: var(--display); font-weight: 400; font-size: 44px; line-height: 1; letter-spacing: -0.03em; color: var(--accent); font-variation-settings: 'opsz' 72; }
+.v-week-format { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+.v-week-title { font-family: var(--display); font-size: 22px; font-weight: 500; letter-spacing: -0.018em; line-height: 1.2; margin-bottom: 8px; font-variation-settings: 'opsz' 36; }
+.v-week-desc { font-size: 14px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 8px; }
+.v-week-desc strong { font-weight: 500; color: var(--ink); }
+.v-week-who { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-top: 6px; }
+
+.v-tracks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 40px; }
+.v-track { background: var(--ink); color: var(--paper); padding: 40px 36px; display: flex; flex-direction: column; gap: 14px; min-height: 320px; }
+.v-track.alt { background: #1E2A4A; }
+.v-track-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.v-track-name { font-family: var(--display); font-size: 36px; font-weight: 400; letter-spacing: -0.024em; line-height: 1.05; font-variation-settings: 'opsz' 48; }
+.v-track-name em { font-style: italic; color: var(--accent); }
+.v-track-desc { font-size: 15px; line-height: 1.6; color: var(--paper-deep); }
+.v-track-detail { margin-top: auto; padding-top: 18px; border-top: 1px solid rgba(244,240,232,0.12); display: grid; grid-template-columns: 90px 1fr; gap: 8px 14px; font-size: 13px; }
+.v-track-dt { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(244,240,232,0.4); padding-top: 2px; }
+.v-track-dd { color: var(--paper-deep); }
+
+.v-logo-strip { display: flex; flex-wrap: wrap; gap: 24px 44px; align-items: center; justify-content: flex-start; margin-top: 28px; padding: 32px 36px; background: var(--paper-warm); border: 1px solid var(--rule); border-radius: 3px; }
+.v-logo-strip img { height: 28px; width: auto; object-fit: contain; opacity: 0.7; transition: opacity .2s, transform .2s; }
+.v-logo-strip img:hover { opacity: 1; transform: scale(1.06); }
+
+.v-cta-section { background: var(--ink); color: var(--paper); border-radius: 3px; padding: 56px 56px; margin-top: 56px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: center; }
+.v-cta-section h2 { font-family: var(--display); font-size: clamp(28px, 3.5vw, 44px); line-height: 1.08; letter-spacing: -0.022em; margin-bottom: 14px; font-variation-settings: 'opsz' 72; }
+.v-cta-section h2 em { font-style: italic; color: var(--accent); }
+.v-cta-section p { font-size: 16px; line-height: 1.6; color: var(--paper-deep); }
+.v-cta-side { display: flex; flex-direction: column; gap: 12px; }
+
+@media (max-width: 900px) {
+  .v-hero-grid { grid-template-columns: 1fr; gap: 32px; align-items: stretch; }
+  .v-pattern-grid { grid-template-columns: 1fr; }
+  .v-tracks-grid { grid-template-columns: 1fr; }
+  .v-cta-section { grid-template-columns: 1fr; padding: 40px 28px; gap: 24px; }
+  .v-hero { padding: 56px 24px 32px; }
+  .v-hero-logo-wrap { padding: 28px 28px; }
+  .v-hero-logo-wrap img { max-width: 220px; }
+  .v-hero-stat-num { font-size: 26px; }
+  .v-week-item { grid-template-columns: 56px 1fr; gap: 16px; padding: 20px 0; }
+  .v-week-num { font-size: 32px; }
+  .v-week-title { font-size: 19px; }
+  .v-track { padding: 28px 24px; min-height: 0; }
+  .v-track-name { font-size: 28px; }
+  .v-logo-strip { padding: 24px 22px; gap: 18px 28px; }
+  .v-logo-strip img { height: 22px; }
+}
+
+/* ===== MOBILE HARDENING v5 — fix text overflow, hamburger working state ===== */
+@media (max-width: 1024px) {
+  /* Hide overflow-prone decorative slow-rotate mosaic on mobile */
+  .hero::after { display: none; }
+  /* Make sure header logo + hamburger fit comfortably */
+  .header-inner { padding: 14px 20px !important; gap: 12px; }
+  .logo span { white-space: nowrap; }
+  .logo > div > span:first-child { font-size: 16px !important; }
+  .logo > div > span:last-child { font-size: 8px !important; }
+  /* Force grids that escape parent to wrap */
+  .accel-page-row { grid-template-columns: 1fr !important; }
+  .accel-page-name { font-size: 30px !important; }
+  /* Prevent long words from overflowing rows */
+  h1.display, h2.display, h3 { overflow-wrap: anywhere; word-break: normal; }
+  .lede, p { overflow-wrap: break-word; }
+  /* Co-badge stacks gracefully */
+  .co-badge { flex-wrap: wrap; max-width: 100%; }
+}
+@media (max-width: 640px) {
+  /* Ecosystem cards always stack on phone */
+  .ecosystem-grid { grid-template-columns: 1fr !important; }
+  /* Hero stat featured: shrink the L.P. */
+  .hero-stat-featured-num { font-size: 26px !important; line-height: 1.1 !important; }
+  .hero-stat-featured { padding: 22px 22px !important; }
+  /* Track inner stacks */
+  .track-inner { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .track-stats { grid-template-columns: 1fr 1fr !important; gap: 24px 28px !important; }
+  .exit-row { flex-wrap: wrap; gap: 12px; }
+  .exit-name { font-size: 18px; }
+  /* Header logo even smaller */
+  .header-inner { padding: 12px 16px !important; }
+  .logo svg { height: 24px !important; width: 24px !important; }
+  .logo > div > span:first-child { font-size: 15px !important; }
+  .logo > div > span:last-child { font-size: 7px !important; }
+  /* Tighter section pads */
+  .section { padding: 44px 18px !important; }
+  .editorial-band, .bidi-band { padding-left: 18px !important; padding-right: 18px !important; }
+  /* Vcademy week timeline cleanup */
+  .v-week-item { grid-template-columns: 48px 1fr !important; gap: 14px !important; padding: 18px 0 !important; }
+  .v-week-num { font-size: 30px !important; }
+  /* Bidi alt cards readable */
+  .bidi-flow { padding: 24px 20px !important; }
+  .bidi-flow-title { font-size: 19px !important; }
+  /* Trusted-by wall: 2 cols only */
+  section.section-warm .section-inner > div[style*="repeat(6"] { grid-template-columns: repeat(2, 1fr) !important; }
+  .logo-cell { height: 84px !important; padding: 12px !important; }
+  .logo-cell img { height: 36px !important; }
+  /* Subsidiary logos in ecosystem grid */
+  .eco-card-logo { height: 36px !important; }
+}
+@media (max-width: 380px) {
+  h1.display { font-size: 30px !important; }
+  h2.display { font-size: 24px !important; }
+  .display { font-size: 22px !important; }
+}
 </style>
 </head>
 <body>
@@ -660,11 +841,12 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
     <nav class="nav">
       <a href="#" data-route="about">About</a>
       <a href="#" data-route="sectors">Sectors</a>
+      <a href="#" data-route="ecosystem">Ecosystem</a>
       <a href="#" data-route="accelerators">Accelerators</a>
+      <a href="#" data-route="vcademy">Vcademy</a>
       <a href="#" data-route="portfolio">Portfolio</a>
       <a href="#" data-route="fund">Fund</a>
       <a href="#" data-route="team">Team</a>
-      <a href="#" data-route="perspectives">Perspectives</a>
     </nav>
     <a class="nav-cta" href="#" data-route="contact">Get in touch</a>
     <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span></button>
@@ -673,7 +855,9 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
     <a href="#" data-route="home">Home</a>
     <a href="#" data-route="about">About</a>
     <a href="#" data-route="sectors">Sectors</a>
+    <a href="#" data-route="ecosystem">Ecosystem</a>
     <a href="#" data-route="accelerators">Accelerators</a>
+    <a href="#" data-route="vcademy">Vcademy</a>
     <a href="#" data-route="portfolio">Portfolio</a>
     <a href="#" data-route="fund">Fund</a>
     <a href="#" data-route="team">Team</a>
@@ -799,6 +983,70 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
     </div>
   </section>
 
+  <!-- ECOSYSTEM — Mosaic + subsidiary companies (Tessera, Tessly AI, Vcademy) -->
+  <section class="section" style="padding-top:80px;padding-bottom:48px">
+    <div class="eyebrow">The Mosaic ecosystem</div>
+    <h2 class="display">One platform.<br>Four specialist <em>operating companies</em>.</h2>
+    <p class="lede" style="margin-top:16px;max-width:680px">Mosaic Venture Lab is the parent investment platform. Around it we built three specialist subsidiaries — each handling a distinct part of what early-stage founders actually need: branding, financial modeling, and global go-to-market training. Together they cover the full startup growth journey.</p>
+
+    <div class="ecosystem-grid">
+      <div class="eco-card parent" data-route="about">
+        <div class="eco-card-role">Parent · Investment platform</div>
+        <div class="eco-card-logo-wrap"><img src="assets/mosaic-logo.png" alt="Mosaic Venture Lab" class="eco-card-logo" style="height:48px"></div>
+        <div class="eco-card-name">Mosaic Venture Lab</div>
+        <div class="eco-card-desc">East Asia deep-tech investor, accelerator operator, and OEM scouting platform. Runs Mosaic+ at TTA. Anchors FSP Mosaic I&amp;S L.P.</div>
+        <div class="eco-card-stage"><span class="dot"></span>Investment · Business development · Fundraising</div>
+        <span class="eco-card-arrow">About MVL</span>
+      </div>
+
+      <a class="eco-card" href="https://www.tessera.design" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit">
+        <div class="eco-card-role">Subsidiary · Brand &amp; story</div>
+        <div class="eco-card-logo-wrap"><img src="assets/tessera-logo.png" alt="Tessera" class="eco-card-logo"></div>
+        <div class="eco-card-name">Tessera</div>
+        <div class="eco-card-desc">The design studio. Web design, brand storytelling, and pitch-narrative refinement for deep-tech founders. Same visual DNA as the parent — refined further.</div>
+        <div class="eco-card-stage"><span class="dot"></span>Branding · Web · Pitch narrative</div>
+        <span class="eco-card-arrow">tessera.design</span>
+      </a>
+
+      <div class="eco-card" data-route="ecosystem">
+        <div class="eco-card-role">Subsidiary · Finance</div>
+        <div class="eco-card-logo-wrap"><img src="assets/tessly-ai-logo.png" alt="Tessly AI" class="eco-card-logo"></div>
+        <div class="eco-card-name">Tessly AI</div>
+        <div class="eco-card-desc">AI-assisted financial modeling and statement generation. Built so an early-stage founder without a CFO can run institutional-quality numbers in hours.</div>
+        <div class="eco-card-stage"><span class="dot"></span>Financial modeling · Statements</div>
+        <span class="eco-card-arrow">Learn more</span>
+      </div>
+
+      <div class="eco-card" data-route="vcademy">
+        <div class="eco-card-role">Subsidiary · Training</div>
+        <div class="eco-card-logo-wrap"><img src="assets/vcademy-logo.png" alt="Vcademy" class="eco-card-logo"></div>
+        <div class="eco-card-name">Vcademy</div>
+        <div class="eco-card-desc">The 8-week training program. Cross-cultural sales, AI-native pipelines, business-model design, and corporate governance. Pre-trains founders for CES, VivaTech, and direct global deals.</div>
+        <div class="eco-card-stage"><span class="dot"></span>Business model · GTM · Governance</div>
+        <span class="eco-card-arrow">Program detail</span>
+      </div>
+    </div>
+
+    <!-- Growth-journey strip (mirrors the pptx infographic) -->
+    <div class="eco-journey">
+      <div class="eco-journey-label">Where each company plugs into the startup growth journey</div>
+      <div class="eco-journey-row">
+        <div class="eco-journey-stage">Ideation</div>
+        <div class="eco-journey-stage peak">POC</div>
+        <div class="eco-journey-stage peak">Finance</div>
+        <div class="eco-journey-stage peak">Branding</div>
+        <div class="eco-journey-stage peak">Scale-up</div>
+        <div class="eco-journey-stage">Milestones</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px;font-family:var(--mono);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted)">
+        <div><span style="color:var(--accent)">Mosaic ·</span> Business dev · Fundraising</div>
+        <div><span style="color:var(--accent)">Tessly AI ·</span> Financial modeling · Statements</div>
+        <div><span style="color:var(--accent)">Tessera ·</span> Web · Brand · Pitch narrative</div>
+        <div><span style="color:var(--accent)">Vcademy ·</span> Business model · GTM · Governance</div>
+      </div>
+    </div>
+  </section>
+
   <!-- SECTORS — editorial layout -->
   <section class="section" style="padding-top:64px">
     <div class="eyebrow">Four sectors</div>
@@ -831,7 +1079,7 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
         <div class="sector-side-card dim" data-route="sectors">
           <div class="sector-side-eyebrow">04 / 04 · New vertical</div>
           <div class="sector-side-name">Defense Tech</div>
-          <div class="sector-side-desc">Selective dual-use deep tech. Taiwan, Korea, Japan. Inquiries handled confidentially via <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="59313c35353619342f35773b3023">[email&#160;protected]</a>.</div>
+          <div class="sector-side-desc">Selective dual-use deep tech. Taiwan, Korea, Japan. Inquiries handled confidentially via <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a4ccc1c8c8cbe4c9d2c88ac6cdde">[email&#160;protected]</a>.</div>
         </div>
       </div>
     </div>
@@ -1015,12 +1263,12 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
         <div class="accel-sector">Cell &amp; gene therapy venture studio. Clinical commercialization built on Taiwan's biotech foundry infrastructure.</div>
         <span class="accel-arrow">Detail</span>
       </div>
-      <div class="accel-card past">
+      <div class="accel-card" data-route="vcademy">
         <div>
-          <div class="accel-partner">Outbound · Built by MVL</div>
-          <div class="accel-name">Sell <em style="font-style:italic;color:var(--accent)">Global</em></div>
+          <div class="accel-partner" style="display:flex;align-items:center;gap:8px"><img src="assets/vcademy-logo.png" alt="Vcademy" style="height:14px;width:auto;object-fit:contain;opacity:0.9">Mosaic Studio · Training</div>
+          <div class="accel-name">V<em style="font-style:italic;color:var(--accent)">cademy</em></div>
         </div>
-        <div class="accel-sector">Outbound trade-mission program. Pre-trains Taiwanese, Japanese, and Korean founders for cross-border B2B selling — then ships them to CES, VivaTech, Munich.</div>
+        <div class="accel-sector">8-week training program for global B2B selling. Cross-cultural buyer simulation, AI-native pipelines, war games. Mentors from Google, Audi, VW, AWS, IBM. Built from 14 years of CES &amp; VivaTech delegations.</div>
         <span class="accel-arrow">Detail</span>
       </div>
       <div class="accel-card past">
@@ -1099,7 +1347,7 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
             Outbound · Taiwan → Global
           </div>
           <div class="bidi-flow-title">180+ Taiwanese founders, trained for CES and VivaTech.</div>
-          <div class="bidi-flow-body">Three cohorts since 2024. Curriculum built from 14 years of watching what works — cross-cultural buyer simulation, war games, materials clinics. Mentors from Google, Audi, VW, AWS, IBM, Continental, Daimler. Now structured as the 8-week SELL GLOBAL program.</div>
+          <div class="bidi-flow-body">Three cohorts since 2024. Curriculum built from 14 years of watching what works — cross-cultural buyer simulation, war games, materials clinics. Mentors from Google, Audi, VW, AWS, IBM, Continental, Daimler. Now structured as the 8-week Vcademy program.</div>
           <div class="bidi-flow-meta">
             <span><strong>180+</strong> trained</span>
             <span><strong>3</strong> cohorts</span>
@@ -1480,7 +1728,7 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
         </div>
         <div class="sector-detail">
           <div class="sector-detail-key">Contact</div>
-          <div><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="78101d14141738150e14561a1102">[email&#160;protected]</a> — handled directly by the partnership.</div>
+          <div><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="88e0ede4e4e7c8e5fee4a6eae1f2">[email&#160;protected]</a> — handled directly by the partnership.</div>
         </div>
       </div>
       <div class="sector-row-thumb"></div>
@@ -1574,6 +1822,614 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
 
     </div>
   </section>
+</main>
+
+<!-- ======== ECOSYSTEM (companies family) ======== -->
+<main id="page-ecosystem" class="page">
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-hero-stamp-mono">ECO · FAMILY OF COMPANIES</div>
+      <div class="eyebrow">The Mosaic ecosystem</div>
+      <h1 class="display">One platform.<br>Four <em>operating companies</em>.</h1>
+      <p class="lede" style="margin-top:24px;max-width:780px">Mosaic is not just a fund and not just an accelerator. We built specialist sister companies to handle the parts of the founder journey that most VCs outsource — design, financial modeling, and global-sales training. Each subsidiary is run by operators who do nothing else.</p>
+    </div>
+    <div class="page-hero-stamp" aria-hidden="true">04</div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="ecosystem-grid">
+      <div class="eco-card parent" data-route="about">
+        <div class="eco-card-role">Parent · Investment platform</div>
+        <div class="eco-card-logo-wrap"><img src="assets/mosaic-logo.png" alt="Mosaic Venture Lab" class="eco-card-logo" style="height:48px"></div>
+        <div class="eco-card-name">Mosaic Venture Lab</div>
+        <div class="eco-card-desc">East Asia deep-tech investor, accelerator operator, and OEM scouting platform. The parent that anchors the others.</div>
+        <div class="eco-card-stage"><span class="dot"></span>Business dev · Fundraising · Investment</div>
+        <span class="eco-card-arrow">About MVL</span>
+      </div>
+      <a class="eco-card" href="https://www.tessera.design" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit">
+        <div class="eco-card-role">Subsidiary · Brand &amp; story</div>
+        <div class="eco-card-logo-wrap"><img src="assets/tessera-logo.png" alt="Tessera" class="eco-card-logo"></div>
+        <div class="eco-card-name">Tessera</div>
+        <div class="eco-card-desc">The studio that does the design work portfolio companies usually outsource — websites, decks, narrative.</div>
+        <div class="eco-card-stage"><span class="dot"></span>Branding · Web · Pitch narrative</div>
+        <span class="eco-card-arrow">tessera.design</span>
+      </a>
+      <div class="eco-card">
+        <div class="eco-card-role">Subsidiary · Finance</div>
+        <div class="eco-card-logo-wrap"><img src="assets/tessly-ai-logo.png" alt="Tessly AI" class="eco-card-logo"></div>
+        <div class="eco-card-name">Tessly AI</div>
+        <div class="eco-card-desc">AI-assisted financial modeling, projections, and statement generation. Closes the gap between founder math and what an institutional investor expects to see.</div>
+        <div class="eco-card-stage"><span class="dot"></span>Financial modeling · Statements</div>
+        <span class="eco-card-arrow">In active development</span>
+      </div>
+      <div class="eco-card" data-route="vcademy">
+        <div class="eco-card-role">Subsidiary · Training</div>
+        <div class="eco-card-logo-wrap"><img src="assets/vcademy-logo.png" alt="Vcademy" class="eco-card-logo"></div>
+        <div class="eco-card-name">Vcademy</div>
+        <div class="eco-card-desc">Our 8-week founder training program. Cross-cultural B2B sales, AI-native pipelines, war games, and the GTM playbooks behind 180+ founders trained for CES &amp; VivaTech.</div>
+        <div class="eco-card-stage"><span class="dot"></span>Business model · GTM · Governance</div>
+        <span class="eco-card-arrow">Program detail</span>
+      </div>
+    </div>
+
+    <!-- Journey strip -->
+    <div class="eco-journey">
+      <div class="eco-journey-label">Where each company plugs into the startup growth journey</div>
+      <div class="eco-journey-row">
+        <div class="eco-journey-stage">Ideation</div>
+        <div class="eco-journey-stage peak">POC</div>
+        <div class="eco-journey-stage peak">Finance</div>
+        <div class="eco-journey-stage peak">Branding</div>
+        <div class="eco-journey-stage peak">Scale-up</div>
+        <div class="eco-journey-stage">Milestones</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px;font-family:var(--mono);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted)">
+        <div><span style="color:var(--accent)">Mosaic ·</span> Business dev · Fundraising</div>
+        <div><span style="color:var(--accent)">Tessly AI ·</span> Financial modeling · Statements</div>
+        <div><span style="color:var(--accent)">Tessera ·</span> Web · Brand · Pitch narrative</div>
+        <div><span style="color:var(--accent)">Vcademy ·</span> Business model · GTM · Governance</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-deep">
+    <div class="section-inner">
+      <div class="eyebrow">Why we built it this way</div>
+      <h2 class="display">Most accelerators promise<br>full-stack support. <em>We staffed it.</em></h2>
+      <p class="lede" style="margin-top:16px;max-width:680px">A typical portfolio company needs a brand identity, a financial model, a deck, and a sales pipeline before raising the next round. Most funds outsource all four — and lose months in handoffs. We hired specialists, packaged them as standalone companies, and let founders engage them à la carte.</p>
+      <div class="vs-grid" style="margin-top:40px">
+        <div class="vs-card">
+          <div class="vs-label">Tessera</div>
+          <div class="vs-title">Design treated as engineering</div>
+          <div class="vs-body">A real studio with a typographic point of view — not a freelancer marketplace. Same visual vocabulary across investor decks, websites, and trade-show materials.</div>
+        </div>
+        <div class="vs-card">
+          <div class="vs-label">Tessly AI</div>
+          <div class="vs-title">Founder-grade financial modeling</div>
+          <div class="vs-body">An AI-native modeling toolkit that turns rough founder assumptions into the projections, statements, and sensitivity tables an institutional LP expects to see.</div>
+        </div>
+        <div class="vs-card">
+          <div class="vs-label">Vcademy</div>
+          <div class="vs-title">Selling, not pitching</div>
+          <div class="vs-body">An 8-week training that flips role-play: mentors play hostile American and European buyers. Founders learn to sell, not present. 180+ trained for CES &amp; VivaTech.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="eyebrow">Where to go from here</div>
+    <h2 class="display">Three doors.</h2>
+    <div class="three-path-grid" style="background:var(--rule);border:1px solid var(--rule);margin-top:40px">
+      <a class="path-card" href="https://www.tessera.design" target="_blank" rel="noopener noreferrer" style="background:var(--paper);color:var(--ink);text-decoration:none;cursor:pointer">
+        <div class="path-num" style="color:var(--accent)">Tessera</div>
+        <div class="path-title" style="color:var(--ink)">Brand + product design</div>
+        <div class="path-desc" style="color:var(--muted)">Studio site is live. Engagements through the Tessera team directly.</div>
+        <span class="path-cta" style="color:var(--ink)">Visit tessera.design</span>
+      </a>
+      <div class="path-card" data-route="vcademy" style="background:var(--paper-warm);color:var(--ink)">
+        <div class="path-num" style="color:var(--accent)">Vcademy</div>
+        <div class="path-title" style="color:var(--ink)">8-week training program</div>
+        <div class="path-desc" style="color:var(--muted)">Open application. Companies and individuals tracks. Spring &amp; fall cohorts.</div>
+        <span class="path-cta" style="color:var(--ink)">Program detail</span>
+      </div>
+      <div class="path-card" data-route="contact" style="background:var(--paper);color:var(--ink)">
+        <div class="path-num" style="color:var(--accent)">Tessly AI</div>
+        <div class="path-title" style="color:var(--ink)">Financial modeling beta</div>
+        <div class="path-desc" style="color:var(--muted)">In active development. Contact us for early-access partnership inquiries.</div>
+        <span class="path-cta" style="color:var(--ink)">Get in touch</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ======== VCADEMY (training program) ======== -->
+<main id="page-vcademy" class="page">
+
+  <!-- VCADEMY HERO -->
+  <section class="v-hero">
+    <div class="page-hero-stamp-mono" style="margin-bottom:20px">VCADEMY · TRAINING SUBSIDIARY</div>
+    <div class="v-hero-grid">
+      <div>
+        <div class="eyebrow">Mosaic ecosystem · Training</div>
+        <h1 class="display">Your tech works.<br>Now learn to <em>sell it.</em></h1>
+        <p class="lede" style="margin-top:24px;max-width:580px">Vcademy is the Mosaic ecosystem's training arm. 8 weeks that teach Taiwanese startups and SMEs to sell the way European and American buyers actually buy — AI-native sales pipelines, cross-cultural buyer psychology, competitive simulation, B2B and B2C tracks.</p>
+        <div class="hero-ctas" style="margin-top:28px">
+          <a class="btn btn-primary" href="#" data-route="contact">Apply now</a>
+          <a class="btn btn-outline" href="#vcademy-program">Curriculum</a>
+        </div>
+      </div>
+      <div class="v-hero-logo-wrap">
+        <img src="assets/vcademy-logo.png" alt="Vcademy">
+        <div class="v-hero-stats">
+          <div class="v-hero-stat"><div class="v-hero-stat-num">180<em>+</em></div><div class="v-hero-stat-label">Startups trained</div></div>
+          <div class="v-hero-stat"><div class="v-hero-stat-num">15<em>+</em></div><div class="v-hero-stat-label">International mentors</div></div>
+          <div class="v-hero-stat"><div class="v-hero-stat-num">3</div><div class="v-hero-stat-label">Cohorts completed</div></div>
+          <div class="v-hero-stat"><div class="v-hero-stat-num">14</div><div class="v-hero-stat-label">Years in Taiwan</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM -->
+  <section class="section-warm">
+    <div class="section-inner">
+      <div class="eyebrow">The problem</div>
+      <h2 class="display">The technology is never the issue.<br>The <em>selling</em> is.</h2>
+      <p class="lede" style="margin-top:16px;max-width:640px">After training 180+ startups for CES and VivaTech, three patterns kept repeating.</p>
+      <div class="v-pattern-grid">
+        <div class="v-pattern-card">
+          <div class="v-pattern-num">Pattern 01 · The Supplier Trap</div>
+          <div class="v-pattern-title">Lead with the problem you solve, not your factory credentials.</div>
+          <div class="v-pattern-body">Founders open with yield rate, BOM, and ODM history instead of the buyer's actual problem. A mentor scored one startup's competitive positioning 1 out of 5: "less tech jargon, more business language."</div>
+        </div>
+        <div class="v-pattern-card alt">
+          <div class="v-pattern-num">Pattern 02 · The Budget Gap</div>
+          <div class="v-pattern-title">Operating-cost assumptions reveal whether you're ready.</div>
+          <div class="v-pattern-body">A real CES 2026 startup offered $200/day for booth staff — no flight from Taiwan, no hotel. That signals to every potential partner that the company doesn't understand global operating costs.</div>
+        </div>
+        <div class="v-pattern-card">
+          <div class="v-pattern-num">Pattern 03 · The Communication Mismatch</div>
+          <div class="v-pattern-title">"Good tech with terrible storytelling." Scored 1 out of 5.</div>
+          <div class="v-pattern-body">The CEO pitches in limited English while a fluent team member watches silently. The technology is excellent — and that excellence never gets through. The deal dies in the first 60 seconds.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW WE TEACH -->
+  <section class="section" id="vcademy-program">
+    <div class="eyebrow">How we teach</div>
+    <h2 class="display">8 weeks. 4 online. 4 in-person.<br>Send the right people to the right sessions.</h2>
+    <div class="vs-grid" style="margin-top:40px">
+      <div class="vs-card">
+        <div class="vs-label">Method · 01</div>
+        <div class="vs-title">Learn how buyers buy</div>
+        <div class="vs-body">European and American buyers evaluate trust, make decisions, and communicate differently. Dedicated online sessions cover each market's norms with live role-play demos.</div>
+      </div>
+      <div class="vs-card">
+        <div class="vs-label">Method · 02</div>
+        <div class="vs-title">Role-play is the core</div>
+        <div class="vs-body">40% of program time is mentor-vs-founder role-play. A mentor plays a skeptical German buyer. You pitch. They push back. You adapt. That's how the learning sticks.</div>
+      </div>
+      <div class="vs-card">
+        <div class="vs-label">Method · 03</div>
+        <div class="vs-title">Send your whole team</div>
+        <div class="vs-body">BD lead attends lead-generation training. Engineer joins the technical session. CEO comes to strategy day. One enrollment, multiple team members at relevant sessions.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRACKS -->
+  <section class="section-deep">
+    <div class="section-inner">
+      <div class="eyebrow">Two tracks</div>
+      <h2 class="display">Companies and individuals.<br>Split at <em>Week 5</em>.</h2>
+      <p class="lede" style="margin-top:16px;max-width:680px">Weeks 1–4 build the foundation together. Weeks 5–8 split into specialized tracks with their own War Games and Show Day simulations.</p>
+      <div class="v-tracks-grid">
+        <div class="v-track">
+          <div class="v-track-tag">Track A</div>
+          <div class="v-track-name">For <em>Companies</em></div>
+          <div class="v-track-desc">For startups with a product and a team. Goal: become capable of independently generating and closing deals with international buyers. Send your CEO to strategy. Your BD lead to sales. Your engineer to technical sessions.</div>
+          <div class="v-track-detail">
+            <div class="v-track-dt">Size</div><div class="v-track-dd">20–30 companies per cohort</div>
+            <div class="v-track-dt">Outcome</div><div class="v-track-dd">A working outbound pipeline · materials clinic · CES &amp; VivaTech readiness</div>
+          </div>
+        </div>
+        <div class="v-track alt">
+          <div class="v-track-tag">Track B</div>
+          <div class="v-track-name">For <em>Individuals</em></div>
+          <div class="v-track-desc">For students, aspiring entrepreneurs, and career-switchers. Goal: understand what global entrepreneurship actually requires — the real math, the real skills, the real career paths.</div>
+          <div class="v-track-detail">
+            <div class="v-track-dt">Size</div><div class="v-track-dd">15–25 participants per cohort</div>
+            <div class="v-track-dt">Outcome</div><div class="v-track-dd">Personal brand · negotiation fluency · global-career playbook</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEEK SCHEDULE -->
+  <section class="section">
+    <div class="eyebrow">Week by week</div>
+    <h2 class="display">The full <em>8 weeks</em>.</h2>
+    <div class="v-week-list">
+      <div class="v-week-item">
+        <div><div class="v-week-num">1</div><div class="v-week-format">Online · 90 min</div></div>
+        <div>
+          <div class="v-week-title">Your buyer's world</div>
+          <div class="v-week-desc">How European and American buyers evaluate startups — what they look for, what kills trust, what earns a second meeting. Self-assessment diagnostic: how ready is your team right now?</div>
+          <div class="v-week-who">Both tracks · CEO + BD Lead recommended</div>
+        </div>
+      </div>
+      <div class="v-week-item">
+        <div><div class="v-week-num">2</div><div class="v-week-format">Online · 90 min</div></div>
+        <div>
+          <div class="v-week-title">The European buyer</div>
+          <div class="v-week-desc">German technical due-diligence culture. French relationship-first approach. Nordic flat communication. A mentor plays three buyer personas pitching the same product — watch how the approach must change for each market.</div>
+          <div class="v-week-who">Both tracks · BD Lead + Sales Team recommended</div>
+        </div>
+      </div>
+      <div class="v-week-item">
+        <div><div class="v-week-num">3</div><div class="v-week-format">Online · 90 min</div></div>
+        <div>
+          <div class="v-week-title">The American buyer</div>
+          <div class="v-week-desc">Speed and directness. Pricing on the first call. Same-day follow-up or you're dead. Enterprise sales cycle. The critical difference between a VC pitch and a buyer pitch — they are different documents.</div>
+          <div class="v-week-who">Both tracks · BD Lead + Sales Team recommended</div>
+        </div>
+      </div>
+      <div class="v-week-item">
+        <div><div class="v-week-num">4</div><div class="v-week-format">In-person · Full day</div></div>
+        <div>
+          <div class="v-week-title">Your story, not your specs</div>
+          <div class="v-week-desc"><strong>Track A:</strong> The Forbidden Words drill (banned supplier vocabulary, buzzer on violations). Technical Inquisition under pressure. CEO Communication Shift — 4 rounds of delegation exercises with adversarial mentors.<br><strong>Track B:</strong> Startup vs. corporate math — real TSMC salary vs. real startup equity. Reverse-engineer Taiwan success cases vs. zombie startups.</div>
+          <div class="v-week-who">Tracks split · Full team for Track A</div>
+        </div>
+      </div>
+      <div class="v-week-item">
+        <div><div class="v-week-num">5</div><div class="v-week-format">Online · 90 min</div></div>
+        <div>
+          <div class="v-week-title">Build your sales machine</div>
+          <div class="v-week-desc"><strong>Track A:</strong> The AI-native outbound stack. Browser agents for prospecting (Claude Cowork, Operator). Lead enrichment with Clay. Automated email sequences with Instantly. LinkedIn drip campaigns. ICP filters that actually work. You leave this session with a functioning pipeline — not a slide about one.<br><strong>Track B:</strong> Personal branding for international careers. LinkedIn optimization. How to network at global events.</div>
+          <div class="v-week-who">Tracks split · BD Lead + Marketing recommended</div>
+        </div>
+      </div>
+      <div class="v-week-item">
+        <div><div class="v-week-num">6</div><div class="v-week-format">In-person · Half day</div></div>
+        <div>
+          <div class="v-week-title">Trust artifacts &amp; sales materials</div>
+          <div class="v-week-desc"><strong>Track A:</strong> Every buyer segment has tokens of trust they need before engaging. Compliance docs, case studies, security summaries, pilot proposals. One-pager clinic. Pitch deck teardown and rebuild. Website audit. Using AI to produce trust artifacts in days instead of months. Round-robin with 4 mentor stations.<br><strong>Track B:</strong> The Equity Negotiation — play both sides of a funding deal. Evaluate term sheets. Understand dilution, vesting, liquidation preferences.</div>
+          <div class="v-week-who">Tracks split · Marketing + BD Lead recommended</div>
+        </div>
+      </div>
+      <div class="v-week-item">
+        <div><div class="v-week-num">7</div><div class="v-week-format">In-person · Full day</div></div>
+        <div>
+          <div class="v-week-title">The proving ground</div>
+          <div class="v-week-desc"><strong>Track A:</strong> The War Games. Full competitive simulation. Budget reality audit. 30-second pitch rapid fire. Meeting role-play with adversarial buyer personas. Scoring begins.<br><strong>Track B:</strong> Observe and score Track A companies as "mock investors." Debrief: what patterns did you see? Which companies would you back?</div>
+          <div class="v-week-who">War Games Day · Full team for Track A · Track B observes</div>
+        </div>
+      </div>
+      <div class="v-week-item">
+        <div><div class="v-week-num">8</div><div class="v-week-format">In-person · Full day</div></div>
+        <div>
+          <div class="v-week-title">Show day</div>
+          <div class="v-week-desc">Full trade-show simulation. The 10-Second Hook: stop a walking mentor, earn a meeting. The Lead Sprint: 50 contacts, outreach emails drafted and sent before anyone leaves. Championship Round: top 8 compete. Awards and scoring.</div>
+          <div class="v-week-who">Both tracks converge · Full team + CEO</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW FOR 2026 / HOT TOPICS -->
+  <section class="section-warm">
+    <div class="section-inner">
+      <div class="eyebrow">New for 2026</div>
+      <h2 class="display">Three topics Taiwan's founders<br>are asking for <em>right now</em>.</h2>
+      <p class="lede" style="margin-top:16px;max-width:640px">Added to the curriculum based on direct feedback from founders and industry stakeholders.</p>
+      <div class="v-pattern-grid">
+        <div class="v-pattern-card">
+          <div class="v-pattern-num">01 · AI-native</div>
+          <div class="v-pattern-title">AI-powered founder-led sales</div>
+          <div class="v-pattern-body">Browser agents as your AI SDR. Automated outbound pipelines from lead sourcing through enrichment to sequenced outreach. Tools like Clay, Instantly, and Claude Cowork — the same stack a16z speedrun founders use to sell to banks and hospitals with zero sales hires. You build your pipeline in-session.</div>
+        </div>
+        <div class="v-pattern-card alt">
+          <div class="v-pattern-num">02 · Build fast</div>
+          <div class="v-pattern-title">Vibe coding for sales tools</div>
+          <div class="v-pattern-body">Build landing pages, lead-capture forms, ROI calculators, and custom GTM dashboards — no engineers. Founders prototype sales tools in-session and ship them the same week. Sales enablement that used to require a 3-month dev cycle now takes an afternoon.</div>
+        </div>
+        <div class="v-pattern-card">
+          <div class="v-pattern-num">03 · Cross-cultural</div>
+          <div class="v-pattern-title">Business English for deals</div>
+          <div class="v-pattern-body">Meeting language, negotiation phrases, and the cultural signals that close or kill a deal. Role-play practice with native-speaking mentors across American, German, and French buyer personas.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY EXERCISES -->
+  <section class="section">
+    <div class="eyebrow">Key exercises</div>
+    <h2 class="display">What happens in the <em>room</em>.</h2>
+    <p class="lede" style="margin-top:16px;max-width:640px">Lecture-heavy programs produce founders who can explain a value proposition on a whiteboard but freeze when a German buyer asks "Why should I care?" in a hallway. 15% briefing. 40% role-play. 30% simulation. 15% debrief.</p>
+
+    <!-- Method split -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:36px">
+      <div style="background:var(--paper);padding:22px 22px;text-align:center">
+        <div style="font-family:var(--display);font-size:34px;font-weight:400;color:var(--ink);line-height:1;font-variation-settings:'opsz' 48">15<span style="font-size:0.6em">%</span></div>
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:8px">Briefing</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:6px;line-height:1.4">Max 15 min before action starts.</div>
+      </div>
+      <div style="background:var(--ink);color:var(--paper);padding:22px 22px;text-align:center">
+        <div style="font-family:var(--display);font-size:34px;font-weight:400;color:var(--accent);line-height:1;font-variation-settings:'opsz' 48;font-style:italic">40<span style="font-size:0.6em">%</span></div>
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--paper-deep);margin-top:8px">Role-play</div>
+        <div style="font-size:12px;color:var(--paper-deep);margin-top:6px;line-height:1.4">Mentor plays buyer. Founder must sell.</div>
+      </div>
+      <div style="background:var(--paper);padding:22px 22px;text-align:center">
+        <div style="font-family:var(--display);font-size:34px;font-weight:400;color:var(--ink);line-height:1;font-variation-settings:'opsz' 48">30<span style="font-size:0.6em">%</span></div>
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:8px">Simulation</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:6px;line-height:1.4">Full trade-show conditions.</div>
+      </div>
+      <div style="background:var(--paper);padding:22px 22px;text-align:center">
+        <div style="font-family:var(--display);font-size:34px;font-weight:400;color:var(--ink);line-height:1;font-variation-settings:'opsz' 48">15<span style="font-size:0.6em">%</span></div>
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:8px">Debrief</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:6px;line-height:1.4">What happened. What to fix.</div>
+      </div>
+    </div>
+
+    <!-- Four exercises -->
+    <div class="vs-grid" style="margin-top:24px;grid-template-columns:repeat(2,1fr)">
+      <div class="vs-card">
+        <div class="vs-label">Exercise · 01</div>
+        <div class="vs-title">The Forbidden Words Drill</div>
+        <div class="vs-body">Pitch with banned supplier vocabulary (yield rate, BOM, ODM, factory, cost-down). Required user vocabulary (driver, passenger, experience, pain point, time saved). Buzzer on violations. Restart from zero.</div>
+      </div>
+      <div class="vs-card">
+        <div class="vs-label">Exercise · 02</div>
+        <div class="vs-title">The Technical Inquisition</div>
+        <div class="vs-body">Once you can pitch user value, mentors shift to hostile technical due diligence. "You claim 40% improvement. Prove it. Data. Now." Say "we think" or "we plan to" — meeting over.</div>
+      </div>
+      <div class="vs-card">
+        <div class="vs-label">Exercise · 03</div>
+        <div class="vs-title">The Communication Shift</div>
+        <div class="vs-body">Round 1: CEO forbidden from speaking. Round 2: CEO gets 30 seconds, communicator does everything else. Round 3: No slides, no notes. Round 4: Mentor switches persona mid-pitch.</div>
+      </div>
+      <div class="vs-card">
+        <div class="vs-label">Exercise · 04</div>
+        <div class="vs-title">The Lead Sprint</div>
+        <div class="vs-body">50 qualified contacts. Outreach emails drafted, mentor-reviewed, and sent before anyone leaves the building. Not hypothetical. Real emails to real buyers on Show Day.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERABLES — what you walk away with -->
+  <section class="section-warm">
+    <div class="section-inner">
+      <div class="eyebrow">What you walk away with</div>
+      <h2 class="display">Not skills. <em>Deliverables</em>.</h2>
+      <p class="lede" style="margin-top:16px;max-width:640px">Every item is something you take home and use at your next international event.</p>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:40px">
+        <div style="background:var(--paper);padding:24px 26px"><div style="font-family:var(--display);font-size:18px;font-weight:500;letter-spacing:-0.012em;margin-bottom:6px;font-variation-settings:'opsz' 24"><span style="color:var(--accent);margin-right:8px">✓</span>A tested pitch</div><div style="font-size:13px;line-height:1.55;color:var(--muted)">Your pitch, pressure-tested against 4+ international buyer personas. Not a deck review — a live performance that survived hostile feedback.</div></div>
+        <div style="background:var(--paper);padding:24px 26px"><div style="font-family:var(--display);font-size:18px;font-weight:500;letter-spacing:-0.012em;margin-bottom:6px;font-variation-settings:'opsz' 24"><span style="color:var(--accent);margin-right:8px">✓</span>A cold email that works</div><div style="font-size:13px;line-height:1.55;color:var(--muted)">Your outreach script, reviewed and rewritten by an international sales executive. Subject lines, personalization, and CTAs that get replies.</div></div>
+        <div style="background:var(--paper);padding:24px 26px"><div style="font-family:var(--display);font-size:18px;font-weight:500;letter-spacing:-0.012em;margin-bottom:6px;font-variation-settings:'opsz' 24"><span style="color:var(--accent);margin-right:8px">✓</span>25 qualified buyers</div><div style="font-size:13px;line-height:1.55;color:var(--muted)">A target list of 25 international contacts for your next event. Each entry: name, title, company, relevance, and a personalized outreach message.</div></div>
+        <div style="background:var(--paper);padding:24px 26px"><div style="font-family:var(--display);font-size:18px;font-weight:500;letter-spacing:-0.012em;margin-bottom:6px;font-variation-settings:'opsz' 24"><span style="color:var(--accent);margin-right:8px">✓</span>50 emails actually sent</div><div style="font-size:13px;line-height:1.55;color:var(--muted)">On Show Day, you send 50 real outreach emails to real buyers. Drafted, mentor-reviewed, and sent before you leave the building.</div></div>
+        <div style="background:var(--paper);padding:24px 26px"><div style="font-family:var(--display);font-size:18px;font-weight:500;letter-spacing:-0.012em;margin-bottom:6px;font-variation-settings:'opsz' 24"><span style="color:var(--accent);margin-right:8px">✓</span>Rebuilt materials</div><div style="font-size:13px;line-height:1.55;color:var(--muted)">Your one-pager and pitch deck, rebuilt after surviving 4 rounds of international mentor feedback at the Materials Round Robin.</div></div>
+        <div style="background:var(--paper);padding:24px 26px"><div style="font-family:var(--display);font-size:18px;font-weight:500;letter-spacing:-0.012em;margin-bottom:6px;font-variation-settings:'opsz' 24"><span style="color:var(--accent);margin-right:8px">✓</span>Cross-cultural playbook</div><div style="font-size:13px;line-height:1.55;color:var(--muted)">Specific understanding of how German, French, Nordic, and American buyers evaluate trust and make purchase decisions differently.</div></div>
+        <div style="background:var(--paper);padding:24px 26px"><div style="font-family:var(--display);font-size:18px;font-weight:500;letter-spacing:-0.012em;margin-bottom:6px;font-variation-settings:'opsz' 24"><span style="color:var(--accent);margin-right:8px">✓</span>Working AI sales pipeline</div><div style="font-size:13px;line-height:1.55;color:var(--muted)">Browser agent configured for LinkedIn prospecting. Lead enrichment flow. Automated email sequences. Built during class — not after.</div></div>
+        <div style="background:var(--paper);padding:24px 26px"><div style="font-family:var(--display);font-size:18px;font-weight:500;letter-spacing:-0.012em;margin-bottom:6px;font-variation-settings:'opsz' 24"><span style="color:var(--accent);margin-right:8px">✓</span>A readiness score</div><div style="font-size:13px;line-height:1.55;color:var(--muted)">CES / VivaTech readiness score across 5 categories with specific improvement actions. You know exactly where you stand.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 YEARS TIMELINE -->
+  <section class="section">
+    <div class="eyebrow">14 years in Taiwan</div>
+    <h2 class="display">Built here. Tested here.<br>Refined by watching <em>what works</em>.</h2>
+    <p class="lede" style="margin-top:16px;max-width:680px">Vcademy is not a new program — it is the structured, packaged version of fourteen years of running Taiwan's startup delegations into global markets.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:40px">
+      <div style="background:var(--paper);padding:26px 26px;border-left:3px solid var(--accent)">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px">2011 — 2013</div>
+        <div style="font-family:var(--display);font-size:18px;font-weight:500;letter-spacing:-0.012em;margin-bottom:8px;font-variation-settings:'opsz' 24">Startup Weekend Taiwan</div>
+        <div style="font-size:13px;line-height:1.55;color:var(--muted)">Introduced Startup Weekend to Taiwan. Events at Google Taiwan, Microsoft Taiwan, and top universities — Hsinchu, Tainan, Kaohsiung, Taipei.</div>
+      </div>
+      <div style="background:var(--paper);padding:26px 26px;border-left:3px solid var(--accent)">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px">2012 — 2018</div>
+        <div style="font-family:var(--display);font-size:18px;font-weight:500;letter-spacing:-0.012em;margin-bottom:8px;font-variation-settings:'opsz' 24">APEC Accelerator Network</div>
+        <div style="font-size:13px;line-height:1.55;color:var(--muted)">Conceptualized and co-managed the APEC Accelerator Network with Taiwan's Ministry of Economic Affairs (MoEA/SMEA). Pitch events across APEC economies for six years.</div>
+      </div>
+      <div style="background:var(--paper);padding:26px 26px;border-left:3px solid var(--accent)">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px">2015 — present</div>
+        <div style="font-family:var(--display);font-size:18px;font-weight:500;letter-spacing:-0.012em;margin-bottom:8px;font-variation-settings:'opsz' 24">VW Group · Audi scouting</div>
+        <div style="font-size:13px;line-height:1.55;color:var(--muted)">Technology scouting partner for Volkswagen Group, then Audi added. Active supplier network across 25+ countries, 5 continents. Audi Innovation Award program in Taiwan.</div>
+      </div>
+      <div style="background:var(--paper);padding:26px 26px;border-left:3px solid var(--accent)">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px">2023</div>
+        <div style="font-family:var(--display);font-size:18px;font-weight:500;letter-spacing:-0.012em;margin-bottom:8px;font-variation-settings:'opsz' 24">LITEON+ at TTA</div>
+        <div style="font-size:13px;line-height:1.55;color:var(--muted)">LITEON+ Startup Platform at Taiwan Tech Arena — co-working, training, and demo day for hardware startups. Designed and launched by MVL; now operated independently.</div>
+      </div>
+      <div style="background:var(--paper);padding:26px 26px;border-left:3px solid var(--accent)">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px">2024 — 2025</div>
+        <div style="font-family:var(--display);font-size:18px;font-weight:500;letter-spacing:-0.012em;margin-bottom:8px;font-variation-settings:'opsz' 24">CES 2025 · VivaTech · CES 2026</div>
+        <div style="font-size:13px;line-height:1.55;color:var(--muted)">180+ startups trained across three cohorts — 2-day CES bootcamps, 3-session VivaTech series, ITRI patent-commercialization training for professors.</div>
+      </div>
+      <div style="background:var(--paper-deep);padding:26px 26px;border-left:3px solid var(--accent)">
+        <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px">2026</div>
+        <div style="font-family:var(--display);font-size:18px;font-weight:500;letter-spacing:-0.012em;margin-bottom:8px;font-variation-settings:'opsz' 24">Vcademy</div>
+        <div style="font-size:13px;line-height:1.55;color:var(--muted)">Everything distilled into a structured 8-week program. The first cross-cultural sales training designed specifically for Taiwanese technology startups.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENTOR NETWORK -->
+  <section class="section-deep">
+    <div class="section-inner">
+      <div class="eyebrow">Mentor network</div>
+      <h2 class="display">Mentors are <em>buyers</em>,<br>not advisors.</h2>
+      <p class="lede" style="margin-top:16px;max-width:680px">Drawn from the same 15-year MVL network — corporate executives who sit on the other side of the table. They know exactly what kills a deal because they have walked away from hundreds of them.</p>
+
+      <!-- Mentor companies -->
+      <div class="v-logo-strip" style="margin-top:28px;margin-bottom:48px">
+        <img src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/AWS.png" alt="AWS">
+        <img src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/IBM.png" alt="IBM">
+        <img src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/continental.png" alt="Continental">
+        <img src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/EMC-Logo.png" alt="EMC">
+        <img src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/daimler.png" alt="Daimler">
+        <img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fa6c5e9b776f904f4705_Audi.webp" alt="Audi" style="filter:brightness(0)">
+        <img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fa6c174cb95304a65b82_VW.webp" alt="VW Group" style="filter:brightness(0)">
+        <img src="https://cdn.prod.website-files.com/654c8fd13dffee07f785c6e4/65a0fb767fdf4a522c66f8fd_Google.webp" alt="Google" style="filter:brightness(0)">
+        <img src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/TTA.jpg" alt="TTA">
+      </div>
+
+      <!-- Mentor portraits -->
+      <div class="portrait-grid">
+        <div class="portrait-card">
+          <div class="portrait-photo"><img src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/Christian.png" alt="Christian Walter" loading="lazy"></div>
+          <div class="portrait-info">
+            <div class="portrait-name">Christian Walter</div>
+            <div class="portrait-role">CEO · RegionRise</div>
+            <div class="portrait-affil">Ex-Google Europe</div>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <div class="portrait-photo"><img src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/Wilson.png" alt="Wilson Khoo" loading="lazy"></div>
+          <div class="portrait-info">
+            <div class="portrait-name">Wilson Khoo</div>
+            <div class="portrait-role">Director · co-pace APAC</div>
+            <div class="portrait-affil">Continental AG</div>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <div class="portrait-photo"><img src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/Pascal.png" alt="Pascal Viaud" loading="lazy"></div>
+          <div class="portrait-info">
+            <div class="portrait-name">Pascal Viaud</div>
+            <div class="portrait-role">CEO · UBIK ltd.</div>
+            <div class="portrait-affil">La French Tech Taiwan</div>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <div class="portrait-photo"><img src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/Chander%20Kant.png" alt="Chander Kant" loading="lazy"></div>
+          <div class="portrait-info">
+            <div class="portrait-name">Chander Kant</div>
+            <div class="portrait-role">CEO · K Ventures</div>
+            <div class="portrait-affil">Former CEO, Zmanda</div>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <div class="portrait-photo"><img src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/Mark%20Birch.png" alt="Mark Birch" loading="lazy"></div>
+          <div class="portrait-info">
+            <div class="portrait-name">Mark Birch</div>
+            <div class="portrait-role">Founder · TribeROI</div>
+            <div class="portrait-affil">Ex-AWS Global Advocate</div>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <div class="portrait-photo"><img src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/Ashley.png" alt="Ashley Hsueh" loading="lazy"></div>
+          <div class="portrait-info">
+            <div class="portrait-name">Ashley Hsueh</div>
+            <div class="portrait-role">Management Consultant</div>
+            <div class="portrait-affil">Bain &amp; Company</div>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <div class="portrait-photo"><img src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/Volker%20Kaese_0.jpg" alt="Dr. Volker Kaese" loading="lazy"></div>
+          <div class="portrait-info">
+            <div class="portrait-name">Dr. Volker Kaese</div>
+            <div class="portrait-role">CEO · Ingenev Mobility</div>
+            <div class="portrait-affil">Ex-Audi / VW Innovation</div>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <div class="portrait-photo"><img src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/deborah.jpg" alt="Deborah Magid" loading="lazy"></div>
+          <div class="portrait-info">
+            <div class="portrait-name">Deborah Magid</div>
+            <div class="portrait-role">MD · NextStar Ventures</div>
+            <div class="portrait-affil">Ex-IBM Ventures</div>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <div class="portrait-photo"><img src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/Shafeen.png" alt="Shafeen Charania" loading="lazy"></div>
+          <div class="portrait-info">
+            <div class="portrait-name">Shafeen Charania</div>
+            <div class="portrait-role">COO · fluency</div>
+            <div class="portrait-affil">Ex-DXC Enterprise IT</div>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <div class="portrait-photo"><img src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/Todd%20Lin_0.png" alt="Todd Lin" loading="lazy"></div>
+          <div class="portrait-info">
+            <div class="portrait-name">Todd Lin</div>
+            <div class="portrait-role">Semiconductor &amp; M&amp;A</div>
+            <div class="portrait-affil">Ex-GE, Acer, Egis Tech</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section">
+    <div class="eyebrow">From past cohorts</div>
+    <h2 class="display">What graduates <em>say</em>.</h2>
+    <p class="lede" style="margin-top:16px;max-width:640px">Real founders from CES 2025, CES 2026, and VivaTech 2025 cohorts. Some were angry on day one. None of them regret it.</p>
+    <div class="v-test-grid">
+      <figure class="v-test-feature" style="margin:0">
+        <img class="v-test-feature-img" src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/praise%20from%20startup.jpg" alt="LinkedIn message from Nicolas Fahier, CTO at IIST Inc., praising the Vcademy workshop" loading="lazy">
+        <figcaption class="v-test-feature-meta">
+          <div class="v-test-feature-name">Nicolas Fahier</div>
+          <div class="v-test-feature-role">CTO · IIST Inc.</div>
+          <div class="v-test-feature-affil">Trust &amp; security hardware · After CES 2026 Bootcamp — unsolicited LinkedIn message</div>
+        </figcaption>
+      </figure>
+      <div class="v-test-quotes">
+        <div class="v-quote">
+          <div class="v-quote-text">I was angry after the first day. Budget torn apart. CEO told to stop talking. But on the CES floor two months later, I understood. We booked 11 meetings in 3 days. Year before, we got zero.</div>
+          <div class="v-quote-attr"><strong>S.L., CEO</strong> · Smart Agriculture IoT · CES 2026 Cohort</div>
+        </div>
+        <div class="v-quote">
+          <div class="v-quote-text">The Forbidden Words drill changed everything. Didn't realize I was pitching like a factory until a German mentor said: “I'm not your customer. The driver is.” That line rewired my entire pitch.</div>
+          <div class="v-quote-attr"><strong>J.C., Founder</strong> · Industrial Vision Systems · VivaTech 2025 Cohort</div>
+        </div>
+        <div class="v-quote">
+          <div class="v-quote-text">We've been to CES three times. First two, came home with business cards and nothing else. This time, BD lead ran meetings while I focused on strategy. Left with two signed LOIs.</div>
+          <div class="v-quote-attr"><strong>T.W., CEO</strong> · Medical Device Startup · CES 2025 Cohort</div>
+        </div>
+        <div class="v-quote">
+          <div class="v-quote-text">Came in thinking I needed a better pitch deck. Left realizing I needed to let my co-founder do the talking. Hardest lesson of my career. Also most valuable.</div>
+          <div class="v-quote-attr"><strong>K.H., Co-Founder</strong> · AI Security Platform · VivaTech 2025 Cohort</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENT PHOTOS — recent cohorts -->
+  <section class="editorial-band" style="padding:64px 56px">
+    <div class="editorial-band-head">
+      <h2>Three cohorts. CES, VivaTech, war games.</h2>
+      <p>A program built on what works — refined over fourteen years of Taiwan startup delegations to global trade shows.</p>
+    </div>
+    <div class="editorial-grid">
+      <div class="editorial-tile"><img src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/CES%202025%20Bootcamp.jpg" alt="CES 2025 Bootcamp" loading="lazy"><div class="editorial-tile-caption">Taipei · 2025<strong>CES 2025 Bootcamp</strong></div></div>
+      <div class="editorial-tile"><img src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/VivaTech%202025.JPG" alt="VivaTech 2025" loading="lazy"><div class="editorial-tile-caption">Paris · 2025<strong>VivaTech workshop</strong></div></div>
+      <div class="editorial-tile"><img src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/War%20Games%20Simulation.jpg" alt="War Games Simulation" loading="lazy"><div class="editorial-tile-caption">Taipei · 2025<strong>War Games simulation</strong></div></div>
+      <div class="editorial-tile"><img src="https://cdn.jsdelivr.net/gh/sungmbh/Training_2026@main/Mentor%20Sessions.jpg" alt="Mentor Sessions" loading="lazy"><div class="editorial-tile-caption">Cohort · 2025<strong>Mentor sessions</strong></div></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="padding-top:0">
+    <div class="v-cta-section">
+      <div>
+        <h2>Your technology can compete globally.<br><em>Can your team?</em></h2>
+        <p>The question is whether your team is ready to sell the way global buyers actually buy. Vcademy is open for applications.</p>
+      </div>
+      <div class="v-cta-side">
+        <a class="btn btn-primary" href="#" data-route="contact" style="background:var(--accent);justify-content:center">Apply to Vcademy</a>
+        <a class="btn btn-outline" href="#" data-route="contact" style="border-color:rgba(244,240,232,0.5);color:var(--paper);justify-content:center">Talk to the team</a>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <!-- ======== PORTFOLIO ======== -->
@@ -2147,13 +3003,14 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
     <div>
       <div class="logo" style="margin-bottom:20px"><span class="logo-mark"></span><span>Mosaic Venture Lab</span></div>
       <p class="text-muted" style="font-size:14px;line-height:1.6;max-width:280px">East Asia deep-tech investor and accelerator operator. Since 2011.</p>
-      <p class="text-muted" style="font-size:13px;margin-top:14px"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1078757c7c7f507d667c3e72796a">[email&#160;protected]</a> · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="68181a0d1b1b28051e04460a0112">[email&#160;protected]</a></p>
+      <p class="text-muted" style="font-size:13px;margin-top:14px"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e38b868f8f8ca38e958fcd818a99">[email&#160;protected]</a> · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cdbdbfa8bebe8da0bba1e3afa4b7">[email&#160;protected]</a></p>
     </div>
     <div>
       <div class="footer-block-title">Company</div>
       <ul class="footer-list">
         <li><a href="#" data-route="about">About</a></li>
         <li><a href="#" data-route="sectors">Sectors</a></li>
+        <li><a href="#" data-route="ecosystem">Ecosystem</a></li>
         <li><a href="#" data-route="portfolio">Portfolio</a></li>
         <li><a href="#" data-route="fund">Fund</a></li>
         <li><a href="#" data-route="team">Team</a></li>
@@ -2161,13 +3018,15 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
       </ul>
     </div>
     <div>
-      <div class="footer-block-title">Programs</div>
+      <div class="footer-block-title">Ecosystem &amp; programs</div>
       <ul class="footer-list">
         <li><a href="#" data-route="accelerators">Mosaic+ at TTA</a></li>
         <li><a href="#" data-route="accelerators">CellTech</a></li>
+        <li><a href="#" data-route="vcademy">Vcademy <span style="color:var(--muted-soft);font-size:11px">— training</span></a></li>
+        <li><a href="https://www.tessera.design" target="_blank" rel="noopener noreferrer">Tessera <span style="color:var(--muted-soft);font-size:11px">— design studio</span></a></li>
+        <li><a href="#" data-route="ecosystem">Tessly AI <span style="color:var(--muted-soft);font-size:11px">— financial modeling</span></a></li>
         <li style="color:var(--muted-soft);font-size:13px">LITEON+ (built by MVL)</li>
         <li style="color:var(--muted-soft);font-size:13px">Landseed (built by MVL)</li>
-        <li style="margin-top:10px"><a href="#">training.mvl.biz</a></li>
       </ul>
     </div>
     <div>
@@ -2176,8 +3035,8 @@ body.menu-open .mobile-nav { opacity: 1; pointer-events: auto; }
         <li><a href="#">LinkedIn</a></li>
         <li><a href="#">Medium</a></li>
         <li><a href="#">Spotify</a></li>
-        <li style="margin-top:10px"><a href="/cdn-cgi/l/email-protection#ef9f9d8a9c9caf829983c18d8695"><span class="__cf_email__" data-cfemail="4f3f3d2a3c3c0f223923612d2635">[email&#160;protected]</span></a></li>
-        <li><a href="/cdn-cgi/l/email-protection#345c5158585b745942581a565d4e"><span class="__cf_email__" data-cfemail="422a272e2e2d022f342e6c202b38">[email&#160;protected]</span></a></li>
+        <li style="margin-top:10px"><a href="/cdn-cgi/l/email-protection#1c6c6e796f6f5c716a70327e7566"><span class="__cf_email__" data-cfemail="f58587908686b5988399db979c8f">[email&#160;protected]</span></a></li>
+        <li><a href="/cdn-cgi/l/email-protection#264e434a4a49664b504a08444f5c"><span class="__cf_email__" data-cfemail="b5ddd0d9d9daf5d8c3d99bd7dccf">[email&#160;protected]</span></a></li>
       </ul>
     </div>
   </div>
